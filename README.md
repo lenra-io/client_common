@@ -1,2 +1,2 @@
-# client-common
-Contains all of the common elements across all of the client projects.
+A sample command-line application with an entrypoint in `bin/`, library code
+in `lib/`, and example unit test in `test/`.
