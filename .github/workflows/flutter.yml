@@ -1,0 +1,56 @@
+name: Flutter CI
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize
+
+env:
+  flutter_version: "2.10.x"
+jobs:
+  prIsWip:
+    name: PR is WIP?
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    outputs:
+      isWip: ${{ steps.prIsWip.outputs.isWip }}
+    steps:
+      - id: prIsWip
+        uses: shiipou/pr-is-wip-action@v1.1.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  Setup-Flutter:
+    needs:
+      - prIsWip
+    if: needs.prIsWip.outputs.isWip == 'false'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cache Flutter dependencies
+        uses: actions/cache@v2
+        with:
+          path: /opt/hostedtoolcache/flutter
+          key: ${{ runner.OS }}-flutter-install-cache-${{ env.flutter_version }}
+      - uses: subosito/flutter-action@v1.5.3
+        with:
+          flutter-version: ${{ env.flutter_version }}
+      - uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: |
+            ${{ secrets.LENRA_COMPONENTS_SSH }}
+            ${{ secrets.LENRA_UI_RUNNER_SSH }}
+      - name: Restore packages
+        run: flutter pub get
+
+      - name: Analyze
+        run: flutter analyze --no-congratulate
+
+      - name: Run tests
+        run: flutter test --coverage
+    # - name: Upload coverage to codecov
+    #   uses: codecov/codecov-action@v2
+    #   with:
+    #     token: ${{ secrets.CODECOV_TOKEN }}
