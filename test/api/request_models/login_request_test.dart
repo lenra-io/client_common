@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:client_common/api/request_models/loginRequest.dart';
+import 'package:client_common/api/request_models/login_request.dart';
 import 'package:test/test.dart';
 
 void main() {

@@ -37,28 +37,33 @@ class SimplePage extends StatelessWidget {
         child: Text(
           title,
           style: theme.lenraTextThemeData.headline2,
-          textAlign: this.textAlign,
+          textAlign: textAlign,
         ),
       ));
     }
-    if (title.isNotEmpty && message.isNotEmpty) children.add(SizedBox(height: theme.baseSize * 2));
+    if (title.isNotEmpty && message.isNotEmpty) {
+      children.add(SizedBox(height: theme.baseSize * 2));
+    }
     if (message.isNotEmpty) {
       children.add(SizedBox(
         width: double.infinity,
         child: Text(
           message,
           style: theme.lenraTextThemeData.disabledBodyText,
-          textAlign: this.textAlign,
+          textAlign: textAlign,
         ),
       ));
     }
     if (child != null) {
-      if (title.isNotEmpty || message.isNotEmpty) children.add(SizedBox(height: theme.baseSize * 4));
+      if (title.isNotEmpty || message.isNotEmpty) {
+        children.add(SizedBox(height: theme.baseSize * 4));
+      }
       children.add(child!);
     }
 
     var size = MediaQuery.of(context).size;
-    var padding = min(min(size.height * 0.08, size.width * 0.1), theme.baseSize * 10);
+    var padding =
+        min(min(size.height * 0.08, size.width * 0.1), theme.baseSize * 10);
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
       onTap: () {
@@ -72,7 +77,7 @@ class SimplePage extends StatelessWidget {
               child: Column(
                 children: _buildBackInk(context, theme)
                   ..add(Center(
-                    child: new Container(
+                    child: Container(
                       width: 400,
                       child: Column(
                         children: children,
@@ -90,7 +95,8 @@ class SimplePage extends StatelessWidget {
   List<Widget> _buildBackInk(BuildContext context, LenraThemeData theme) {
     var size = MediaQuery.of(context).size;
     var inkSize = 20;
-    var separation = min(min(size.height * 0.05, size.width * 0.06), theme.baseSize * 6);
+    var separation =
+        min(min(size.height * 0.05, size.width * 0.06), theme.baseSize * 6);
     if (backInkText == null || backInkText!.isEmpty) {
       return [
         SizedBox(
@@ -98,7 +104,8 @@ class SimplePage extends StatelessWidget {
         )
       ];
     }
-    var linkTheme = theme.lenraTextThemeData.bodyText.copyWith(color: theme.lenraColorThemeData.primaryBackgroundColor);
+    var linkTheme = theme.lenraTextThemeData.bodyText
+        .copyWith(color: theme.lenraColorThemeData.primaryBackgroundColor);
     return [
       Align(
         alignment: Alignment.topLeft,
