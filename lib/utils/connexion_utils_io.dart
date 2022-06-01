@@ -5,9 +5,9 @@ PhoenixSocket createPhoenixSocket(
   String endpoint,
   Map<String, String> params,
 ) =>
-    new PhoenixSocket(
+    PhoenixSocket(
       endpoint,
-      socketOptions: new PhoenixSocketOptions(params: params),
+      socketOptions: PhoenixSocketOptions(params: params),
     );
 
 http.Client createHttpClient() => http.Client();
