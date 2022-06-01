@@ -1,5 +1,11 @@
 import 'package:client_common/navigator/guard.dart';
 import 'package:client_common/navigator/page_guard.dart';
+import 'package:client_common/views/cgu/cgu_page.dart';
+import 'package:client_common/views/cgu/cgu_page_fr.dart';
+import 'package:client_common/views/profile/change_lost_password_page.dart';
+import 'package:client_common/views/profile/change_password_confirmation_page.dart';
+import 'package:client_common/views/profile/profile_page.dart';
+import 'package:client_common/views/verify_code/verifiying_code_page.dart';
 import 'package:flutter/widgets.dart';
 
 typedef CustomPageBuilder = Widget Function(Map<String, String>);
@@ -17,16 +23,15 @@ class CommonNavigator {
   static const String cguRouteFR = "/cgu/fr";
 
   static final Map<String, CustomPageBuilder> authRoutes = {
-    CHANGE_LOST_PASSWORD_ROUTE: (Map<String, String> params) => PageGuard(
+    changeLostPasswordRoute: (Map<String, String> params) => PageGuard(
           guards: [Guard.checkUnauthenticated],
           child: ChangeLostPasswordPage(),
         ),
-    LOST_PASSWORD_ROUTE: (Map<String, String> params) => PageGuard(
+    lostPasswordRoute: (Map<String, String> params) => PageGuard(
           guards: [Guard.checkUnauthenticated],
           child: RecoveryPage(),
         ),
-    CHANGE_PASSWORD_CONFIRMATION_ROUTE: (Map<String, String> params) =>
-        PageGuard(
+    changePasswordConfirmationRoute: (Map<String, String> params) => PageGuard(
           guards: [Guard.checkUnauthenticated],
           child: ChangePasswordConfirmationPage(),
         ),
