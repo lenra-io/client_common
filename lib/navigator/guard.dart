@@ -105,7 +105,7 @@ class Guard {
   }
 
   static void _toLogin(BuildContext context) {
-    context.read<AuthModel>().redirectToRoute = LenraNavigator.currentRoute;
+    context.read<AuthModel>().redirectToRoute = CommonNavigator.currentRoute;
     Navigator.of(context).pushReplacementNamed(CommonNavigator.loginRoute);
   }
 

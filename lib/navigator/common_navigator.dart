@@ -2,9 +2,12 @@ import 'package:client_common/navigator/guard.dart';
 import 'package:client_common/navigator/page_guard.dart';
 import 'package:client_common/views/cgu/cgu_page.dart';
 import 'package:client_common/views/cgu/cgu_page_fr.dart';
+import 'package:client_common/views/login/login_page.dart';
 import 'package:client_common/views/profile/change_lost_password_page.dart';
 import 'package:client_common/views/profile/change_password_confirmation_page.dart';
 import 'package:client_common/views/profile/profile_page.dart';
+import 'package:client_common/views/profile/recovery_page.dart';
+import 'package:client_common/views/register/register_page.dart';
 import 'package:client_common/views/verify_code/verifiying_code_page.dart';
 import 'package:flutter/widgets.dart';
 
@@ -21,6 +24,9 @@ class CommonNavigator {
   static const String userValidationRoute = "/validation-user";
   static const String cguRoute = "/cgu";
   static const String cguRouteFR = "/cgu/fr";
+  static const String profileRoute = "/profile";
+
+  static String? currentRoute;
 
   static final Map<String, CustomPageBuilder> authRoutes = {
     changeLostPasswordRoute: (Map<String, String> params) => PageGuard(
@@ -35,27 +41,27 @@ class CommonNavigator {
           guards: [Guard.checkUnauthenticated],
           child: ChangePasswordConfirmationPage(),
         ),
-    PROFILE_ROUTE: (Map<String, String> params) => PageGuard(
+    profileRoute: (Map<String, String> params) => PageGuard(
           guards: [Guard.checkAuthenticated],
           child: ProfilePage(),
         ),
-    LOGIN_ROUTE: (Map<String, String> params) => PageGuard(
+    loginRoute: (Map<String, String> params) => PageGuard(
           guards: [Guard.checkUnauthenticated],
           child: LoginPage(),
         ),
-    REGISTER_ROUTE: (Map<String, String> params) => PageGuard(
+    registerRoute: (Map<String, String> params) => PageGuard(
           guards: [Guard.checkUnauthenticated],
           child: RegisterPage(),
         ),
-    CGU_ROUTE: (Map<String, String> params) => PageGuard(
+    cguRoute: (Map<String, String> params) => PageGuard(
           guards: [Guard.checkAuthenticated],
           child: CguPage(),
         ),
-    CGU_ROUTE_FR: (Map<String, String> params) => PageGuard(
+    cguRouteFR: (Map<String, String> params) => PageGuard(
           guards: [Guard.checkAuthenticated],
           child: CguPageFr(),
         ),
-    USER_VALIDATION_ROUTE: (Map<String, String> params) => PageGuard(
+    userValidationRoute: (Map<String, String> params) => PageGuard(
           guards: [
             Guard.checkAuthenticated,
             Guard.checkCguAccepted,
