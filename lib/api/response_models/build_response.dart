@@ -10,9 +10,8 @@ class BuildResponse extends ApiResponse {
 
   BuildResponse.fromJson(Map<String, dynamic> json)
       : id = json["id"],
-        status = BuildStatus.values.firstWhere(
-            (e) => e.toString() == 'BuildStatus.${json["status"]}',
-            orElse: () => BuildStatus.failure),
+        status = BuildStatus.values
+            .firstWhere((e) => e.toString() == 'BuildStatus.${json["status"]}', orElse: () => BuildStatus.failure),
         insertedAt = DateTime.parse(json["inserted_at"]),
         buildNumber = json["build_number"];
 

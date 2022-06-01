@@ -10,29 +10,25 @@ import 'package:client_common/api/response_models/auth_response.dart';
 import 'package:client_common/api/response_models/empty_response.dart';
 
 class UserApi {
-  static Future<AuthResponse> register(RegisterRequest body) =>
-      LenraAuth.instance.post(
+  static Future<AuthResponse> register(RegisterRequest body) => LenraAuth.instance.post(
         "/register",
         body: body,
         responseMapper: (json) => AuthResponse.fromJson(json),
       );
 
-  static Future<AuthResponse> login(LoginRequest body) =>
-      LenraAuth.instance.post(
+  static Future<AuthResponse> login(LoginRequest body) => LenraAuth.instance.post(
         "/login",
         body: body,
         responseMapper: (json) => AuthResponse.fromJson(json),
       );
 
-  static Future<AuthResponse> validateUser(ValidateUserRequest body) =>
-      LenraAuth.instance.post(
+  static Future<AuthResponse> validateUser(ValidateUserRequest body) => LenraAuth.instance.post(
         "/verify",
         body: body,
         responseMapper: (json) => AuthResponse.fromJson(json),
       );
 
-  static Future<AuthResponse> validateDev(ValidateDevRequest body) =>
-      LenraApi.instance.put(
+  static Future<AuthResponse> validateDev(ValidateDevRequest body) => LenraApi.instance.put(
         "/verify/dev",
         body: body,
         responseMapper: (json) => AuthResponse.fromJson(json),
@@ -47,24 +43,19 @@ class UserApi {
         "/logout",
         responseMapper: (json) => EmptyResponse.fromJson(json),
       );
-  static Future<EmptyResponse> changePassword(ChangePasswordRequest body) =>
-      LenraApi.instance.put(
+  static Future<EmptyResponse> changePassword(ChangePasswordRequest body) => LenraApi.instance.put(
         "/password",
         body: body,
         responseMapper: (json) => EmptyResponse.fromJson(json),
       );
 
-  static Future<EmptyResponse> askCodeLostPassword(
-          AskCodeLostPasswordRequest body) =>
-      LenraAuth.instance.post(
+  static Future<EmptyResponse> askCodeLostPassword(AskCodeLostPasswordRequest body) => LenraAuth.instance.post(
         "/password/lost",
         body: body,
         responseMapper: (json) => EmptyResponse.fromJson(json),
       );
 
-  static Future<EmptyResponse> sendCodeLostPassword(
-          SendCodeLostPasswordRequest body) =>
-      LenraAuth.instance.put(
+  static Future<EmptyResponse> sendCodeLostPassword(SendCodeLostPasswordRequest body) => LenraAuth.instance.put(
         "/password/lost",
         body: body,
         responseMapper: (json) => EmptyResponse.fromJson(json),

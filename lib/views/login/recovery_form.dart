@@ -27,11 +27,9 @@ class _RecoveryFormState extends State<RecoveryForm> {
 
   @override
   Widget build(BuildContext context) {
-    final LenraTextThemeData finalLenraTextThemeData =
-        LenraTheme.of(context).lenraTextThemeData;
+    final LenraTextThemeData finalLenraTextThemeData = LenraTheme.of(context).lenraTextThemeData;
     ApiErrors? askCodeLostPasswordErrors =
-        context.select<AuthModel, ApiErrors?>(
-            (m) => m.askCodeLostPasswordStatus.errors);
+        context.select<AuthModel, ApiErrors?>((m) => m.askCodeLostPasswordStatus.errors);
     return Form(
       key: _formKey,
       child: LenraFlex(
@@ -72,11 +70,8 @@ class _RecoveryFormState extends State<RecoveryForm> {
     if (_formKey.currentState!.validate()) {
       AuthModel authModel = context.read<AuthModel>();
       authModel.askCodeLostPassword(email).then((_) {
-        if (!authModel.askCodeLostPasswordStatus.hasError() &&
-            authModel.askCodeLostPasswordStatus.isDone()) {
-          Navigator.of(context).pushReplacementNamed(
-              CommonNavigator.changeLostPasswordRoute,
-              arguments: email);
+        if (!authModel.askCodeLostPasswordStatus.hasError() && authModel.askCodeLostPasswordStatus.isDone()) {
+          Navigator.of(context).pushReplacementNamed(CommonNavigator.changeLostPasswordRoute, arguments: email);
         }
       }).catchError((error) {
         logger.warning(error);

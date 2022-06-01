@@ -25,10 +25,8 @@ class _RegisterFormState extends State<RegisterForm> {
 
   @override
   Widget build(BuildContext context) {
-    final LenraTextThemeData finalLenraTextThemeData =
-        LenraTheme.of(context).lenraTextThemeData;
-    ApiErrors? registerErrors =
-        context.select<AuthModel, ApiErrors?>((m) => m.registerStatus.errors);
+    final LenraTextThemeData finalLenraTextThemeData = LenraTheme.of(context).lenraTextThemeData;
+    ApiErrors? registerErrors = context.select<AuthModel, ApiErrors?>((m) => m.registerStatus.errors);
     return Form(
       key: _formKey,
       child: LenraFlex(
@@ -51,8 +49,7 @@ class _RegisterFormState extends State<RegisterForm> {
   }
 
   Widget validationButton(BuildContext context) {
-    bool isRegistering =
-        context.select<AuthModel, bool>((m) => m.registerStatus.isFetching());
+    bool isRegistering = context.select<AuthModel, bool>((m) => m.registerStatus.isFetching());
     return SizedBox(
       width: double.infinity,
       child: LoadingButton(
@@ -87,8 +84,7 @@ class _RegisterFormState extends State<RegisterForm> {
         //------Password------
         LenraTextFormField(
           label: 'Set a password',
-          description:
-              "8 characters, 1 uppercase, 1 lowercase and 1 special character.",
+          description: "8 characters, 1 uppercase, 1 lowercase and 1 special character.",
           obscure: _hidePassword,
           hintText: 'Password',
           onSubmitted: (_) {
@@ -114,8 +110,7 @@ class _RegisterFormState extends State<RegisterForm> {
     if (_formKey.currentState!.validate()) {
       AuthModel authModel = context.read<AuthModel>();
       authModel.register(email, password).then((_) {
-        Navigator.of(context).pushReplacementNamed(
-            authModel.getRedirectionRouteAfterAuthentication());
+        Navigator.of(context).pushReplacementNamed(authModel.getRedirectionRouteAfterAuthentication());
       }).catchError((error) {
         logger.warning(error);
       });
