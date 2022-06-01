@@ -6,9 +6,9 @@ import 'package:client_common/models/cgu_model.dart';
 import 'package:client_common/navigator/common_navigator.dart';
 import 'package:client_common/views/simple_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:lenra_components/lenra_components.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
 
 class CguPageFr extends StatefulWidget {
   @override
@@ -38,8 +38,7 @@ class _CguPageFrState extends State<CguPageFr> {
         direction: Axis.vertical,
         children: [
           FutureBuilder(
-            future: Future.wait(
-                [cguModel.getLatestCguAsMd("fr"), cguModel.getLatestCgu()]),
+            future: Future.wait([cguModel.getLatestCguAsMd("fr"), cguModel.getLatestCgu()]),
             builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
                 return LenraFlex(
@@ -56,23 +55,19 @@ class _CguPageFrState extends State<CguPageFr> {
                         LenraButton(
                           type: LenraComponentType.tertiary,
                           onPressed: () {
-                            Navigator.of(context)
-                                .pushReplacementNamed(CommonNavigator.cguRoute);
+                            Navigator.of(context).pushReplacementNamed(CommonNavigator.cguRoute);
                           },
                           text: "Back to english version",
                           leftIcon: Icon(
                             Icons.arrow_back,
-                            size: theme.lenraTextThemeData.bodyText.fontSize! *
-                                theme.lenraTextThemeData.lineHeight!,
+                            size: theme.lenraTextThemeData.bodyText.fontSize! * theme.lenraTextThemeData.lineHeight!,
                           ),
                         ),
                       ],
                     ),
                     Container(
                       height: 400,
-                      decoration: BoxDecoration(
-                          border:
-                              Border.all(color: LenraColorThemeData.greyLight)),
+                      decoration: BoxDecoration(border: Border.all(color: LenraColorThemeData.greyLight)),
                       child: Markdown(
                         controller: _controller,
                         data: utf8.decode(snapshot.data[0].bodyBytes),
@@ -102,8 +97,7 @@ class _CguPageFrState extends State<CguPageFr> {
                           type: LenraComponentType.secondary,
                           onPressed: () {
                             authModel.logout().then((value) {
-                              Navigator.of(context).pushReplacementNamed(
-                                  CommonNavigator.loginRoute);
+                              Navigator.of(context).pushReplacementNamed(CommonNavigator.loginRoute);
                             });
                           },
                           text: "Je refuse et me déconnecte",
@@ -111,11 +105,8 @@ class _CguPageFrState extends State<CguPageFr> {
                         ),
                         LenraButton(
                           onPressed: () {
-                            cguModel
-                                .acceptCgu((snapshot.data[1] as CguResponse).id)
-                                .then((value) {
-                              Navigator.of(context).pushReplacementNamed(
-                                  CommonNavigator.loginRoute);
+                            cguModel.acceptCgu((snapshot.data[1] as CguResponse).id).then((value) {
+                              Navigator.of(context).pushReplacementNamed(CommonNavigator.loginRoute);
                             });
                           },
                           text: "J'accepte",

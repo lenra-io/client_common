@@ -32,8 +32,7 @@ class UserApplicationModel extends ChangeNotifier {
   String? currentApp;
 
   Future<List<AppResponse>> fetchUserApplications() async {
-    var res = await fetchApplicationsStatus.handle(
-        ApplicationApi.getUserApps, notifyListeners);
+    var res = await fetchApplicationsStatus.handle(ApplicationApi.getUserApps, notifyListeners);
     userApps = res.apps;
     notifyListeners();
     return res.apps;
@@ -56,8 +55,7 @@ class UserApplicationModel extends ChangeNotifier {
   }
 
   Future<UpdateAppResponse> updateApp(UpdateAppRequest body) async {
-    var res = await updateApplicationStatus.handle(
-        () => ApplicationApi.updateApp(body), notifyListeners);
+    var res = await updateApplicationStatus.handle(() => ApplicationApi.updateApp(body), notifyListeners);
     notifyListeners();
     return res;
   }
@@ -72,8 +70,7 @@ class UserApplicationModel extends ChangeNotifier {
     return res;
   }
 
-  Future<UpdateEnvironmentResponse> updateEnvironment(
-      int appId, int envId, UpdateEnvironmentRequest body) async {
+  Future<UpdateEnvironmentResponse> updateEnvironment(int appId, int envId, UpdateEnvironmentRequest body) async {
     var res = await updateEnvironmentStatus.handle(
       () => EnvironmentApi.updateEnvironment(appId, envId, body),
       notifyListeners,
@@ -89,8 +86,7 @@ class UserApplicationModel extends ChangeNotifier {
     CreateEnvironmentUserAccessRequest body,
   ) async {
     var res = await inviteUserStatus.handle(
-      () => EnvironmentUserAccessApi.createEnvironmentUserAccess(
-          appId, envId, body),
+      () => EnvironmentUserAccessApi.createEnvironmentUserAccess(appId, envId, body),
       notifyListeners,
     );
 
@@ -98,8 +94,7 @@ class UserApplicationModel extends ChangeNotifier {
     return res;
   }
 
-  Future<EnvironmentUserAccessesResponse> getInvitedUsers(
-      int appId, int envId) async {
+  Future<EnvironmentUserAccessesResponse> getInvitedUsers(int appId, int envId) async {
     var res = await getInvitedUsersStatus.handle(
       () => EnvironmentUserAccessApi.getEnvironmentUserAccesses(appId, envId),
       notifyListeners,

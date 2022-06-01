@@ -42,12 +42,10 @@ class _ChangeLostPasswordState extends State<ChangeLostPasswordForm> {
 
   @override
   Widget build(BuildContext context) {
-    final LenraTextThemeData finalLenraTextThemeData =
-        LenraTheme.of(context).lenraTextThemeData;
+    final LenraTextThemeData finalLenraTextThemeData = LenraTheme.of(context).lenraTextThemeData;
 
     ApiErrors? sendCodeLostPasswordErrors =
-        context.select<AuthModel, ApiErrors?>(
-            (m) => m.sendCodeLostPasswordStatus.errors);
+        context.select<AuthModel, ApiErrors?>((m) => m.sendCodeLostPasswordStatus.errors);
 
     return Form(
       key: _formKey,
@@ -69,8 +67,7 @@ class _ChangeLostPasswordState extends State<ChangeLostPasswordForm> {
               : [],
           LenraTextFormField(
             label: "Enter the received code",
-            description:
-                "If you didn't receive the code, check your email again then contact us.",
+            description: "If you didn't receive the code, check your email again then contact us.",
             onChanged: (String value) {
               code = value;
             },
@@ -86,8 +83,7 @@ class _ChangeLostPasswordState extends State<ChangeLostPasswordForm> {
           ),
           LenraTextFormField(
             label: "Set your password",
-            description:
-                "8 characters, 1 uppercase, 1 lowercase and 1 special character.",
+            description: "8 characters, 1 uppercase, 1 lowercase and 1 special character.",
             obscure: _passwordVisible,
             onChanged: (String value) {
               newPassword = value;
@@ -134,10 +130,8 @@ class _ChangeLostPasswordState extends State<ChangeLostPasswordForm> {
         newPasswordConfirmation,
       )
           .then((_) {
-        if (!authModel.sendCodeLostPasswordStatus.hasError() &&
-            authModel.sendCodeLostPasswordStatus.isDone()) {
-          Navigator.of(context).pushReplacementNamed(
-              CommonNavigator.changePasswordConfirmationRoute);
+        if (!authModel.sendCodeLostPasswordStatus.hasError() && authModel.sendCodeLostPasswordStatus.isDone()) {
+          Navigator.of(context).pushReplacementNamed(CommonNavigator.changePasswordConfirmationRoute);
         }
       }).catchError((error) {
         logger.warning(error);

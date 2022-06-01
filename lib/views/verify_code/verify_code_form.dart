@@ -20,12 +20,9 @@ class _VerifyCodeFormState extends State<VerifyCodeForm> {
 
   @override
   Widget build(BuildContext context) {
-    ApiErrors? validateUserErrors = context
-        .select<AuthModel, ApiErrors?>((m) => m.validateUserStatus.errors);
-    bool hasError =
-        context.select<AuthModel, bool>((m) => m.validateUserStatus.hasError());
-    bool isLoading = context
-        .select<AuthModel, bool>((m) => m.validateUserStatus.isFetching());
+    ApiErrors? validateUserErrors = context.select<AuthModel, ApiErrors?>((m) => m.validateUserStatus.errors);
+    bool hasError = context.select<AuthModel, bool>((m) => m.validateUserStatus.hasError());
+    bool isLoading = context.select<AuthModel, bool>((m) => m.validateUserStatus.isFetching());
 
     return LenraFlex(
       direction: Axis.vertical,

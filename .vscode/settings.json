@@ -1,0 +1,10 @@
+{
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": true
+    },
+    "editor.rulers": [
+        120,
+    ],
+    "dart.lineLength": 120,
+}

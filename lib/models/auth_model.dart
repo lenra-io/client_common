@@ -49,16 +49,13 @@ class AuthModel extends ChangeNotifier {
   }
 
   Future<AuthResponse> register(String email, String password) async {
-    var res = await registerStatus.handle(
-        () => UserApi.register(RegisterRequest(email, password)),
-        notifyListeners);
+    var res = await registerStatus.handle(() => UserApi.register(RegisterRequest(email, password)), notifyListeners);
     _handleAuthResponse(res);
     return res;
   }
 
   Future<AuthResponse> login(String email, String password) async {
-    var res = await loginStatus.handle(
-        () => UserApi.login(LoginRequest(email, password)), notifyListeners);
+    var res = await loginStatus.handle(() => UserApi.login(LoginRequest(email, password)), notifyListeners);
     _handleAuthResponse(res);
     return res;
   }
@@ -70,15 +67,13 @@ class AuthModel extends ChangeNotifier {
   }
 
   Future<AuthResponse> validateUser(String code) async {
-    var res = await validateUserStatus.handle(
-        () => UserApi.validateUser(ValidateUserRequest(code)), notifyListeners);
+    var res = await validateUserStatus.handle(() => UserApi.validateUser(ValidateUserRequest(code)), notifyListeners);
     _handleAuthResponse(res);
     return res;
   }
 
   Future<AuthResponse> validateDev(String code) async {
-    var res = await validateDevStatus.handle(
-        () => UserApi.validateDev(ValidateDevRequest(code)), notifyListeners);
+    var res = await validateDevStatus.handle(() => UserApi.validateDev(ValidateDevRequest(code)), notifyListeners);
     _handleAuthResponse(res);
     return res;
   }
@@ -93,28 +88,22 @@ class AuthModel extends ChangeNotifier {
 
   Future<EmptyResponse> askCodeLostPassword(String email) async {
     var res = await askCodeLostPasswordStatus.handle(
-        () => UserApi.askCodeLostPassword(AskCodeLostPasswordRequest(email)),
-        notifyListeners);
+        () => UserApi.askCodeLostPassword(AskCodeLostPasswordRequest(email)), notifyListeners);
     notifyListeners();
     return res;
   }
 
-  Future<EmptyResponse> sendCodeLostPassword(
-      String code, String email, String password, String confirmation) async {
+  Future<EmptyResponse> sendCodeLostPassword(String code, String email, String password, String confirmation) async {
     var res = await sendCodeLostPasswordStatus.handle(
-        () => UserApi.sendCodeLostPassword(
-            SendCodeLostPasswordRequest(code, email, password, confirmation)),
+        () => UserApi.sendCodeLostPassword(SendCodeLostPasswordRequest(code, email, password, confirmation)),
         notifyListeners);
     notifyListeners();
     return res;
   }
 
-  Future<EmptyResponse> changePassword(
-      String old, String password, String confirmation) async {
+  Future<EmptyResponse> changePassword(String old, String password, String confirmation) async {
     var res = await changePasswordStatus.handle(
-        () => UserApi.changePassword(
-            ChangePasswordRequest(old, password, confirmation)),
-        notifyListeners);
+        () => UserApi.changePassword(ChangePasswordRequest(old, password, confirmation)), notifyListeners);
     notifyListeners();
     return res;
   }

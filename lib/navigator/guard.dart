@@ -16,30 +16,18 @@ class Guard {
   Guard({required this.isValid, required this.onInvalid});
 
   static const List<UserRole> _devOrMore = [UserRole.admin, UserRole.dev];
-  static const List<UserRole> _userOrMore = [
-    UserRole.user,
-    UserRole.admin,
-    UserRole.dev
-  ];
+  static const List<UserRole> _userOrMore = [UserRole.user, UserRole.admin, UserRole.dev];
 
   static final Guard checkIsDev = Guard(isValid: _isDev, onInvalid: _becomeDev);
-  static final Guard checkIsNotDev =
-      Guard(isValid: _isNotDev, onInvalid: _toHome);
-  static final Guard checkUnauthenticated =
-      Guard(isValid: _isAuthenticated(false), onInvalid: _toHome);
-  static final Guard checkAuthenticated =
-      Guard(isValid: _isAuthenticated(true), onInvalid: _toLogin);
-  static final Guard checkNotHaveApp =
-      Guard(isValid: _haveApp(false), onInvalid: _toHome);
-  static final Guard checkCguAccepted =
-      Guard(isValid: _isCguAccepted(), onInvalid: _toCgu);
-  static final Guard checkIsUser =
-      Guard(isValid: _isUser, onInvalid: _becomeUser);
-  static final Guard checkIsNotUser =
-      Guard(isValid: _isNotUser, onInvalid: _toHome);
+  static final Guard checkIsNotDev = Guard(isValid: _isNotDev, onInvalid: _toHome);
+  static final Guard checkUnauthenticated = Guard(isValid: _isAuthenticated(false), onInvalid: _toHome);
+  static final Guard checkAuthenticated = Guard(isValid: _isAuthenticated(true), onInvalid: _toLogin);
+  static final Guard checkNotHaveApp = Guard(isValid: _haveApp(false), onInvalid: _toHome);
+  static final Guard checkCguAccepted = Guard(isValid: _isCguAccepted(), onInvalid: _toCgu);
+  static final Guard checkIsUser = Guard(isValid: _isUser, onInvalid: _becomeUser);
+  static final Guard checkIsNotUser = Guard(isValid: _isNotUser, onInvalid: _toHome);
 
-  static Future<bool> Function(BuildContext) _isAuthenticated(
-      bool mustBeAuthenticated) {
+  static Future<bool> Function(BuildContext) _isAuthenticated(bool mustBeAuthenticated) {
     return (BuildContext context) async {
       AuthModel authModel = context.read<AuthModel>();
       if (!authModel.isAuthenticated() && authModel.refreshStatus.isNone()) {
@@ -67,8 +55,7 @@ class Guard {
 
   static Future<bool> _isNotUser(BuildContext context) async {
     AuthModel authModel = context.read<AuthModel>();
-    return authModel.isOneOfRole(
-        UserRole.values.where((ur) => !_userOrMore.contains(ur)).toList());
+    return authModel.isOneOfRole(UserRole.values.where((ur) => !_userOrMore.contains(ur)).toList());
   }
 
   static Future<bool> _isDev(BuildContext context) async {
@@ -78,15 +65,13 @@ class Guard {
 
   static Future<bool> _isNotDev(BuildContext context) async {
     AuthModel authModel = context.read<AuthModel>();
-    return authModel.isOneOfRole(
-        UserRole.values.where((ur) => !_devOrMore.contains(ur)).toList());
+    return authModel.isOneOfRole(UserRole.values.where((ur) => !_devOrMore.contains(ur)).toList());
   }
 
   static Future<bool> Function(BuildContext) _haveApp(bool mustHaveApp) {
     return (BuildContext context) async {
       try {
-        List<AppResponse> userApps =
-            await context.read<UserApplicationModel>().fetchUserApplications();
+        List<AppResponse> userApps = await context.read<UserApplicationModel>().fetchUserApplications();
         return userApps.isNotEmpty == mustHaveApp;
       } catch (e) {
         return false;
@@ -97,9 +82,7 @@ class Guard {
   static Future<bool> Function(BuildContext) _isCguAccepted() {
     return (BuildContext context) async {
       CguModel cguModel = context.read<CguModel>();
-      bool res = await cguModel
-          .userAcceptedLatestCgu()
-          .then((value) => value.accepted);
+      bool res = await cguModel.userAcceptedLatestCgu().then((value) => value.accepted);
       return res;
     };
   }
@@ -110,8 +93,7 @@ class Guard {
   }
 
   static void _becomeDev(context) {
-    Navigator.of(context)
-        .pushReplacementNamed(CommonNavigator.validationDevRoute);
+    Navigator.of(context).pushReplacementNamed(CommonNavigator.validationDevRoute);
   }
 
   static void _toHome(context) {
@@ -123,7 +105,6 @@ class Guard {
   }
 
   static void _becomeUser(context) {
-    Navigator.of(context)
-        .pushReplacementNamed(CommonNavigator.userValidationRoute);
+    Navigator.of(context).pushReplacementNamed(CommonNavigator.userValidationRoute);
   }
 }
