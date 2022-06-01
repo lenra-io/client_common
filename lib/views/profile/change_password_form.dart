@@ -32,10 +32,8 @@ class _ChangePasswordState extends State<ChangePasswordForm> {
 
   @override
   Widget build(BuildContext context) {
-    bool isChangingPassword = context
-        .select<AuthModel, bool>((m) => m.changePasswordStatus.isFetching());
-    ApiErrors? changePasswordErrors = context
-        .select<AuthModel, ApiErrors?>((m) => m.changePasswordStatus.errors);
+    bool isChangingPassword = context.select<AuthModel, bool>((m) => m.changePasswordStatus.isFetching());
+    ApiErrors? changePasswordErrors = context.select<AuthModel, ApiErrors?>((m) => m.changePasswordStatus.errors);
 
     return Form(
       key: _formKey,
@@ -90,9 +88,7 @@ class _ChangePasswordState extends State<ChangePasswordForm> {
               labelText: 'New password :',
               suffixIcon: IconButton(
                 icon: Icon(
-                  _passwordVisibleConfirm
-                      ? Icons.visibility_off
-                      : Icons.visibility,
+                  _passwordVisibleConfirm ? Icons.visibility_off : Icons.visibility,
                 ),
                 onPressed: () {
                   setState(() {

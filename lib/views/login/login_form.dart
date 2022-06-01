@@ -26,10 +26,8 @@ class _LoginFormState extends State<LoginForm> {
 
   @override
   Widget build(BuildContext context) {
-    final LenraTextThemeData finalLenraTextThemeData =
-        LenraTheme.of(context).lenraTextThemeData;
-    ApiErrors? loginErrors =
-        context.select<AuthModel, ApiErrors?>((m) => m.loginStatus.errors);
+    final LenraTextThemeData finalLenraTextThemeData = LenraTheme.of(context).lenraTextThemeData;
+    ApiErrors? loginErrors = context.select<AuthModel, ApiErrors?>((m) => m.loginStatus.errors);
 
     return Form(
       key: _formKey,
@@ -52,8 +50,7 @@ class _LoginFormState extends State<LoginForm> {
               type: LenraComponentType.secondary,
               text: "Create my account",
               onPressed: () {
-                Navigator.pushReplacementNamed(
-                    context, CommonNavigator.registerRoute);
+                Navigator.pushReplacementNamed(context, CommonNavigator.registerRoute);
               },
             ),
           ),
@@ -65,8 +62,7 @@ class _LoginFormState extends State<LoginForm> {
                 style: finalLenraTextThemeData.blueBodyText,
                 recognizer: TapGestureRecognizer()
                   ..onTap = () {
-                    Navigator.pushReplacementNamed(
-                        context, CommonNavigator.lostPasswordRoute);
+                    Navigator.pushReplacementNamed(context, CommonNavigator.lostPasswordRoute);
                   },
               ),
             ),
@@ -78,8 +74,7 @@ class _LoginFormState extends State<LoginForm> {
   }
 
   Widget login(BuildContext context) {
-    bool isLogging =
-        context.select<AuthModel, bool>((m) => m.loginStatus.isFetching());
+    bool isLogging = context.select<AuthModel, bool>((m) => m.loginStatus.isFetching());
     return LenraFlex(
       direction: Axis.vertical,
       spacing: 2,
@@ -136,8 +131,7 @@ class _LoginFormState extends State<LoginForm> {
     if (_formKey.currentState!.validate()) {
       AuthModel authModel = context.read<AuthModel>();
       authModel.login(email, password).then((_) {
-        Navigator.of(context).pushReplacementNamed(
-            authModel.getRedirectionRouteAfterAuthentication());
+        Navigator.of(context).pushReplacementNamed(authModel.getRedirectionRouteAfterAuthentication());
       }).catchError((error) {
         logger.warning(error);
       });

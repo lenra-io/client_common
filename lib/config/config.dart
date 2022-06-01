@@ -1,9 +1,9 @@
 import 'dart:core';
 
-import 'package:flutter/foundation.dart';
 import 'package:client_common/utils/connexion_utils_stub.dart'
     if (dart.library.io) 'package:client_common/utils/connexion_utils_io.dart'
     if (dart.library.js) 'package:client_common/utils/connexion_utils_web.dart';
+import 'package:flutter/foundation.dart';
 import 'package:universal_html/html.dart' as html;
 
 enum Application { app, dev }

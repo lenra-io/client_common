@@ -37,8 +37,7 @@ class _CguPageState extends State<CguPage> {
         direction: Axis.vertical,
         children: [
           FutureBuilder(
-            future: Future.wait(
-                [cguModel.getLatestCguAsMd("en"), cguModel.getLatestCgu()]),
+            future: Future.wait([cguModel.getLatestCguAsMd("en"), cguModel.getLatestCgu()]),
             builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
                 return LenraFlex(
@@ -55,8 +54,7 @@ class _CguPageState extends State<CguPage> {
                         LenraButton(
                           type: LenraComponentType.tertiary,
                           onPressed: () {
-                            Navigator.of(context).pushReplacementNamed(
-                                CommonNavigator.cguRouteFR);
+                            Navigator.of(context).pushReplacementNamed(CommonNavigator.cguRouteFR);
                           },
                           text: "See the french original version",
                         ),
@@ -64,9 +62,7 @@ class _CguPageState extends State<CguPage> {
                     ),
                     Container(
                       height: 400,
-                      decoration: BoxDecoration(
-                          border:
-                              Border.all(color: LenraColorThemeData.greyLight)),
+                      decoration: BoxDecoration(border: Border.all(color: LenraColorThemeData.greyLight)),
                       child: Markdown(
                         controller: _controller,
                         data: utf8.decode(snapshot.data[0].bodyBytes),
@@ -96,8 +92,7 @@ class _CguPageState extends State<CguPage> {
                           type: LenraComponentType.secondary,
                           onPressed: () {
                             authModel.logout().then((value) {
-                              Navigator.of(context).pushReplacementNamed(
-                                  CommonNavigator.loginRoute);
+                              Navigator.of(context).pushReplacementNamed(CommonNavigator.loginRoute);
                             });
                           },
                           text: "I refuse and logout",
@@ -105,11 +100,8 @@ class _CguPageState extends State<CguPage> {
                         ),
                         LenraButton(
                           onPressed: () {
-                            cguModel
-                                .acceptCgu((snapshot.data[1] as CguResponse).id)
-                                .then((value) {
-                              Navigator.of(context).pushReplacementNamed(
-                                  CommonNavigator.loginRoute);
+                            cguModel.acceptCgu((snapshot.data[1] as CguResponse).id).then((value) {
+                              Navigator.of(context).pushReplacementNamed(CommonNavigator.loginRoute);
                             });
                           },
                           text: "I accept",

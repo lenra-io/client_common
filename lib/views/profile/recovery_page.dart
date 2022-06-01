@@ -7,8 +7,7 @@ class RecoveryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SimplePage(
-      title:
-          "Did you lose your password ? Don't worry, it happens even to the best!",
+      title: "Did you lose your password ? Don't worry, it happens even to the best!",
       backInkText: "Back to the login page",
       backInkAction: () {
         Navigator.pushNamed(context, CommonNavigator.homeRoute);
