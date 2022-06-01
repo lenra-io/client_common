@@ -27,3 +27,4 @@ dependencies:
       url: git@github.com:lenra-io/lenra_ui_runner.git
       ref: v1.0.0-beta.75
   phoenix_wings: ^1.0.2
+  logging: ^1.0.2
