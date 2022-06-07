@@ -1,7 +1,7 @@
 import 'package:client_common/api/lenra_http_client.dart';
 import 'package:client_common/api/request_models/ask_code_lost_password_request.dart';
 import 'package:client_common/api/request_models/change_password_request.dart';
-import 'package:client_common/api/request_models/loginRequest.dart';
+import 'package:client_common/api/request_models/login_request.dart';
 import 'package:client_common/api/request_models/register_request.dart';
 import 'package:client_common/api/request_models/send_code_lost_password_request.dart';
 import 'package:client_common/api/request_models/validate_dev_request.dart';

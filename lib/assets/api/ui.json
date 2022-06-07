@@ -1,0 +1,93 @@
+{
+    "styles": {
+        "center-container": {
+            "v-align": "center",
+            "h-align": "center"
+        },
+        "v-container": {
+            "v-align": "justify"
+        },
+        "h-container": {
+            "h-align": "justify"
+        },
+        "title": {
+            "font-size": "24px"
+        },
+        "counter": {
+            "h-align": "center",
+            "font-size": "36px"
+        },
+        "button": {
+            "background-color": "#c23e06"
+        }
+    },
+    "root": {
+        "id": "1",
+        "type": "container",
+        "styles": [
+            "center-container"
+        ],
+        "children": [
+            {
+                "id": "2",
+                "type": "container",
+                "styles": [
+                    "v-container"
+                ],
+                "children": [
+                    {
+                        "id": "3",
+                        "type": "text",
+                        "value": "Compteur",
+                        "styles": [
+                            "title"
+                        ]
+                    },
+                    {
+                        "id": "4",
+                        "type": "text",
+                        "value": "0",
+                        "styles": [
+                            "counter"
+                        ]
+                    },
+                    {
+                        "id": "5",
+                        "type": "container",
+                        "styles": [
+                            "h-container"
+                        ],
+                        "children": [
+                            {
+                                "id": "6",
+                                "type": "button",
+                                "value": "-",
+                                "styles": [
+                                    "button"
+                                ],
+                                "listeners": {
+                                    "on-click": {
+                                        "code": "ClickMinus@0"
+                                    }
+                                }
+                            },
+                            {
+                                "id": "7",
+                                "type": "button",
+                                "value": "+",
+                                "styles": [
+                                    "button"
+                                ],
+                                "listeners": {
+                                    "on-click": {
+                                        "code": "ClickPlus@0"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

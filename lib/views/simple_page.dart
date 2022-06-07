@@ -37,23 +37,27 @@ class SimplePage extends StatelessWidget {
         child: Text(
           title,
           style: theme.lenraTextThemeData.headline2,
-          textAlign: this.textAlign,
+          textAlign: textAlign,
         ),
       ));
     }
-    if (title.isNotEmpty && message.isNotEmpty) children.add(SizedBox(height: theme.baseSize * 2));
+    if (title.isNotEmpty && message.isNotEmpty) {
+      children.add(SizedBox(height: theme.baseSize * 2));
+    }
     if (message.isNotEmpty) {
       children.add(SizedBox(
         width: double.infinity,
         child: Text(
           message,
           style: theme.lenraTextThemeData.disabledBodyText,
-          textAlign: this.textAlign,
+          textAlign: textAlign,
         ),
       ));
     }
     if (child != null) {
-      if (title.isNotEmpty || message.isNotEmpty) children.add(SizedBox(height: theme.baseSize * 4));
+      if (title.isNotEmpty || message.isNotEmpty) {
+        children.add(SizedBox(height: theme.baseSize * 4));
+      }
       children.add(child!);
     }
 
@@ -72,7 +76,7 @@ class SimplePage extends StatelessWidget {
               child: Column(
                 children: _buildBackInk(context, theme)
                   ..add(Center(
-                    child: new Container(
+                    child: Container(
                       width: 400,
                       child: Column(
                         children: children,

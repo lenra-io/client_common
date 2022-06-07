@@ -1,6 +1,6 @@
 import 'package:client_common/api/response_models/api_errors.dart';
-import 'package:flutter/material.dart';
 import 'package:client_common/views/error.dart';
+import 'package:flutter/material.dart';
 
 class ErrorList extends StatelessWidget {
   final ApiErrors? errors;

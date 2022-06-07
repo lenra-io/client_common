@@ -33,7 +33,7 @@ class UserApplicationModel extends ChangeNotifier {
 
   Future<List<AppResponse>> fetchUserApplications() async {
     var res = await fetchApplicationsStatus.handle(ApplicationApi.getUserApps, notifyListeners);
-    this.userApps = res.apps;
+    userApps = res.apps;
     notifyListeners();
     return res.apps;
   }

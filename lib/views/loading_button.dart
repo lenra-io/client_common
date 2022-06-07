@@ -21,10 +21,10 @@ class LoadingButton extends StatelessWidget {
     // }
 
     return LenraButton(
-      onPressed: !this.loading ? this.onPressed : null,
-      disabled: this.loading ? true : false,
-      text: this.text,
-      rightIcon: /*this.loading ? CircularProgressIndicator() :*/ this.rightIcon,
+      onPressed: !loading ? onPressed : null,
+      disabled: loading ? true : false,
+      text: text,
+      rightIcon: /*this.loading ? CircularProgressIndicator() :*/ rightIcon,
     );
   }
 }
