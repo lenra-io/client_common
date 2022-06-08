@@ -29,22 +29,3 @@ dependencies:
   phoenix_wings: ^1.0.2
   logging: ^1.0.2
   flutter_markdown: ^0.6.10+2
-
-flutter:
-  uses-material-design: true
-  assets:
-    - lib/assets/images/
-  fonts:
-    - family: Source Sans Pro
-      fonts:
-        - asset: lib/fonts/Source_Sans_Pro/SourceSansPro-Regular.ttf
-        - asset: lib/fonts/Source_Sans_Pro/SourceSansPro-SemiBold.ttf
-        - asset: lib/fonts/Source_Sans_Pro/SourceSansPro-Bold.ttf
-flutter_icons: # see https://pub.dev/packages/flutter_launcher_icons
-  image_path: "lib/assets/images/icon-512.png"
-  image_path_ios: "lib/assets/images/icon-1024-white-bg.png"
-  remove_alpha_ios: true
-  android: true
-  ios: true
-  adaptive_icon_background: "#FFFFFF" # only available for Android 8.0 devices and above
-  adaptive_icon_foreground: "lib/assets/images/maskable-icon.png"
