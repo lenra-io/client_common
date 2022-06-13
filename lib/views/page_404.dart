@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 class Page404 extends StatelessWidget {
   static PageRouteBuilder pageRoutebuilder(RouteSettings settings) {
     return PageRouteBuilder(
-      pageBuilder: (BuildContext context, _a, _b) {
+      pageBuilder: (BuildContext context, a, b) {
         return Page404();
       },
       settings: settings,
