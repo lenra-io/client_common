@@ -31,3 +31,8 @@ dependencies:
   phoenix_wings: ^1.0.2
   logging: ^1.0.2
   flutter_markdown: ^0.6.10+2
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
