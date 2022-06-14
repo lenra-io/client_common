@@ -1,0 +1,44 @@
+name: Populate Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  populate_release:
+    name: Populate Release
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - id: extract_tag
+        env:
+          GITHUB_REF: ${{ github.ref }}
+        run: |
+          echo "Extracting tag..."
+          REF="${GITHUB_REF##*/}"
+          echo "output.tag=${REF}"
+          echo "::set-output name=tag::${REF}"
+          if [[ ${GITHUB_REF} == *beta.* ]]; then
+            echo "::set-output name=target_ref::beta"
+          else
+            echo "::set-output name=target_ref::main"
+          fi
+
+          RELEASE_NOTES="$(git log -n1 | head -n5 | tail -n1)"
+          RELEASE_NOTES="${RELEASE_NOTES/    /}"
+          echo "::set-output name=release-notes::${RELEASE_NOTES}"
+      - name: create_pr
+        uses: shiipou/workflows/trigger_workflow@main
+        with:
+          target_ref: ${{ steps.extract_tag.outputs.target_ref }}
+          target_repository: "${{ github.repository_owner }}/client-app,${{ github.repository_owner }}/dev-tools,${{ github.repository_owner }}/client-backoffice,${{ github.repository_owner }}/client-store"
+          target_workflow: create_or_update_pr.yml
+          params: |
+            {
+              "version": "${{ steps.extract_tag.outputs.tag }}",
+              "origin": "client-common",
+              "release_notes": "${{ steps.extract_tag.outputs.release-notes }}"
+            }
+          token: ${{ secrets.WORKFLOW_GITHUB_TOKEN }}
