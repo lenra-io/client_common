@@ -1,7 +1,7 @@
-import 'package:client_common/api/response_models/api_errors.dart';
+import 'package:client_common/api/response_models/api_error.dart';
 import 'package:client_common/models/auth_model.dart';
 import 'package:client_common/navigator/common_navigator.dart';
-import 'package:client_common/views/error_list.dart';
+import 'package:client_common/views/error.dart';
 import 'package:flutter/material.dart';
 import 'package:lenra_components/lenra_components.dart';
 import 'package:logging/logging.dart';
@@ -28,8 +28,7 @@ class _RecoveryFormState extends State<RecoveryForm> {
   @override
   Widget build(BuildContext context) {
     final LenraTextThemeData finalLenraTextThemeData = LenraTheme.of(context).lenraTextThemeData;
-    ApiErrors? askCodeLostPasswordErrors =
-        context.select<AuthModel, ApiErrors?>((m) => m.askCodeLostPasswordStatus.errors);
+    ApiError? askCodeLostPasswordError = context.select<AuthModel, ApiError?>((m) => m.askCodeLostPasswordStatus.error);
     return Form(
       key: _formKey,
       child: LenraFlex(
@@ -60,7 +59,7 @@ class _RecoveryFormState extends State<RecoveryForm> {
               },
             ),
           ),
-          ErrorList(askCodeLostPasswordErrors),
+          if (askCodeLostPasswordError != null) Error(askCodeLostPasswordError),
         ],
       ),
     );

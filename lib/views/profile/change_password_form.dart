@@ -1,6 +1,6 @@
-import 'package:client_common/api/response_models/api_errors.dart';
+import 'package:client_common/api/response_models/api_error.dart';
 import 'package:client_common/models/auth_model.dart';
-import 'package:client_common/views/error_list.dart';
+import 'package:client_common/views/error.dart';
 import 'package:client_common/views/loading_button.dart';
 import 'package:flutter/material.dart';
 import 'package:lenra_components/utils/form_validators.dart';
@@ -33,7 +33,7 @@ class _ChangePasswordState extends State<ChangePasswordForm> {
   @override
   Widget build(BuildContext context) {
     bool isChangingPassword = context.select<AuthModel, bool>((m) => m.changePasswordStatus.isFetching());
-    ApiErrors? changePasswordErrors = context.select<AuthModel, ApiErrors?>((m) => m.changePasswordStatus.errors);
+    ApiError? changePasswordError = context.select<AuthModel, ApiError?>((m) => m.changePasswordStatus.error);
 
     return Form(
       key: _formKey,
@@ -129,7 +129,7 @@ class _ChangePasswordState extends State<ChangePasswordForm> {
               loading: isChangingPassword,
             ),
           ),
-          ErrorList(changePasswordErrors),
+          if (changePasswordError != null) Error(changePasswordError),
         ],
       ),
     );
