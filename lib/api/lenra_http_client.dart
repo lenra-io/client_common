@@ -27,21 +27,21 @@ abstract class LenraBaseHttpClient {
   }) async {
     ResponseMapper<T> mapper = responseMapper ?? (e) => e;
     http.Response response;
+
     try {
       response = await futureReponse;
-      if (response.statusCode == 404) {
-        throw ApiError.connexionRefusedError();
-      }
     } catch (e) {
-      throw ApiError.connexionRefusedError();
+      throw ApiError.connexionRefusedError;
     }
 
     Map<String, dynamic> body = json.decode(response.body);
-    if (body["success"]) {
-      return mapper(body["data"]);
-    } else {
-      // TODO: Check with pichoemr that the response body is correct in this case
+
+    if (response.statusCode >= 400 && response.statusCode < 500) {
       throw ApiError.fromJson(body["error"]);
+    } else if (response.statusCode >= 500 && response.statusCode < 600) {
+      throw ApiError.connexionRefusedError();
+    } else {
+      return mapper(body["data"]);
     }
   }
 
