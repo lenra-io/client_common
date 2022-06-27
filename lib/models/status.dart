@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:client_common/api/response_models/api_errors.dart';
+import 'package:client_common/api/response_models/api_error.dart';
 import 'package:flutter/cupertino.dart';
 
 enum RequestStatus {
@@ -18,8 +18,8 @@ class Status<T> {
   RequestStatus _requestStatus = RequestStatus.none;
   RequestStatus get requestStatus => _requestStatus;
 
-  ApiErrors? _errors;
-  ApiErrors? get errors => _errors;
+  ApiError? _error;
+  ApiError? get error => _error;
 
   T? _cachedData;
   Future<T>? _currentFuture;
@@ -37,7 +37,7 @@ class Status<T> {
     try {
       _requestStatus = RequestStatus.fetching;
       _currentFuture = futureBuilder();
-      _errors = null;
+      _error = null;
       notifyListeners();
       _cachedData = await _currentFuture;
       _requestStatus = RequestStatus.done;
@@ -46,15 +46,15 @@ class Status<T> {
       // });
       // _listeners.clear();
       return _cachedData!;
-    } on ApiErrors catch (errors) {
+    } on ApiError catch (error) {
       _requestStatus = RequestStatus.error;
-      _errors = errors;
+      _error = error;
       // _listeners.forEach((c) {
       //   c.completeError(errors);
       // });
       // _listeners.clear();
       notifyListeners();
-      return Future<T>.error(errors);
+      return Future<T>.error(error);
     } catch (e) {
       debugPrint("Error: $e");
       return Future.error(e.toString());

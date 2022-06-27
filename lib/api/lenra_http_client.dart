@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:client_common/api/response_models/api_errors.dart';
+import 'package:client_common/api/response_models/api_error.dart';
 import 'package:client_common/config/config.dart';
 import 'package:client_common/utils/connexion_utils_stub.dart'
     if (dart.library.io) 'package:client_common/utils/connexion_utils_io.dart'
@@ -30,17 +30,18 @@ abstract class LenraBaseHttpClient {
     try {
       response = await futureReponse;
       if (response.statusCode == 404) {
-        throw ApiErrors.connexionRefusedError();
+        throw ApiError.connexionRefusedError();
       }
     } catch (e) {
-      throw ApiErrors.connexionRefusedError();
+      throw ApiError.connexionRefusedError();
     }
 
     Map<String, dynamic> body = json.decode(response.body);
     if (body["success"]) {
       return mapper(body["data"]);
     } else {
-      throw ApiErrors.fromJson(body["errors"]);
+      // TODO: Check with pichoemr that the response body is correct in this case
+      throw ApiError.fromJson(body["error"]);
     }
   }
 
