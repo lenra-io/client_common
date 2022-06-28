@@ -4,8 +4,10 @@ import 'package:client_common/api/response_models/environment_user_access_respon
 class EnvironmentUserAccessesResponse extends ApiResponse {
   List<EnvironmentUserAccessResponse> accesses;
 
-  EnvironmentUserAccessesResponse.fromJson(Map<String, dynamic> json)
-      : accesses = json["environment_user_accesses"]
-            .map<EnvironmentUserAccessResponse>((e) => EnvironmentUserAccessResponse.fromJson(e))
+  EnvironmentUserAccessesResponse.fromJson(List<Map<String, dynamic>> json)
+      : accesses = json
+            .map<EnvironmentUserAccessResponse>(
+              (access) => EnvironmentUserAccessResponse.fromJson(access),
+            )
             .toList();
 }

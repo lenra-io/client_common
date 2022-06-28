@@ -5,6 +5,6 @@ class UserAcceptCguVersionResponse extends ApiResponse {
   int cguId;
 
   UserAcceptCguVersionResponse.fromJson(Map<String, dynamic> json)
-      : userId = json["accepted_cgu"]["user_id"],
-        cguId = json["accepted_cgu"]["cgu_id"];
+      : userId = json["user_id"],
+        cguId = json["cgu_id"];
 }
