@@ -4,7 +4,7 @@ import 'package:client_common/api/response_models/environment_user_access_respon
 class EnvironmentUserAccessesResponse extends ApiResponse {
   List<EnvironmentUserAccessResponse> accesses;
 
-  EnvironmentUserAccessesResponse.fromJson(List<Map<String, dynamic>> json)
+  EnvironmentUserAccessesResponse.fromJson(List<dynamic> json)
       : accesses = json
             .map<EnvironmentUserAccessResponse>(
               (access) => EnvironmentUserAccessResponse.fromJson(access),
