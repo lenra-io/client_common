@@ -17,6 +17,6 @@ class ApiError {
 
   @override
   String toString() {
-    return "$reason: $message";
+    return message;
   }
 }
