@@ -23,7 +23,6 @@ class Status<T> {
 
   T? _cachedData;
   Future<T>? _currentFuture;
-  //List<Completer<T>> _listeners = [];
 
   bool isFetching() => requestStatus == RequestStatus.fetching;
   bool isDone() => requestStatus == RequestStatus.done;
@@ -41,18 +40,10 @@ class Status<T> {
       notifyListeners();
       _cachedData = await _currentFuture;
       _requestStatus = RequestStatus.done;
-      // _listeners.forEach((c) {
-      //   c.complete(this._cachedData);
-      // });
-      // _listeners.clear();
       return _cachedData!;
     } on ApiError catch (error) {
       _requestStatus = RequestStatus.error;
       _error = error;
-      // _listeners.forEach((c) {
-      //   c.completeError(errors);
-      // });
-      // _listeners.clear();
       notifyListeners();
       return Future<T>.error(error);
     } catch (e) {
@@ -60,12 +51,4 @@ class Status<T> {
       return Future.error(e.toString());
     }
   }
-
-  /*Future<T> wait() {
-    if (this.isDone()) return Future.value(this._cachedData);
-    if (this.hasError()) return Future.error(this._errors);
-    var completer = Completer<T>();
-    _listeners.add(completer);
-    return completer.future;
-  }*/
 }
