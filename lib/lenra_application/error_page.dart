@@ -38,6 +38,6 @@ class ErrorPage extends StatelessWidget {
   }
 
   Widget errorToWidget() {
-    return Text("Error ${apiError.code.toString()} : ${apiError.message}");
+    return Text("Error ${apiError.reason} : ${apiError.message}");
   }
 }

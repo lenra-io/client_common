@@ -19,7 +19,7 @@ class ApiErrorSnackBar extends SnackBar {
 
   static Widget formatError(ApiError error) {
     return LenraFlex(
-      children: [Text("Error code: ${error.code}"), Text("Message: ${error.message}", textAlign: TextAlign.center)],
+      children: [Text("Error reason: ${error.reason}"), Text("Message: ${error.message}", textAlign: TextAlign.center)],
     );
   }
 }
