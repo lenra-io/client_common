@@ -1,7 +1,7 @@
-import 'package:client_common/api/response_models/api_errors.dart';
+import 'package:client_common/api/response_models/api_error.dart';
 import 'package:client_common/models/auth_model.dart';
 import 'package:client_common/navigator/common_navigator.dart';
-import 'package:client_common/views/error_list.dart';
+import 'package:client_common/views/error.dart';
 import 'package:client_common/views/loading_button.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +27,7 @@ class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     final LenraTextThemeData finalLenraTextThemeData = LenraTheme.of(context).lenraTextThemeData;
-    ApiErrors? loginErrors = context.select<AuthModel, ApiErrors?>((m) => m.loginStatus.errors);
+    ApiError? loginError = context.select<AuthModel, ApiError?>((m) => m.loginStatus.error);
 
     return Form(
       key: _formKey,
@@ -67,7 +67,7 @@ class _LoginFormState extends State<LoginForm> {
               ),
             ),
           ),
-          ErrorList(loginErrors),
+          if (loginError != null) Error(loginError),
         ],
       ),
     );

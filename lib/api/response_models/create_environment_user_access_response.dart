@@ -4,6 +4,6 @@ import 'package:client_common/api/response_models/environment_user_access_respon
 class CreateEnvironmentUserAccessResponse extends ApiResponse {
   EnvironmentUserAccessResponse environmentUserAccessResponse;
 
-  CreateEnvironmentUserAccessResponse.fromJson(Map<String, dynamic> data)
-      : environmentUserAccessResponse = EnvironmentUserAccessResponse.fromJson(data["inserted_user_access"]);
+  CreateEnvironmentUserAccessResponse.fromJson(Map<String, dynamic> json)
+      : environmentUserAccessResponse = EnvironmentUserAccessResponse.fromJson(json);
 }

@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:client_common/api/response_models/api_errors.dart';
+import 'package:client_common/api/response_models/api_error.dart';
 import 'package:client_common/config/config.dart';
 import 'package:client_common/utils/connexion_utils_stub.dart'
     if (dart.library.io) 'package:client_common/utils/connexion_utils_io.dart'
@@ -27,20 +27,19 @@ abstract class LenraBaseHttpClient {
   }) async {
     ResponseMapper<T> mapper = responseMapper ?? (e) => e;
     http.Response response;
+
     try {
       response = await futureReponse;
-      if (response.statusCode == 404) {
-        throw ApiErrors.connexionRefusedError();
-      }
     } catch (e) {
-      throw ApiErrors.connexionRefusedError();
+      throw ApiError.connexionRefusedError;
     }
 
     Map<String, dynamic> body = json.decode(response.body);
-    if (body["success"]) {
-      return mapper(body["data"]);
+
+    if (response.statusCode >= 400 && response.statusCode < 600) {
+      throw ApiError.fromJson(body["error"]);
     } else {
-      throw ApiErrors.fromJson(body["errors"]);
+      return mapper(body["data"]);
     }
   }
 

@@ -4,15 +4,13 @@ import 'package:test/test.dart';
 void main() {
   test('from json', () {
     Map<String, dynamic> json = {
-      "updated_env": {
-        "id": 1,
-        "name": "live",
-        "is_ephemeral": false,
-        "is_public": true,
-        "application_id": 1,
-        "creator_id": 1,
-        "deployed_build_id": null
-      }
+      "id": 1,
+      "name": "live",
+      "is_ephemeral": false,
+      "is_public": true,
+      "application_id": 1,
+      "creator_id": 1,
+      "deployed_build_id": null
     };
 
     UpdateEnvironmentResponse updateEnvResponse = UpdateEnvironmentResponse.fromJson(json);

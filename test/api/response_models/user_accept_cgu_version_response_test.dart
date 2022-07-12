@@ -3,9 +3,7 @@ import 'package:test/test.dart';
 
 void main() {
   test('from json', () {
-    Map<String, dynamic> json = {
-      "accepted_cgu": {"user_id": 1, "cgu_id": 1}
-    };
+    Map<String, dynamic> json = {"user_id": 1, "cgu_id": 1};
     UserAcceptCguVersionResponse response = UserAcceptCguVersionResponse.fromJson(json);
     expect(response.userId, 1);
     expect(response.cguId, 1);

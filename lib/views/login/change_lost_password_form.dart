@@ -1,7 +1,7 @@
-import 'package:client_common/api/response_models/api_errors.dart';
+import 'package:client_common/api/response_models/api_error.dart';
 import 'package:client_common/models/auth_model.dart';
 import 'package:client_common/navigator/common_navigator.dart';
-import 'package:client_common/views/error_list.dart';
+import 'package:client_common/views/error.dart';
 import 'package:flutter/material.dart';
 import 'package:lenra_components/component/lenra_button.dart';
 import 'package:lenra_components/component/lenra_text_form_field.dart';
@@ -44,8 +44,8 @@ class _ChangeLostPasswordState extends State<ChangeLostPasswordForm> {
   Widget build(BuildContext context) {
     final LenraTextThemeData finalLenraTextThemeData = LenraTheme.of(context).lenraTextThemeData;
 
-    ApiErrors? sendCodeLostPasswordErrors =
-        context.select<AuthModel, ApiErrors?>((m) => m.sendCodeLostPasswordStatus.errors);
+    ApiError? sendCodeLostPasswordError =
+        context.select<AuthModel, ApiError?>((m) => m.sendCodeLostPasswordStatus.error);
 
     return Form(
       key: _formKey,
@@ -113,7 +113,7 @@ class _ChangeLostPasswordState extends State<ChangeLostPasswordForm> {
               },
             ),
           ),
-          ErrorList(sendCodeLostPasswordErrors),
+          if (sendCodeLostPasswordError != null) Error(sendCodeLostPasswordError),
         ],
       ),
     );
