@@ -1,6 +1,6 @@
-import 'package:client_common/api/response_models/api_errors.dart';
+import 'package:client_common/api/response_models/api_error.dart';
 import 'package:client_common/models/auth_model.dart';
-import 'package:client_common/views/error_list.dart';
+import 'package:client_common/views/error.dart';
 import 'package:client_common/views/loading_button.dart';
 import 'package:flutter/material.dart';
 import 'package:lenra_components/lenra_components.dart';
@@ -26,7 +26,7 @@ class _RegisterFormState extends State<RegisterForm> {
   @override
   Widget build(BuildContext context) {
     final LenraTextThemeData finalLenraTextThemeData = LenraTheme.of(context).lenraTextThemeData;
-    ApiErrors? registerErrors = context.select<AuthModel, ApiErrors?>((m) => m.registerStatus.errors);
+    ApiError? registerError = context.select<AuthModel, ApiError?>((m) => m.registerStatus.error);
     return Form(
       key: _formKey,
       child: LenraFlex(
@@ -42,7 +42,7 @@ class _RegisterFormState extends State<RegisterForm> {
             style: finalLenraTextThemeData.disabledBodyText,
           ),
 
-          ErrorList(registerErrors)
+          if (registerError != null) Error(registerError)
         ],
       ),
     );

@@ -1,26 +1,22 @@
 class ApiError {
   String message;
-  int code;
+  String reason;
 
   ApiError.connexionRefusedError()
       : message = "The server is unreachable.\nPlease retry in a few minutes.",
-        code = -1;
+        reason = "server_unreachable";
 
   ApiError.fromJson(Map<String, dynamic> json)
       : message = json["message"],
-        code = json["code"];
+        reason = json["reason"];
 
   Map<String, dynamic> toJson() => {
         'message': message,
-        'code': code,
+        'reason': reason,
       };
-
-  bool is401() {
-    return code == 401;
-  }
 
   @override
   String toString() {
-    return "$message (code $code)";
+    return message;
   }
 }

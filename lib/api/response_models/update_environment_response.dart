@@ -5,5 +5,5 @@ class UpdateEnvironmentResponse extends ApiResponse {
   EnvironmentResponse environmentResponse;
 
   UpdateEnvironmentResponse.fromJson(Map<String, dynamic> data)
-      : environmentResponse = EnvironmentResponse.fromJson(data["updated_env"]);
+      : environmentResponse = EnvironmentResponse.fromJson(data);
 }

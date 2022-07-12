@@ -3,12 +3,10 @@ import 'package:test/test.dart';
 
 void main() {
   test('from json', () {
-    Map<String, dynamic> json = {
-      "environment_user_accesses": [
-        {"user_id": 1, "environment_id": 1},
-        {"user_id": 2, "environment_id": 1}
-      ]
-    };
+    List<Map<String, dynamic>> json = [
+      {"user_id": 1, "environment_id": 1},
+      {"user_id": 2, "environment_id": 1}
+    ];
     EnvironmentUserAccessesResponse accessResponse = EnvironmentUserAccessesResponse.fromJson(json);
     expect(accessResponse.accesses.length, 2);
     expect(accessResponse.accesses.first.environmentId, 1);

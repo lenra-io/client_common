@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 
 void main() {
   test('from json', () {
-    Map<String, dynamic> json = {"user_accepted_latest_cgu": true};
+    bool json = true;
     UserAcceptedLatestCguResponse acceptedLatestResponse = UserAcceptedLatestCguResponse.fromJson(json);
     expect(acceptedLatestResponse.accepted, true);
   });
