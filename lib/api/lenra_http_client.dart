@@ -7,7 +7,7 @@ import 'package:client_common/utils/connexion_utils_stub.dart'
     if (dart.library.js) 'package:client_common/utils/connexion_utils_web.dart';
 import 'package:http/http.dart' as http;
 
-typedef ResponseMapper<T> = T Function(dynamic json);
+typedef ResponseMapper<T> = T Function(dynamic json, dynamic header);
 
 abstract class LenraBaseHttpClient {
   final http.Client client;
@@ -25,7 +25,7 @@ abstract class LenraBaseHttpClient {
     Future<http.Response> futureReponse, {
     ResponseMapper<T>? responseMapper,
   }) async {
-    ResponseMapper<T> mapper = responseMapper ?? (e) => e;
+    ResponseMapper<T> mapper = responseMapper ?? (e, h) => e;
     http.Response response;
 
     try {
@@ -39,7 +39,7 @@ abstract class LenraBaseHttpClient {
     if (response.statusCode >= 400 && response.statusCode < 600) {
       throw ApiError.fromJson(body["error"]);
     } else {
-      return mapper(body["data"]);
+      return mapper(body["data"], response.headers);
     }
   }
 

@@ -11,6 +11,6 @@ class EnvironmentApi {
       LenraApi.instance.patch(
         "/apps/$appId/environments/$envId",
         body: body,
-        responseMapper: (json) => UpdateEnvironmentResponse.fromJson(json),
+        responseMapper: (json, header) => UpdateEnvironmentResponse.fromJson(json),
       );
 }
