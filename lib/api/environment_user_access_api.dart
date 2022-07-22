@@ -12,7 +12,7 @@ class EnvironmentUserAccessApi {
       LenraApi.instance.post(
         "/apps/$appId/environments/$envId/invitations",
         body: body,
-        responseMapper: (json) => CreateEnvironmentUserAccessResponse.fromJson(json),
+        responseMapper: (json, header) => CreateEnvironmentUserAccessResponse.fromJson(json),
       );
 
   static Future<EnvironmentUserAccessesResponse> getEnvironmentUserAccesses(
@@ -21,6 +21,6 @@ class EnvironmentUserAccessApi {
   ) =>
       LenraApi.instance.get(
         "/apps/$appId/environments/$envId/invitations",
-        responseMapper: (json) => EnvironmentUserAccessesResponse.fromJson(json),
+        responseMapper: (json, header) => EnvironmentUserAccessesResponse.fromJson(json),
       );
 }
