@@ -13,51 +13,51 @@ class UserApi {
   static Future<AuthResponse> register(RegisterRequest body) => LenraAuth.instance.post(
         "/register",
         body: body,
-        responseMapper: (json) => AuthResponse.fromJson(json),
+        responseMapper: (json, headers) => AuthResponse.fromJson(json, headers),
       );
 
   static Future<AuthResponse> login(LoginRequest body) => LenraAuth.instance.post(
         "/login",
         body: body,
-        responseMapper: (json) => AuthResponse.fromJson(json),
+        responseMapper: (json, headers) => AuthResponse.fromJson(json, headers),
       );
 
   static Future<AuthResponse> validateUser(ValidateUserRequest body) => LenraAuth.instance.post(
         "/verify",
         body: body,
-        responseMapper: (json) => AuthResponse.fromJson(json),
+        responseMapper: (json, headers) => AuthResponse.fromJson(json, headers),
       );
 
   static Future<AuthResponse> validateDev(ValidateDevRequest body) => LenraApi.instance.put(
         "/verify/dev",
         body: body,
-        responseMapper: (json) => AuthResponse.fromJson(json),
+        responseMapper: (json, headers) => AuthResponse.fromJson(json, headers),
       );
 
   static Future<AuthResponse> refresh() => LenraAuth.instance.post(
         "/refresh",
-        responseMapper: (json) => AuthResponse.fromJson(json),
+        responseMapper: (json, headers) => AuthResponse.fromJson(json, headers),
       );
 
   static Future<EmptyResponse> logout() => LenraAuth.instance.post(
         "/logout",
-        responseMapper: (json) => EmptyResponse.fromJson(json),
+        responseMapper: (json, headers) => EmptyResponse.fromJson(json),
       );
   static Future<EmptyResponse> changePassword(ChangePasswordRequest body) => LenraApi.instance.put(
         "/password",
         body: body,
-        responseMapper: (json) => EmptyResponse.fromJson(json),
+        responseMapper: (json, headers) => EmptyResponse.fromJson(json),
       );
 
   static Future<EmptyResponse> askCodeLostPassword(AskCodeLostPasswordRequest body) => LenraAuth.instance.post(
         "/password/lost",
         body: body,
-        responseMapper: (json) => EmptyResponse.fromJson(json),
+        responseMapper: (json, headers) => EmptyResponse.fromJson(json),
       );
 
   static Future<EmptyResponse> sendCodeLostPassword(SendCodeLostPasswordRequest body) => LenraAuth.instance.put(
         "/password/lost",
         body: body,
-        responseMapper: (json) => EmptyResponse.fromJson(json),
+        responseMapper: (json, headers) => EmptyResponse.fromJson(json),
       );
 }

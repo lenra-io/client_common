@@ -5,7 +5,7 @@ class AuthResponse extends ApiResponse {
   String accessToken;
   User user;
 
-  AuthResponse.fromJson(Map<String, dynamic> json)
-      : accessToken = json["access_token"],
-        user = User.fromJson(json["user"]);
+  AuthResponse.fromJson(Map<String, dynamic> json, Map<String, String> headers)
+      : accessToken = headers["access_token"]!,
+        user = User.fromJson(json);
 }

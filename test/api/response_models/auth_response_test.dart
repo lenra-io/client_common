@@ -5,16 +5,16 @@ import 'package:test/test.dart';
 void main() {
   test('from json', () {
     Map<String, dynamic> json = {
-      "access_token": "myaccesstoken.truc.machin",
-      "user": {
-        "id": 1,
-        "first_name": "John",
-        "last_name": "Doe",
-        "role": "user",
-        "email": "john@doe.com",
-      }
+      "id": 1,
+      "first_name": "John",
+      "last_name": "Doe",
+      "role": "user",
+      "email": "john@doe.com",
     };
-    AuthResponse authResponse = AuthResponse.fromJson(json);
+
+    Map<String, String> headers = {"access_token": "myaccesstoken.truc.machin"};
+
+    AuthResponse authResponse = AuthResponse.fromJson(json, headers);
     expect(authResponse.accessToken, "myaccesstoken.truc.machin");
     expect(authResponse.user.id, 1);
     expect(authResponse.user.email, "john@doe.com");
