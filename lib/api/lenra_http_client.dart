@@ -37,7 +37,7 @@ abstract class LenraBaseHttpClient {
     Map<String, dynamic> body = json.decode(response.body);
 
     if (response.statusCode >= 400 && response.statusCode < 600) {
-      throw ApiError.fromJson(body["error"]);
+      throw ApiError.fromJson(body);
     } else {
       return mapper(body["data"], response.headers);
     }
