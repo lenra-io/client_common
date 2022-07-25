@@ -7,7 +7,7 @@ class ApiError {
         reason = "server_unreachable";
 
   ApiError.fromJson(Map<String, dynamic> json)
-      : message = json["error"],
+      : message = json["message"],
         reason = json["reason"];
 
   Map<String, dynamic> toJson() => {
