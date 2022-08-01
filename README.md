@@ -10,7 +10,7 @@
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-[![GPL License][license-shield]][license-url]
+[![LGPL License][license-shield]][license-url]
 
 
 
@@ -72,7 +72,7 @@ Don't forget to give the project a star if you liked it! Thanks again!
 <!-- LICENSE -->
 ## License
 
-Distributed under the **GPL** License. See [LICENSE](./LICENSE) for more information.
+Distributed under the **LGPL** License. See [LICENSE](./LICENSE) for more information.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
