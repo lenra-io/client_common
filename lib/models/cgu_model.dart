@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 
+/// The model that manages the CGU.
 class CguModel extends ChangeNotifier {
   Status<CguResponse> getLatestCguStatus = Status();
   Status<UserAcceptCguVersionResponse> acceptCguStatus = Status();

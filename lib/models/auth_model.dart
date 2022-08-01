@@ -14,7 +14,9 @@ import 'package:client_common/models/status.dart';
 import 'package:client_common/navigator/common_navigator.dart';
 import 'package:flutter/material.dart';
 
+/// The model that manages the authentication of the user.
 class AuthModel extends ChangeNotifier {
+  /// The access token of the user.
   String? accessToken;
   User? user;
   final Status<AuthResponse> registerStatus = Status();
@@ -29,8 +31,10 @@ class AuthModel extends ChangeNotifier {
   final Status<EmptyResponse> sendCodeLostPasswordStatus = Status();
   final Status<EmptyResponse> changePasswordStatus = Status();
 
+  /// The route to redirect to after the user has logged in or out.
   String? redirectToRoute;
 
+  /// The user is authenticated if his access token is set.
   bool isAuthenticated() {
     return accessToken != null && user != null;
   }
@@ -40,6 +44,7 @@ class AuthModel extends ChangeNotifier {
     return roles.contains(user?.role);
   }
 
+  /// Handle the response of authentication requests.
   AuthResponse _handleAuthResponse(AuthResponse res) {
     accessToken = res.accessToken;
     // Set the token for the global API instance

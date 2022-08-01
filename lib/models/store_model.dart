@@ -4,6 +4,7 @@ import 'package:client_common/api/response_models/apps_response.dart';
 import 'package:client_common/models/status.dart';
 import 'package:flutter/cupertino.dart';
 
+/// The model that manages the store of applications.
 class StoreModel extends ChangeNotifier {
   Status<AppsResponse> fetchApplicationsStatus = Status();
   List<AppResponse> applications = [];

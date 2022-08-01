@@ -2,6 +2,7 @@ import 'package:client_common/api/response_models/api_error.dart';
 import 'package:client_common/lenra_application/error_page.dart';
 import 'package:flutter/material.dart';
 
+/// The error page that is displayed when an error occurs on an application.
 class AppErrorPage extends StatelessWidget {
   final ApiError apiError;
 

@@ -18,6 +18,7 @@ import 'package:client_common/models/status.dart';
 import 'package:flutter/material.dart';
 import 'package:lenra_components/lenra_components.dart';
 
+/// The model that manages the actions that a user can do on an application.
 class UserApplicationModel extends ChangeNotifier {
   Status<AppsResponse> fetchApplicationsStatus = Status();
   Status<CreateAppResponse> createApplicationStatus = Status();

@@ -9,6 +9,9 @@ import 'package:http/http.dart' as http;
 
 typedef ResponseMapper<T> = T Function(dynamic json, dynamic header);
 
+/// The abstract LenraBaseHttpClient class is the base class for all Lenra HTTP clients.
+///
+/// It provides the basic methods to send HTTP requests and to parse the response.
 abstract class LenraBaseHttpClient {
   final http.Client client;
 
@@ -88,6 +91,7 @@ abstract class LenraBaseHttpClient {
   }
 }
 
+/// The LenraApi class that is used to send HTTP requests to Lenra api under the `/api` endpoint.
 class LenraApi extends LenraBaseHttpClient {
   static final LenraApi _instance = LenraApi();
   static LenraApi get instance => _instance;
@@ -106,6 +110,9 @@ class LenraApi extends LenraBaseHttpClient {
   }
 }
 
+/// The LenraAuth class that is used to send HTTP requests to Lenra api under the `/auth` endpoint.
+///
+/// It is used to authenticate the user and to get the user's token.
 class LenraAuth extends LenraBaseHttpClient {
   static final LenraAuth _instance = LenraAuth();
   static LenraAuth get instance => _instance;

@@ -10,6 +10,7 @@ enum RequestStatus {
   error,
 }
 
+/// A class that manages the status of a request.
 class Status<T> {
   // Set this to true prevent the request to redo if the data is already fetched (unless forced).
   bool hasCache;
