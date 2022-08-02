@@ -6,7 +6,7 @@ import 'package:client_common/api/response_models/user_accepted_latest_cgu_respo
 class CguApi {
   static Future<CguResponse> getLatestCgu() => LenraApi.instance.get(
         "/cgu/latest",
-        responseMapper: (json, header) => CguResponse.fromJson(json["latest_cgu"]),
+        responseMapper: (json, header) => CguResponse.fromJson(json),
       );
 
   static Future<UserAcceptCguVersionResponse> acceptCgu(int cguId) => LenraApi.instance.post(
