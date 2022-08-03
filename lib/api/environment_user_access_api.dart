@@ -3,6 +3,7 @@ import 'package:client_common/api/request_models/create_environment_user_access_
 import 'package:client_common/api/response_models/create_environment_user_access_response.dart';
 import 'package:client_common/api/response_models/environment_user_accesses_response.dart';
 
+/// All of the environment user access requests that can be done on Lenra.
 class EnvironmentUserAccessApi {
   static Future<CreateEnvironmentUserAccessResponse> createEnvironmentUserAccess(
     int appId,

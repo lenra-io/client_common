@@ -9,6 +9,7 @@ import 'package:client_common/api/response_models/create_build_response.dart';
 import 'package:client_common/api/response_models/get_main_env_response.dart';
 import 'package:client_common/api/response_models/update_app_response.dart';
 
+/// All of the application requests that can be done on Lenra.
 class ApplicationApi {
   static Future<AppsResponse> getApps() => LenraApi.instance.get(
         "/apps",

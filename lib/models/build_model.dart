@@ -6,6 +6,7 @@ import 'package:client_common/api/response_models/create_build_response.dart';
 import 'package:client_common/models/status.dart';
 import 'package:flutter/material.dart';
 
+/// The model that manages the builds.
 class BuildModel extends ChangeNotifier {
   Status<BuildsResponse> fetchBuildsStatus = Status();
   Status<CreateBuildResponse> createBuildStatus = Status();

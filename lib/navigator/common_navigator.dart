@@ -13,6 +13,9 @@ import 'package:flutter/widgets.dart';
 
 typedef CustomPageBuilder = Widget Function(Map<String, String>);
 
+/// The common navigator which defines routes that are used across Lenra client projects.
+///
+/// It defines common routes such as authentication routes or cgu routes.
 class CommonNavigator {
   static const String homeRoute = "/";
   static const String loginRoute = "/login";

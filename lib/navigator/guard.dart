@@ -9,6 +9,7 @@ import 'package:client_common/navigator/common_navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+/// This class defines guards that are used to stop the user from accessing certain pages.
 class Guard {
   Future<bool> Function(BuildContext) isValid;
   Function(BuildContext) onInvalid;

@@ -2,6 +2,7 @@ import 'package:client_common/api/response_models/api_error.dart';
 import 'package:flutter/material.dart';
 import 'package:lenra_components/lenra_components.dart';
 
+/// A snack bar that displays an error message.
 class ApiErrorSnackBar extends SnackBar {
   final ApiError error;
   final Function() onPressAction;
