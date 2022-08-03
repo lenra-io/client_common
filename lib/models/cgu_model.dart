@@ -34,7 +34,7 @@ class CguModel extends ChangeNotifier {
 
   Future<Response> getLatestCguAsMd(language) async {
     var res = await getLatestCgu().then((cgu) {
-      return http.get(Uri.parse("${Config.instance.httpEndpoint}/web/cgu/${cgu.link}_$language.md"));
+      return http.get(Uri.parse("${Config.instance.httpEndpoint}/web/cgu/CGU_${language}_${cgu.version}.md"));
     });
     notifyListeners();
     return res;
