@@ -9,6 +9,7 @@ import 'package:client_common/api/request_models/validate_user_request.dart';
 import 'package:client_common/api/response_models/auth_response.dart';
 import 'package:client_common/api/response_models/empty_response.dart';
 
+/// All of the user requests that can be done on Lenra.
 class UserApi {
   static Future<AuthResponse> register(RegisterRequest body) => LenraAuth.instance.post(
         "/register",

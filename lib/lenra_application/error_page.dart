@@ -3,6 +3,7 @@ import 'package:client_common/views/simple_page.dart';
 import 'package:flutter/widgets.dart';
 import 'package:lenra_components/lenra_components.dart';
 
+/// The generic error page that is displayed when an error occurs.
 class ErrorPage extends StatelessWidget {
   final ApiError apiError;
   final String title;
