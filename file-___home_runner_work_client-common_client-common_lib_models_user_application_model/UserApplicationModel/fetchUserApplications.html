@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the fetchUserApplications method from the UserApplicationModel class, for the Dart programming language.">
+  <title>fetchUserApplications method - UserApplicationModel class - user_application_model library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../../static-assets/styles.css?v1">
+  <link rel="icon" href="../../static-assets/favicon.png?v1">
+
+  
+</head>
+
+
+<body data-base-href="../../"
+      data-using-base-href="false">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../../index.html">client_common</a></li>
+    <li><a href="../../file-___home_runner_work_client-common_client-common_lib_models_user_application_model/file-___home_runner_work_client-common_client-common_lib_models_user_application_model-library.html">user_application_model</a></li>
+    <li><a href="../../file-___home_runner_work_client-common_client-common_lib_models_user_application_model/UserApplicationModel-class.html">UserApplicationModel</a></li>
+    <li class="self-crumb">fetchUserApplications method</li>
+  </ol>
+  <div class="self-name">fetchUserApplications</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+
+  <div id="dartdoc-main-content" class="main-content">
+      <div>
+<h1><span class="kind-method">fetchUserApplications</span> method 
+    <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
+</h1></div>
+
+    <section class="multi-line-signature">
+      
+
+<span class="returntype"><a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a></span>&gt;</span></span>
+<span class="name ">fetchUserApplications</span>(<wbr>)
+
+      
+
+    </section>
+    
+
+
+    
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">Future&lt;List&lt;AppResponse&gt;&gt; fetchUserApplications() async {
+  var res = await fetchApplicationsStatus.handle(ApplicationApi.getUserApps, notifyListeners);
+  userApps = res.apps;
+  notifyListeners();
+  return res.apps;
+}</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+  <li><a href="../../index.html">client_common</a></li>
+  <li><a href="../../file-___home_runner_work_client-common_client-common_lib_models_user_application_model/file-___home_runner_work_client-common_client-common_lib_models_user_application_model-library.html">user_application_model</a></li>
+  <li><a href="../../file-___home_runner_work_client-common_client-common_lib_models_user_application_model/UserApplicationModel-class.html">UserApplicationModel</a></li>
+  <li class="self-crumb">fetchUserApplications method</li>
+</ol>
+
+
+    <h5>UserApplicationModel class</h5>
+    <ol>
+
+        <li class="section-title"><a href="../../file-___home_runner_work_client-common_client-common_lib_models_user_application_model/UserApplicationModel-class.html#constructors">Constructors</a></li>
+          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_models_user_application_model/UserApplicationModel/UserApplicationModel.html">UserApplicationModel</a></li>
+
+
+    <li class="section-title">
+      <a href="../../file-___home_runner_work_client-common_client-common_lib_models_user_application_model/UserApplicationModel-class.html#instance-properties">Properties</a>
+    </li>
+    <li><a href="../../file-___home_runner_work_client-common_client-common_lib_models_user_application_model/UserApplicationModel/createApplicationStatus.html">createApplicationStatus</a></li>
+    <li><a href="../../file-___home_runner_work_client-common_client-common_lib_models_user_application_model/UserApplicationModel/currentApp.html">currentApp</a></li>
+    <li><a href="../../file-___home_runner_work_client-common_client-common_lib_models_user_application_model/UserApplicationModel/fetchApplicationsStatus.html">fetchApplicationsStatus</a></li>
+    <li><a href="../../file-___home_runner_work_client-common_client-common_lib_models_user_application_model/UserApplicationModel/getInvitedUsersStatus.html">getInvitedUsersStatus</a></li>
+    <li><a href="../../file-___home_runner_work_client-common_client-common_lib_models_user_application_model/UserApplicationModel/getMainEnvStatus.html">getMainEnvStatus</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/hashCode.html">hashCode</a></li>
+    <li><a href="../../file-___home_runner_work_client-common_client-common_lib_models_user_application_model/UserApplicationModel/inviteUserStatus.html">inviteUserStatus</a></li>
+    <li><a href="../../file-___home_runner_work_client-common_client-common_lib_models_user_application_model/UserApplicationModel/mainEnv.html">mainEnv</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/runtimeType.html">runtimeType</a></li>
+    <li><a href="../../file-___home_runner_work_client-common_client-common_lib_models_user_application_model/UserApplicationModel/selectedApp.html">selectedApp</a></li>
+    <li><a href="../../file-___home_runner_work_client-common_client-common_lib_models_user_application_model/UserApplicationModel/updateApplicationStatus.html">updateApplicationStatus</a></li>
+    <li><a href="../../file-___home_runner_work_client-common_client-common_lib_models_user_application_model/UserApplicationModel/updateEnvironmentStatus.html">updateEnvironmentStatus</a></li>
+    <li><a href="../../file-___home_runner_work_client-common_client-common_lib_models_user_application_model/UserApplicationModel/userApps.html">userApps</a></li>
+
+    <li class="section-title"><a href="../../file-___home_runner_work_client-common_client-common_lib_models_user_application_model/UserApplicationModel-class.html#instance-methods">Methods</a></li>
+    <li><a href="../../file-___home_runner_work_client-common_client-common_lib_models_user_application_model/UserApplicationModel/createApp.html">createApp</a></li>
+    <li><a href="../../file-___home_runner_work_client-common_client-common_lib_models_user_application_model/UserApplicationModel/fetchUserApplications.html">fetchUserApplications</a></li>
+    <li><a href="../../file-___home_runner_work_client-common_client-common_lib_models_user_application_model/UserApplicationModel/getInvitedUsers.html">getInvitedUsers</a></li>
+    <li><a href="../../file-___home_runner_work_client-common_client-common_lib_models_user_application_model/UserApplicationModel/getMainEnv.html">getMainEnv</a></li>
+    <li><a href="../../file-___home_runner_work_client-common_client-common_lib_models_user_application_model/UserApplicationModel/inviteUser.html">inviteUser</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/toString.html">toString</a></li>
+    <li><a href="../../file-___home_runner_work_client-common_client-common_lib_models_user_application_model/UserApplicationModel/updateApp.html">updateApp</a></li>
+    <li><a href="../../file-___home_runner_work_client-common_client-common_lib_models_user_application_model/UserApplicationModel/updateEnvironment.html">updateEnvironment</a></li>
+
+    <li class="section-title inherited"><a href="../../file-___home_runner_work_client-common_client-common_lib_models_user_application_model/UserApplicationModel-class.html#operators">Operators</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/operator_equals.html">operator ==</a></li>
+
+
+
+
+</ol>
+
+  </div><!--/.sidebar-offcanvas-->
+
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    client_common
+      1.0.0
+  </span>
+
+  
+</footer>
+
+
+
+<script src="../../static-assets/highlight.pack.js?v1"></script>
+<script src="../../static-assets/script.js?v1"></script>
+
+
+
+</body>
+
+</html>
+
