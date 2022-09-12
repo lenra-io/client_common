@@ -47,8 +47,8 @@ class _CguPageState extends State<CguPage> {
                   children: [
                     LenraFlex(
                       fillParent: true,
-                      padding: EdgeInsets.only(bottom: 2),
-                      spacing: 2,
+                      padding: EdgeInsets.only(bottom: 16),
+                      spacing: 16,
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         LenraButton(
@@ -84,8 +84,8 @@ class _CguPageState extends State<CguPage> {
                     ),
                     LenraFlex(
                       fillParent: true,
-                      padding: EdgeInsets.only(top: 4),
-                      spacing: 2,
+                      padding: EdgeInsets.only(top: 32),
+                      spacing: 16,
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         LenraButton(

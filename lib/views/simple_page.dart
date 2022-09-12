@@ -27,9 +27,9 @@ class SimplePage extends StatelessWidget {
     List<Widget> children = [
       Image.asset(
         'assets/images/logo-vertical.png',
-        height: theme.baseSize * 13,
+        height: 104.0,
       ),
-      SizedBox(height: theme.baseSize * 5)
+      SizedBox(height: 40.0)
     ];
     if (title.isNotEmpty) {
       children.add(SizedBox(
@@ -42,7 +42,7 @@ class SimplePage extends StatelessWidget {
       ));
     }
     if (title.isNotEmpty && message.isNotEmpty) {
-      children.add(SizedBox(height: theme.baseSize * 2));
+      children.add(SizedBox(height: 16.0));
     }
     if (message.isNotEmpty) {
       children.add(SizedBox(
@@ -56,13 +56,13 @@ class SimplePage extends StatelessWidget {
     }
     if (child != null) {
       if (title.isNotEmpty || message.isNotEmpty) {
-        children.add(SizedBox(height: theme.baseSize * 4));
+        children.add(SizedBox(height: 32.0));
       }
       children.add(child!);
     }
 
     var size = MediaQuery.of(context).size;
-    var padding = min(min(size.height * 0.08, size.width * 0.1), theme.baseSize * 10);
+    var padding = min(min(size.height * 0.08, size.width * 0.1), 80.0);
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
       onTap: () {
@@ -94,7 +94,7 @@ class SimplePage extends StatelessWidget {
   List<Widget> _buildBackInk(BuildContext context, LenraThemeData theme) {
     var size = MediaQuery.of(context).size;
     var inkSize = 20;
-    var separation = min(min(size.height * 0.05, size.width * 0.06), theme.baseSize * 6);
+    var separation = min(min(size.height * 0.05, size.width * 0.06), 48.0);
     if (backInkText == null || backInkText!.isEmpty) {
       return [
         SizedBox(
@@ -112,7 +112,7 @@ class SimplePage extends StatelessWidget {
               onTap: backInkAction,
               hoverColor: Colors.transparent,
               child: LenraFlex(
-                spacing: 1.5,
+                spacing: 12.0,
                 children: [
                   Icon(
                     Icons.arrow_back_ios_rounded,
