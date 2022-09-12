@@ -52,7 +52,7 @@ class _ChangeLostPasswordState extends State<ChangeLostPasswordForm> {
       child: LenraFlex(
         direction: Axis.vertical,
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        spacing: 3,
+        spacing: 24,
         children: <Widget>[
           ...widget.email == null
               ? [

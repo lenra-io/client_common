@@ -33,7 +33,7 @@ class _LoginFormState extends State<LoginForm> {
       key: _formKey,
       child: LenraFlex(
         direction: Axis.vertical,
-        spacing: 2,
+        spacing: 16,
         children: <Widget>[
           login(context),
           Image.asset(
@@ -77,7 +77,7 @@ class _LoginFormState extends State<LoginForm> {
     bool isLogging = context.select<AuthModel, bool>((m) => m.loginStatus.isFetching());
     return LenraFlex(
       direction: Axis.vertical,
-      spacing: 2,
+      spacing: 16,
       children: [
         //------Email------
         LenraTextFormField(

@@ -112,7 +112,7 @@ class SimplePage extends StatelessWidget {
               onTap: backInkAction,
               hoverColor: Colors.transparent,
               child: LenraFlex(
-                spacing: 1.5,
+                spacing: theme.baseSize * 1.5,
                 children: [
                   Icon(
                     Icons.arrow_back_ios_rounded,

@@ -24,7 +24,7 @@ class ErrorPage extends StatelessWidget {
         message: message,
         child: LenraFlex(
           direction: Axis.vertical,
-          spacing: 4,
+          spacing: 32,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             errorToWidget(),
