@@ -31,7 +31,7 @@ class _RegisterFormState extends State<RegisterForm> {
       key: _formKey,
       child: LenraFlex(
         direction: Axis.vertical,
-        spacing: 5,
+        spacing: 40,
         children: [
           fields(context),
           //------Button------
@@ -65,7 +65,7 @@ class _RegisterFormState extends State<RegisterForm> {
   Widget fields(BuildContext context) {
     return LenraFlex(
       direction: Axis.vertical,
-      spacing: 2,
+      spacing: 16,
       children: [
         //------Email------
         LenraTextFormField(

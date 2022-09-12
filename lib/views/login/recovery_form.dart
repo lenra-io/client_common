@@ -33,7 +33,7 @@ class _RecoveryFormState extends State<RecoveryForm> {
       key: _formKey,
       child: LenraFlex(
         direction: Axis.vertical,
-        spacing: 3,
+        spacing: 24,
         children: <Widget>[
           Text(
             "Confirm your email and we'll take care of it.",
