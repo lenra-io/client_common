@@ -42,7 +42,7 @@ abstract class LenraBaseHttpClient {
     if (response.statusCode >= 400 && response.statusCode < 600) {
       throw ApiError.fromJson(body);
     } else {
-      return mapper(body["data"], response.headers);
+      return mapper(body, response.headers);
     }
   }
 
