@@ -37,7 +37,7 @@ abstract class LenraBaseHttpClient {
       throw ApiError.connexionRefusedError;
     }
 
-    Map<String, dynamic> body = json.decode(response.body);
+    dynamic body = json.decode(response.body);
 
     if (response.statusCode >= 400 && response.statusCode < 600) {
       throw ApiError.fromJson(body);
