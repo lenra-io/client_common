@@ -2,6 +2,7 @@ import 'package:client_common/navigator/guard.dart';
 import 'package:client_common/navigator/page_guard.dart';
 import 'package:client_common/views/cgu/cgu_page.dart';
 import 'package:client_common/views/cgu/cgu_page_fr.dart';
+import 'package:client_common/views/invitation/invite_page.dart';
 import 'package:client_common/views/login/login_page.dart';
 import 'package:client_common/views/profile/change_lost_password_page.dart';
 import 'package:client_common/views/profile/change_password_confirmation_page.dart';
@@ -28,6 +29,7 @@ class CommonNavigator {
   static const String cguRoute = "/cgu";
   static const String cguRouteFR = "/cgu/fr";
   static const String profileRoute = "/profile";
+  static const String invitationRoute = "/invitation/:appName/:uuid";
 
   static String? currentRoute;
 
@@ -64,6 +66,15 @@ class CommonNavigator {
           guards: [Guard.checkAuthenticated],
           child: CguPageFr(),
         ),
+    invitationRoute: (Map<String, String> params) => PageGuard(
+        guards: [Guard.checkAuthenticated],
+        builder: (context) {
+          print(params);
+          return InvitePage(
+            appName: params["appName"]!,
+            uuid: params["uuid"]!,
+          );
+        }),
     userValidationRoute: (Map<String, String> params) => PageGuard(
           guards: [
             Guard.checkAuthenticated,
