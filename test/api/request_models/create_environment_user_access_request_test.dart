@@ -7,6 +7,6 @@ void main() {
   test('to json', () {
     CreateEnvironmentUserAccessRequest request = CreateEnvironmentUserAccessRequest(email: "test@lenra.io");
     Map<String, dynamic> json = jsonDecode(jsonEncode(request));
-    expect(json["user_id"], "test@lenra.io");
+    expect(json["email"], "test@lenra.io");
   });
 }
