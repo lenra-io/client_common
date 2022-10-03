@@ -5,8 +5,8 @@ import 'package:test/test.dart';
 
 void main() {
   test('to json', () {
-    CreateEnvironmentUserAccessRequest request = CreateEnvironmentUserAccessRequest(userId: 1);
+    CreateEnvironmentUserAccessRequest request = CreateEnvironmentUserAccessRequest(email: "test@lenra.io");
     Map<String, dynamic> json = jsonDecode(jsonEncode(request));
-    expect(json["user_id"], 1);
+    expect(json["user_id"], "test@lenra.io");
   });
 }
