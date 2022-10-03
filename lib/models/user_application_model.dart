@@ -1,7 +1,6 @@
 import 'package:client_common/api/application_api.dart';
 import 'package:client_common/api/environment_api.dart';
-import 'package:client_common/api/environment_user_access_api.dart';
-import 'package:client_common/api/request_models/accepte_invitattion_response.dart';
+import 'package:client_common/api/request_models/accept_invitation_response.dart';
 import 'package:client_common/api/request_models/create_app_request.dart';
 import 'package:client_common/api/request_models/create_environment_user_access_request.dart';
 import 'package:client_common/api/request_models/update_app_request.dart';
@@ -16,6 +15,7 @@ import 'package:client_common/api/response_models/environment_user_accesses_resp
 import 'package:client_common/api/response_models/get_main_env_response.dart';
 import 'package:client_common/api/response_models/update_app_response.dart';
 import 'package:client_common/api/response_models/update_environment_response.dart';
+import 'package:client_common/api/user_environment_access_api.dart';
 import 'package:client_common/models/status.dart';
 import 'package:flutter/material.dart';
 import 'package:lenra_components/lenra_components.dart';

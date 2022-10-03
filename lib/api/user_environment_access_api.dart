@@ -1,5 +1,5 @@
 import 'package:client_common/api/lenra_http_client.dart';
-import 'package:client_common/api/request_models/accepte_invitattion_response.dart';
+import 'package:client_common/api/request_models/accept_invitation_response.dart';
 import 'package:client_common/api/request_models/create_environment_user_access_request.dart';
 import 'package:client_common/api/response_models/create_environment_user_access_response.dart';
 import 'package:client_common/api/response_models/environment_user_access_response.dart';
