@@ -1,7 +1,7 @@
 import 'package:client_common/api/response_models/api_response.dart';
 
 class EnvironmentUserAccessResponse extends ApiResponse {
-  int userId;
+  int? userId;
   int environmentId;
   String? email;
 
