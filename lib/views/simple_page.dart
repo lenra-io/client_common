@@ -113,6 +113,7 @@ class SimplePage extends StatelessWidget {
               hoverColor: Colors.transparent,
               child: LenraFlex(
                 spacing: theme.baseSize * 1.5,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Icon(
                     Icons.arrow_back_ios_rounded,
