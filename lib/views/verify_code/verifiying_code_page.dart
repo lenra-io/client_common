@@ -9,7 +9,7 @@ class VerifyingCodePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SimplePage(
       title: "Thank you for your registration",
-      message: "Great things are about to happen! We have sent you a token to access our platform.",
+      message: "Great things are about to happen! We have sent you a registration code to access our platform.",
       child: VerifyCodeForm(),
     );
   }
