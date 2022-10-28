@@ -19,11 +19,14 @@ class AuthModel extends ChangeNotifier {
   /// The access token of the user.
   String? accessToken;
   User? user;
-
   final Status<AuthResponse> registerStatus = Status();
   final Status<AuthResponse> loginStatus = Status();
   final Status<AuthResponse> refreshStatus = Status();
   final Status<AuthResponse> validateUserStatus = Status();
+  final Status<AuthResponse> validateDevStatus = Status();
+
+  final Status<EmptyResponse> logoutStatus = Status();
+
   final Status<EmptyResponse> askCodeLostPasswordStatus = Status();
   final Status<EmptyResponse> sendCodeLostPasswordStatus = Status();
   final Status<EmptyResponse> changePasswordStatus = Status();
@@ -75,13 +78,13 @@ class AuthModel extends ChangeNotifier {
   }
 
   Future<AuthResponse> validateDev(String code) async {
-    var res = await Status().handle(() => UserApi.validateDev(ValidateDevRequest(code)), notifyListeners);
+    var res = await validateDevStatus.handle(() => UserApi.validateDev(ValidateDevRequest(code)), notifyListeners);
     _handleAuthResponse(res);
     return res;
   }
 
   Future<EmptyResponse> logout() async {
-    var res = await Status().handle(UserApi.logout, notifyListeners);
+    var res = await logoutStatus.handle(UserApi.logout, notifyListeners);
     accessToken = null;
     user = null;
     notifyListeners();
