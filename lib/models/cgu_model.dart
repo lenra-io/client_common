@@ -10,24 +10,20 @@ import 'package:http/http.dart';
 
 /// The model that manages the CGU.
 class CguModel extends ChangeNotifier {
-  Status<CguResponse> getLatestCguStatus = Status();
-  Status<UserAcceptCguVersionResponse> acceptCguStatus = Status();
-  Status<UserAcceptedLatestCguResponse> userAcceptedLatestCguStatus = Status();
-
   Future<CguResponse> getLatestCgu() async {
-    var res = await getLatestCguStatus.handle(() => CguApi.getLatestCgu(), notifyListeners);
+    var res = await Status().handle(() => CguApi.getLatestCgu(), notifyListeners);
     notifyListeners();
     return res;
   }
 
   Future<UserAcceptCguVersionResponse> acceptCgu(int cguId) async {
-    var res = await acceptCguStatus.handle(() => CguApi.acceptCgu(cguId), notifyListeners);
+    var res = await Status().handle(() => CguApi.acceptCgu(cguId), notifyListeners);
     notifyListeners();
     return res;
   }
 
   Future<UserAcceptedLatestCguResponse> userAcceptedLatestCgu() async {
-    var res = await userAcceptedLatestCguStatus.handle(() => CguApi.userAcceptedLatestCgu(), notifyListeners);
+    var res = await Status().handle(() => CguApi.userAcceptedLatestCgu(), notifyListeners);
     notifyListeners();
     return res;
   }

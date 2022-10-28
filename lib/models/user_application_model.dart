@@ -6,8 +6,6 @@ import 'package:client_common/api/request_models/create_environment_user_access_
 import 'package:client_common/api/request_models/update_app_request.dart';
 import 'package:client_common/api/request_models/update_environment_request.dart';
 import 'package:client_common/api/response_models/app_response.dart';
-import 'package:client_common/api/response_models/apps_response.dart';
-import 'package:client_common/api/response_models/create_app_response.dart';
 import 'package:client_common/api/response_models/create_environment_user_access_response.dart';
 import 'package:client_common/api/response_models/environment_response.dart';
 import 'package:client_common/api/response_models/environment_user_access_response.dart';
@@ -22,29 +20,19 @@ import 'package:lenra_components/lenra_components.dart';
 
 /// The model that manages the actions that a user can do on an application.
 class UserApplicationModel extends ChangeNotifier {
-  Status<AppsResponse> fetchApplicationsStatus = Status();
-  Status<CreateAppResponse> createApplicationStatus = Status();
-  Status<UpdateAppResponse> updateApplicationStatus = Status();
-  Status<UpdateEnvironmentResponse> updateEnvironmentStatus = Status();
-  Status<GetMainEnvResponse> getMainEnvStatus = Status();
-  Status<CreateEnvironmentUserAccessResponse> inviteUserStatus = Status();
-  Status<EnvironmentUserAccessesResponse> getInvitedUsersStatus = Status();
-  Status<EnvironmentUserAccessResponse> getInvitationStatus = Status();
-  Status<AcceptInvitationResponse> acceptInvitationStatus = Status();
-
   EnvironmentResponse? mainEnv;
   List<AppResponse> userApps = [];
   String? currentApp;
 
   Future<List<AppResponse>> fetchUserApplications() async {
-    var res = await fetchApplicationsStatus.handle(ApplicationApi.getUserApps, notifyListeners);
+    var res = await Status().handle(ApplicationApi.getUserApps, notifyListeners);
     userApps = res.apps;
     notifyListeners();
     return res.apps;
   }
 
   Future<AppResponse> createApp(String appName, String gitRepository) async {
-    var res = await createApplicationStatus.handle(
+    var res = await Status().handle(
         () => ApplicationApi.createApp(
               CreateAppRequest(
                 color: LenraColorThemeData.lenraFunGreenBase,
@@ -60,13 +48,13 @@ class UserApplicationModel extends ChangeNotifier {
   }
 
   Future<UpdateAppResponse> updateApp(UpdateAppRequest body) async {
-    var res = await updateApplicationStatus.handle(() => ApplicationApi.updateApp(body), notifyListeners);
+    var res = await Status().handle(() => ApplicationApi.updateApp(body), notifyListeners);
     notifyListeners();
     return res;
   }
 
   Future<GetMainEnvResponse> getMainEnv(int appId) async {
-    var res = await getMainEnvStatus.handle(
+    var res = await Status().handle(
       () => ApplicationApi.getMainEnv(appId),
       notifyListeners,
     );
@@ -76,7 +64,7 @@ class UserApplicationModel extends ChangeNotifier {
   }
 
   Future<UpdateEnvironmentResponse> updateEnvironment(int appId, int envId, UpdateEnvironmentRequest body) async {
-    var res = await updateEnvironmentStatus.handle(
+    var res = await Status().handle(
       () => EnvironmentApi.updateEnvironment(appId, envId, body),
       notifyListeners,
     );
@@ -90,7 +78,7 @@ class UserApplicationModel extends ChangeNotifier {
     int envId,
     CreateEnvironmentUserAccessRequest body,
   ) async {
-    var res = await inviteUserStatus.handle(
+    var res = await Status().handle(
       () => EnvironmentUserAccessApi.createEnvironmentUserAccess(appId, envId, body),
       notifyListeners,
     );
@@ -100,7 +88,7 @@ class UserApplicationModel extends ChangeNotifier {
   }
 
   Future<EnvironmentUserAccessesResponse> getInvitedUsers(int appId, int envId) async {
-    var res = await getInvitedUsersStatus.handle(
+    var res = await Status().handle(
       () => EnvironmentUserAccessApi.getEnvironmentUserAccesses(appId, envId),
       notifyListeners,
     );
@@ -110,7 +98,7 @@ class UserApplicationModel extends ChangeNotifier {
   }
 
   Future<EnvironmentUserAccessResponse> getInvitation(String uuid) async {
-    var res = await getInvitationStatus.handle(
+    var res = await Status().handle(
       () => EnvironmentUserAccessApi.getInvitation(uuid),
       notifyListeners,
     );
@@ -120,7 +108,7 @@ class UserApplicationModel extends ChangeNotifier {
   }
 
   Future<AcceptInvitationResponse> acceptInvitation(String uuid) async {
-    var res = await acceptInvitationStatus.handle(
+    var res = await Status().handle(
       () => EnvironmentUserAccessApi.acceptInvitation(uuid),
       notifyListeners,
     );
