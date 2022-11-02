@@ -66,8 +66,9 @@
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">Future&lt;BuildResponse&gt; createBuild(int appId) async {
-  var res =
-      await createBuildStatus.handle(() =&gt; ApplicationApi.createBuild(appId, CreateBuildRequest()), notifyListeners);
+  createBuildStatus[appId] = Status();
+  var res = await createBuildStatus[appId]!
+      .handle(() =&gt; ApplicationApi.createBuild(appId, CreateBuildRequest()), notifyListeners);
   buildsForApp(appId).add(res.build);
   notifyListeners();
   return res.build;

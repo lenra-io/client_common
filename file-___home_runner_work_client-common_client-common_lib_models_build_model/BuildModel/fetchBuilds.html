@@ -66,7 +66,8 @@
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">Future&lt;List&lt;BuildResponse&gt;&gt; fetchBuilds(int appId) async {
-  var res = await fetchBuildsStatus.handle(() =&gt; ApplicationApi.getBuilds(appId), notifyListeners);
+  fetchBuildsStatus[appId] = Status();
+  var res = await fetchBuildsStatus[appId]!.handle(() =&gt; ApplicationApi.getBuilds(appId), notifyListeners);
   buildsByApp[appId] = res.builds;
   notifyListeners();
   return res.builds;
