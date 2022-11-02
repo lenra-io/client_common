@@ -26,11 +26,12 @@ class UserApplicationModel extends ChangeNotifier {
   Status<CreateAppResponse> createApplicationStatus = Status();
   Status<UpdateAppResponse> updateApplicationStatus = Status();
   Status<UpdateEnvironmentResponse> updateEnvironmentStatus = Status();
-  Status<GetMainEnvResponse> getMainEnvStatus = Status();
   Status<CreateEnvironmentUserAccessResponse> inviteUserStatus = Status();
   Status<EnvironmentUserAccessesResponse> getInvitedUsersStatus = Status();
   Status<EnvironmentUserAccessResponse> getInvitationStatus = Status();
   Status<AcceptInvitationResponse> acceptInvitationStatus = Status();
+
+  Map<int, Status<GetMainEnvResponse>> getMainEnvStatus = {};
 
   EnvironmentResponse? mainEnv;
   List<AppResponse> userApps = [];
@@ -67,7 +68,8 @@ class UserApplicationModel extends ChangeNotifier {
   }
 
   Future<GetMainEnvResponse> getMainEnv(int appId) async {
-    var res = await getMainEnvStatus.handle(
+    getMainEnvStatus[appId] = Status();
+    var res = await getMainEnvStatus[appId]!.handle(
       () => ApplicationApi.getMainEnv(appId),
       notifyListeners,
     );

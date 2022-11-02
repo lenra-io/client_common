@@ -8,8 +8,8 @@ import 'package:flutter/material.dart';
 
 /// The model that manages the builds.
 class BuildModel extends ChangeNotifier {
-  Status<BuildsResponse> fetchBuildsStatus = Status();
-  Status<CreateBuildResponse> createBuildStatus = Status();
+  Map<int, Status<BuildsResponse>> fetchBuildsStatus = {};
+  Map<int, Status<CreateBuildResponse>> createBuildStatus = {};
 
   Map<int, List<BuildResponse>> buildsByApp = {};
 
@@ -27,15 +27,17 @@ class BuildModel extends ChangeNotifier {
   }
 
   Future<List<BuildResponse>> fetchBuilds(int appId) async {
-    var res = await fetchBuildsStatus.handle(() => ApplicationApi.getBuilds(appId), notifyListeners);
+    fetchBuildsStatus[appId] = Status();
+    var res = await fetchBuildsStatus[appId]!.handle(() => ApplicationApi.getBuilds(appId), notifyListeners);
     buildsByApp[appId] = res.builds;
     notifyListeners();
     return res.builds;
   }
 
   Future<BuildResponse> createBuild(int appId) async {
-    var res =
-        await createBuildStatus.handle(() => ApplicationApi.createBuild(appId, CreateBuildRequest()), notifyListeners);
+    createBuildStatus[appId] = Status();
+    var res = await createBuildStatus[appId]!
+        .handle(() => ApplicationApi.createBuild(appId, CreateBuildRequest()), notifyListeners);
     buildsForApp(appId).add(res.build);
     notifyListeners();
     return res.build;
