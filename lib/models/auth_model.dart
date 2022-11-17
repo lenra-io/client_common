@@ -59,8 +59,8 @@ class AuthModel extends ChangeNotifier {
     return res;
   }
 
-  Future<AuthResponse> login(String email, String password) async {
-    var res = await loginStatus.handle(() => UserApi.login(LoginRequest(email, password)), notifyListeners);
+  Future<AuthResponse> login(String email, String password, bool keep) async {
+    var res = await loginStatus.handle(() => UserApi.login(LoginRequest(email, password, keep)), notifyListeners);
     _handleAuthResponse(res);
     return res;
   }
