@@ -76,6 +76,9 @@ class _LoginFormState extends State<LoginForm> {
   }
 
   Widget login(BuildContext context) {
+    final LenraTextThemeData finalLenraTextThemeData = LenraTheme.of(context).lenraTextThemeData;
+    final LenraColorThemeData colorThemeData = LenraTheme.of(context).lenraColorThemeData;
+
     bool isLogging = context.select<AuthModel, bool>((m) => m.loginStatus.isFetching());
     return LenraFlex(
       direction: Axis.vertical,
@@ -119,10 +122,18 @@ class _LoginFormState extends State<LoginForm> {
           LenraCheckbox(
             value: keep,
             onPressed: (value) {
-              keep = value!;
+              setState(() {
+                keep = value!;
+              });
             },
           ),
-          LenraText(text: "Keep me logged")
+          Padding(
+            padding: EdgeInsets.only(top: 5),
+            child: LenraText(
+              text: "Keep me logged",
+              style: finalLenraTextThemeData.disabledBodyText,
+            ),
+          )
         ]),
         SizedBox(
           width: double.infinity,
