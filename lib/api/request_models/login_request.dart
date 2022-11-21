@@ -7,9 +7,9 @@ class LoginRequest extends ApiRequest {
 
   LoginRequest(this.email, this.password, this.keep);
 
-  Map<String, String> toJson() => {
+  Map<String, dynamic> toJson() => {
         'email': email,
         'password': password,
-        'keep': keep.toString(),
+        'keep': keep,
       };
 }

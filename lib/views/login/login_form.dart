@@ -130,7 +130,7 @@ class _LoginFormState extends State<LoginForm> {
           Padding(
             padding: EdgeInsets.only(top: 5),
             child: LenraText(
-              text: "Keep me logged",
+              text: "Keep me logged in",
               style: finalLenraTextThemeData.disabledBodyText,
             ),
           )
