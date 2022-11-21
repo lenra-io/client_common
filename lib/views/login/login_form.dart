@@ -77,7 +77,6 @@ class _LoginFormState extends State<LoginForm> {
 
   Widget login(BuildContext context) {
     final LenraTextThemeData finalLenraTextThemeData = LenraTheme.of(context).lenraTextThemeData;
-    final LenraColorThemeData colorThemeData = LenraTheme.of(context).lenraColorThemeData;
 
     bool isLogging = context.select<AuthModel, bool>((m) => m.loginStatus.isFetching());
     return LenraFlex(
