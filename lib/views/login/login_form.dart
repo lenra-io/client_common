@@ -5,6 +5,7 @@ import 'package:client_common/views/error.dart';
 import 'package:client_common/views/loading_button.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:lenra_components/component/lenra_text.dart';
 import 'package:lenra_components/lenra_components.dart';
 import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
@@ -22,6 +23,7 @@ class _LoginFormState extends State<LoginForm> {
   final _formKey = GlobalKey<FormState>();
   String email = "";
   String password = "";
+  bool keep = false;
   bool _hidePassword = true;
 
   @override
@@ -74,6 +76,8 @@ class _LoginFormState extends State<LoginForm> {
   }
 
   Widget login(BuildContext context) {
+    final LenraTextThemeData finalLenraTextThemeData = LenraTheme.of(context).lenraTextThemeData;
+
     bool isLogging = context.select<AuthModel, bool>((m) => m.loginStatus.isFetching());
     return LenraFlex(
       direction: Axis.vertical,
@@ -113,6 +117,23 @@ class _LoginFormState extends State<LoginForm> {
             });
           },
         ),
+        LenraFlex(children: [
+          LenraCheckbox(
+            value: keep,
+            onPressed: (value) {
+              setState(() {
+                keep = value!;
+              });
+            },
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 5),
+            child: LenraText(
+              text: "Keep me logged in",
+              style: finalLenraTextThemeData.disabledBodyText,
+            ),
+          )
+        ]),
         SizedBox(
           width: double.infinity,
           child: LoadingButton(
@@ -130,7 +151,7 @@ class _LoginFormState extends State<LoginForm> {
   void submit() {
     if (_formKey.currentState!.validate()) {
       AuthModel authModel = context.read<AuthModel>();
-      authModel.login(email, password).then((_) {
+      authModel.login(email, password, keep).then((_) {
         Navigator.of(context).pushReplacementNamed(authModel.getRedirectionRouteAfterAuthentication());
       }).catchError((error) {
         logger.warning(error);
