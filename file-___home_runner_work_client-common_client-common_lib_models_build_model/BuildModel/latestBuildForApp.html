@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the fetchBuilds method from the BuildModel class, for the Dart programming language.">
-  <title>fetchBuilds method - BuildModel class - build_model library - Dart API</title>
+  <meta name="description" content="API docs for the latestBuildForApp method from the BuildModel class, for the Dart programming language.">
+  <title>latestBuildForApp method - BuildModel class - build_model library - Dart API</title>
 
 
   
@@ -32,9 +32,9 @@
     <li><a href="../../index.html">client_common</a></li>
     <li><a href="../../file-___home_runner_work_client-common_client-common_lib_models_build_model/file-___home_runner_work_client-common_client-common_lib_models_build_model-library.html">build_model</a></li>
     <li><a href="../../file-___home_runner_work_client-common_client-common_lib_models_build_model/BuildModel-class.html">BuildModel</a></li>
-    <li class="self-crumb">fetchBuilds method</li>
+    <li class="self-crumb">latestBuildForApp method</li>
   </ol>
-  <div class="self-name">fetchBuilds</div>
+  <div class="self-name">latestBuildForApp</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -45,15 +45,15 @@
 
   <div id="dartdoc-main-content" class="main-content">
       <div>
-<h1><span class="kind-method">fetchBuilds</span> method 
+<h1><span class="kind-method">latestBuildForApp</span> method 
     <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
 </h1></div>
 
     <section class="multi-line-signature">
       
 
-<span class="returntype"><a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a></span>&gt;</span></span>
-<span class="name ">fetchBuilds</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="fetchBuilds-param-appId"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">appId</span></span></li>
+<span class="returntype">dynamic</span>
+<span class="name ">latestBuildForApp</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="latestBuildForApp-param-appId"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">appId</span></span></li>
 </ol>)
 
       
@@ -65,12 +65,12 @@
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">Future&lt;List&lt;BuildResponse&gt;&gt; fetchBuilds(int appId) async {
-  fetchBuildsStatus[appId] = Status();
-  var res = await fetchBuildsStatus[appId]!.handle(() =&gt; ApplicationApi.getBuilds(appId), notifyListeners);
-  buildsByApp[appId] = res.builds;
-  notifyListeners();
-  return res.builds;
+  <pre class="language-dart"><code class="language-dart">BuildResponse? latestBuildForApp(int appId) {
+  if (buildsByApp.containsKey(appId) &amp;&amp; buildsByApp[appId]!.isNotEmpty) {
+    return buildsByApp[appId]!.reduce((a, b) =&gt; a.buildNumber &gt; b.buildNumber ? a : b);
+  } else {
+    return null;
+  }
 }</code></pre>
 </section>
 
@@ -88,7 +88,7 @@
   <li><a href="../../index.html">client_common</a></li>
   <li><a href="../../file-___home_runner_work_client-common_client-common_lib_models_build_model/file-___home_runner_work_client-common_client-common_lib_models_build_model-library.html">build_model</a></li>
   <li><a href="../../file-___home_runner_work_client-common_client-common_lib_models_build_model/BuildModel-class.html">BuildModel</a></li>
-  <li class="self-crumb">fetchBuilds method</li>
+  <li class="self-crumb">latestBuildForApp method</li>
 </ol>
 
 

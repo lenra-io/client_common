@@ -49,28 +49,20 @@
     <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
 </h1></div>
 
+        <section class="multi-line-signature">
+          dynamic
+          <span class="name ">selectedApp</span>
+          <div class="features">read / write</div>
+
+        </section>
+        
 
         
-<section id="getter">
-
-<section class="multi-line-signature">
-  <span class="returntype">dynamic</span>
-  <span class="name ">selectedApp</span>
-  
-
-</section>
-
-
-
-
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">AppResponse? get selectedApp {
-  if (userApps.isEmpty) return null;
-  return userApps.last;
-}</code></pre>
-</section>
+  <pre class="language-dart"><code class="language-dart">AppResponse? selectedApp;
 
+</code></pre>
 </section>
 
 
