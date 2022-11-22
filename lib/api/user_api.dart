@@ -23,7 +23,7 @@ class UserApi {
         responseMapper: (json, headers) => AuthResponse.fromJson(json, headers),
       );
 
-  static Future<AuthResponse> validateUser(ValidateUserRequest body) => LenraAuth.instance.post(
+  static Future<AuthResponse> validateUser(ValidateUserRequest body) => LenraApi.instance.post(
         "/verify",
         body: body,
         responseMapper: (json, headers) => AuthResponse.fromJson(json, headers),
