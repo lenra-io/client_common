@@ -18,6 +18,14 @@ class BuildModel extends ChangeNotifier {
     return [];
   }
 
+  BuildResponse? latestBuildForApp(int appId) {
+    if (buildsByApp.containsKey(appId) && buildsByApp[appId]!.isNotEmpty) {
+      return buildsByApp[appId]!.reduce((a, b) => a.buildNumber > b.buildNumber ? a : b);
+    } else {
+      return null;
+    }
+  }
+
   Future<List<BuildResponse>> fetchBuilds(int appId) async {
     fetchBuildsStatus[appId] = Status();
     var res = await fetchBuildsStatus[appId]!.handle(() => ApplicationApi.getBuilds(appId), notifyListeners);

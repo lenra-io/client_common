@@ -36,6 +36,7 @@ class UserApplicationModel extends ChangeNotifier {
   EnvironmentResponse? mainEnv;
   List<AppResponse> userApps = [];
   String? currentApp;
+  AppResponse? selectedApp;
 
   Future<List<AppResponse>> fetchUserApplications() async {
     var res = await fetchApplicationsStatus.handle(ApplicationApi.getUserApps, notifyListeners);
@@ -129,10 +130,5 @@ class UserApplicationModel extends ChangeNotifier {
 
     notifyListeners();
     return res;
-  }
-
-  AppResponse? get selectedApp {
-    if (userApps.isEmpty) return null;
-    return userApps.last;
   }
 }
