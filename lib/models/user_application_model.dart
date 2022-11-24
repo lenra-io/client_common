@@ -23,6 +23,7 @@ import 'package:lenra_components/lenra_components.dart';
 /// The model that manages the actions that a user can do on an application.
 class UserApplicationModel extends ChangeNotifier {
   Status<AppsResponse> fetchApplicationsStatus = Status();
+  Status<AppsResponse> getAppsUserOpenedStatus = Status();
   Status<CreateAppResponse> createApplicationStatus = Status();
   Status<UpdateAppResponse> updateApplicationStatus = Status();
   Status<UpdateEnvironmentResponse> updateEnvironmentStatus = Status();
@@ -41,6 +42,12 @@ class UserApplicationModel extends ChangeNotifier {
   Future<List<AppResponse>> fetchUserApplications() async {
     var res = await fetchApplicationsStatus.handle(ApplicationApi.getUserApps, notifyListeners);
     userApps = res.apps;
+    notifyListeners();
+    return res.apps;
+  }
+
+  Future<List<AppResponse>> getAppsUserOpened() async {
+    var res = await getAppsUserOpenedStatus.handle(ApplicationApi.getAppsUserOpened, notifyListeners);
     notifyListeners();
     return res.apps;
   }
