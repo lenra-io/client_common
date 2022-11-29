@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the getUserApps method from the ApplicationApi class, for the Dart programming language.">
-  <title>getUserApps method - ApplicationApi class - application_api library - Dart API</title>
+  <meta name="description" content="API docs for the getAppsUserOpened method from the ApplicationApi class, for the Dart programming language.">
+  <title>getAppsUserOpened method - ApplicationApi class - application_api library - Dart API</title>
 
 
   
@@ -32,9 +32,9 @@
     <li><a href="../../index.html">client_common</a></li>
     <li><a href="../../file-___home_runner_work_client-common_client-common_lib_api_application_api/file-___home_runner_work_client-common_client-common_lib_api_application_api-library.html">application_api</a></li>
     <li><a href="../../file-___home_runner_work_client-common_client-common_lib_api_application_api/ApplicationApi-class.html">ApplicationApi</a></li>
-    <li class="self-crumb">getUserApps method</li>
+    <li class="self-crumb">getAppsUserOpened method</li>
   </ol>
-  <div class="self-name">getUserApps</div>
+  <div class="self-name">getAppsUserOpened</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -45,7 +45,7 @@
 
   <div id="dartdoc-main-content" class="main-content">
       <div>
-<h1><span class="kind-method">getUserApps</span> method 
+<h1><span class="kind-method">getAppsUserOpened</span> method 
     <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
 </h1></div>
 
@@ -53,7 +53,7 @@
       
 
 <span class="returntype"><a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a></span>
-<span class="name ">getUserApps</span>(<wbr>)
+<span class="name ">getAppsUserOpened</span>(<wbr>)
 
       
 
@@ -64,8 +64,8 @@
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">static Future&lt;AppsResponse&gt; getUserApps() =&gt; LenraApi.instance.get(
-      &quot;&#47;me&#47;apps&quot;,
+  <pre class="language-dart"><code class="language-dart">static Future&lt;AppsResponse&gt; getAppsUserOpened() =&gt; LenraApi.instance.get(
+      &quot;&#47;me&#47;opened_apps&quot;,
       responseMapper: (json, header) =&gt; AppsResponse.fromJson(json),
     );</code></pre>
 </section>
@@ -84,7 +84,7 @@
   <li><a href="../../index.html">client_common</a></li>
   <li><a href="../../file-___home_runner_work_client-common_client-common_lib_api_application_api/file-___home_runner_work_client-common_client-common_lib_api_application_api-library.html">application_api</a></li>
   <li><a href="../../file-___home_runner_work_client-common_client-common_lib_api_application_api/ApplicationApi-class.html">ApplicationApi</a></li>
-  <li class="self-crumb">getUserApps method</li>
+  <li class="self-crumb">getAppsUserOpened method</li>
 </ol>
 
 
