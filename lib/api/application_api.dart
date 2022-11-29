@@ -48,4 +48,9 @@ class ApplicationApi {
         "/me/apps",
         responseMapper: (json, header) => AppsResponse.fromJson(json),
       );
+
+  static Future<AppsResponse> getAppsUserOpened() => LenraApi.instance.get(
+        "/me/opened_apps",
+        responseMapper: (json, header) => AppsResponse.fromJson(json),
+      );
 }
