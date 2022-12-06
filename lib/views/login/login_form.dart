@@ -117,23 +117,26 @@ class _LoginFormState extends State<LoginForm> {
             });
           },
         ),
-        LenraFlex(children: [
-          LenraCheckbox(
-            value: keep,
-            onPressed: (value) {
-              setState(() {
-                keep = value!;
-              });
-            },
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 5),
-            child: LenraText(
-              text: "Keep me logged in",
-              style: finalLenraTextThemeData.disabledBodyText,
+        LenraFlex(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            LenraCheckbox(
+              value: keep,
+              onPressed: (value) {
+                setState(() {
+                  keep = value!;
+                });
+              },
             ),
-          )
-        ]),
+            Padding(
+              padding: EdgeInsets.only(top: 5),
+              child: LenraText(
+                text: "Keep me logged in",
+                style: finalLenraTextThemeData.disabledBodyText,
+              ),
+            )
+          ],
+        ),
         SizedBox(
           width: double.infinity,
           child: LoadingButton(
