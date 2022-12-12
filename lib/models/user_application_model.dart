@@ -17,7 +17,6 @@ import 'package:client_common/api/response_models/update_app_response.dart';
 import 'package:client_common/api/response_models/update_environment_response.dart';
 import 'package:client_common/api/user_environment_access_api.dart';
 import 'package:client_common/models/status.dart';
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:lenra_components/lenra_components.dart';
 
@@ -47,7 +46,7 @@ class UserApplicationModel extends ChangeNotifier {
   }
 
   AppResponse? getApp(appId) {
-    return userApps.firstWhereOrNull((app) => app.id == appId);
+    return userApps.cast<AppResponse?>().firstWhere((app) => app!.id == appId, orElse: () => null);
   }
 
   Future<List<AppResponse>> getAppsUserOpened() async {
