@@ -17,6 +17,7 @@ import 'package:client_common/api/response_models/update_app_response.dart';
 import 'package:client_common/api/response_models/update_environment_response.dart';
 import 'package:client_common/api/user_environment_access_api.dart';
 import 'package:client_common/models/status.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:lenra_components/lenra_components.dart';
 
@@ -36,7 +37,6 @@ class UserApplicationModel extends ChangeNotifier {
 
   EnvironmentResponse? mainEnv;
   List<AppResponse> userApps = [];
-  String? currentApp;
   AppResponse? selectedApp;
 
   Future<List<AppResponse>> fetchUserApplications() async {
@@ -44,6 +44,10 @@ class UserApplicationModel extends ChangeNotifier {
     userApps = res.apps;
     notifyListeners();
     return res.apps;
+  }
+
+  AppResponse? getApp(appId) {
+    return userApps.firstWhereOrNull((app) => app.id == appId);
   }
 
   Future<List<AppResponse>> getAppsUserOpened() async {

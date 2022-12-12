@@ -13,7 +13,7 @@ class ChangePasswordConfirmationPage extends StatelessWidget {
         child: LenraButton(
           text: "Continue on Lenra",
           onPressed: () {
-            Navigator.pushNamed(context, CommonNavigator.homeRoute);
+            CommonNavigator.goPath(context, CommonNavigator.homeRoute);
           },
         ),
       ),
