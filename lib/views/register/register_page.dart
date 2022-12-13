@@ -1,7 +1,7 @@
+import 'package:client_common/navigator/common_navigator.dart';
 import 'package:client_common/views/register/register_form.dart';
 import 'package:client_common/views/simple_page.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class RegisterPage extends StatelessWidget {
   @override
@@ -9,9 +9,7 @@ class RegisterPage extends StatelessWidget {
     return SimplePage(
       backInkText: "Back to the login page",
       backInkAction: () {
-        GoRouter.of(context).pop();
-
-        //GoRouter.of(context).go(CommonNavigator.loginRoute);
+        CommonNavigator.pop(context);
       },
       title: "Create your account",
       child: RegisterForm(),
