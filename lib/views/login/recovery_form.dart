@@ -70,7 +70,7 @@ class _RecoveryFormState extends State<RecoveryForm> {
       AuthModel authModel = context.read<AuthModel>();
       authModel.askCodeLostPassword(email).then((_) {
         if (!authModel.askCodeLostPasswordStatus.hasError() && authModel.askCodeLostPasswordStatus.isDone()) {
-          Navigator.of(context).pushReplacementNamed(CommonNavigator.changeLostPasswordRoute, arguments: email);
+          CommonNavigator.go(context, CommonNavigator.changeLostPassword, extra: email);
         }
       }).catchError((error) {
         logger.warning(error);

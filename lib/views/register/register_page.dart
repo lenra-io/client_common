@@ -9,7 +9,7 @@ class RegisterPage extends StatelessWidget {
     return SimplePage(
       backInkText: "Back to the login page",
       backInkAction: () {
-        Navigator.pushNamed(context, CommonNavigator.loginRoute);
+        CommonNavigator.pop(context);
       },
       title: "Create your account",
       child: RegisterForm(),

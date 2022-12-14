@@ -7,6 +7,7 @@ import 'package:client_common/models/cgu_model.dart';
 import 'package:client_common/models/user_application_model.dart';
 import 'package:client_common/navigator/common_navigator.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 /// This class defines guards that are used to stop the user from accessing certain pages.
@@ -89,23 +90,24 @@ class Guard {
   }
 
   static void _toLogin(BuildContext context) {
-    context.read<AuthModel>().redirectToRoute = CommonNavigator.currentRoute;
-    Navigator.of(context).pushReplacementNamed(CommonNavigator.loginRoute);
+    context.read<AuthModel>().redirectToRoute = CommonNavigator.currentLocation(context);
+
+    CommonNavigator.go(context, CommonNavigator.login);
   }
 
   static void _becomeDev(context) {
-    Navigator.of(context).pushReplacementNamed(CommonNavigator.validationDevRoute);
+    CommonNavigator.goPath(context, CommonNavigator.validationDevRoute);
   }
 
   static void _toHome(context) {
-    Navigator.of(context).pushReplacementNamed(CommonNavigator.homeRoute);
+    GoRouter.of(context).go(CommonNavigator.homeRoute);
   }
 
   static void _toCgu(context) {
-    Navigator.of(context).pushReplacementNamed(CommonNavigator.cguRoute);
+    CommonNavigator.go(context, CommonNavigator.cgu);
   }
 
   static void _becomeUser(context) {
-    Navigator.of(context).pushReplacementNamed(CommonNavigator.userValidationRoute);
+    CommonNavigator.go(context, CommonNavigator.userValidation);
   }
 }

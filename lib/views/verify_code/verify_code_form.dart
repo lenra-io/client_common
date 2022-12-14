@@ -3,6 +3,7 @@ import 'package:client_common/models/auth_model.dart';
 import 'package:client_common/navigator/common_navigator.dart';
 import 'package:client_common/views/error.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lenra_components/lenra_components.dart';
 import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
@@ -68,7 +69,7 @@ class _VerifyCodeFormState extends State<VerifyCodeForm> {
 
   void submit() {
     context.read<AuthModel>().validateUser(code).then((_) {
-      Navigator.of(context).pushReplacementNamed(CommonNavigator.homeRoute);
+      GoRouter.of(context).go(CommonNavigator.homeRoute);
     }).catchError((error) {
       logger.warning(error);
     });

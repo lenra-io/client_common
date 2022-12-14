@@ -131,7 +131,7 @@ class _ChangeLostPasswordState extends State<ChangeLostPasswordForm> {
       )
           .then((_) {
         if (!authModel.sendCodeLostPasswordStatus.hasError() && authModel.sendCodeLostPasswordStatus.isDone()) {
-          Navigator.of(context).pushReplacementNamed(CommonNavigator.changePasswordConfirmationRoute);
+          CommonNavigator.go(context, CommonNavigator.changePasswordConfirmation);
         }
       }).catchError((error) {
         logger.warning(error);
