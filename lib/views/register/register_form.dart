@@ -3,6 +3,7 @@ import 'package:client_common/models/auth_model.dart';
 import 'package:client_common/views/error.dart';
 import 'package:client_common/views/loading_button.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lenra_components/lenra_components.dart';
 import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
@@ -110,7 +111,7 @@ class _RegisterFormState extends State<RegisterForm> {
     if (_formKey.currentState!.validate()) {
       AuthModel authModel = context.read<AuthModel>();
       authModel.register(email, password).then((_) {
-        Navigator.of(context).pushReplacementNamed(authModel.getRedirectionRouteAfterAuthentication());
+        GoRouter.of(context).go(authModel.getRedirectionRouteAfterAuthentication());
       }).catchError((error) {
         logger.warning(error);
       });

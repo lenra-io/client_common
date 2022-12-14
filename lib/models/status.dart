@@ -49,6 +49,9 @@ class Status<T> {
       return Future<T>.error(error);
     } catch (e) {
       debugPrint("Error: $e");
+      _requestStatus = RequestStatus.error;
+      _error = ApiError.unknownError();
+      notifyListeners();
       return Future.error(e.toString());
     }
   }

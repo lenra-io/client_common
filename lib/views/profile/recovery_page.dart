@@ -10,7 +10,7 @@ class RecoveryPage extends StatelessWidget {
       title: "Did you lose your password ? Don't worry, it happens even to the best!",
       backInkText: "Back to the login page",
       backInkAction: () {
-        Navigator.pushNamed(context, CommonNavigator.homeRoute);
+        CommonNavigator.pop(context);
       },
       child: RecoveryForm(),
     );

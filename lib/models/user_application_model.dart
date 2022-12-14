@@ -36,7 +36,6 @@ class UserApplicationModel extends ChangeNotifier {
 
   EnvironmentResponse? mainEnv;
   List<AppResponse> userApps = [];
-  String? currentApp;
   AppResponse? selectedApp;
 
   Future<List<AppResponse>> fetchUserApplications() async {
@@ -44,6 +43,10 @@ class UserApplicationModel extends ChangeNotifier {
     userApps = res.apps;
     notifyListeners();
     return res.apps;
+  }
+
+  AppResponse? getApp(appId) {
+    return userApps.cast<AppResponse?>().firstWhere((app) => app!.id == appId, orElse: () => null);
   }
 
   Future<List<AppResponse>> getAppsUserOpened() async {

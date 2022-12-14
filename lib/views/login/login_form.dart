@@ -52,7 +52,7 @@ class _LoginFormState extends State<LoginForm> {
               type: LenraComponentType.secondary,
               text: "Create my account",
               onPressed: () {
-                Navigator.pushReplacementNamed(context, CommonNavigator.registerRoute);
+                CommonNavigator.go(context, CommonNavigator.register);
               },
             ),
           ),
@@ -64,7 +64,7 @@ class _LoginFormState extends State<LoginForm> {
                 style: finalLenraTextThemeData.blueBodyText,
                 recognizer: TapGestureRecognizer()
                   ..onTap = () {
-                    Navigator.pushReplacementNamed(context, CommonNavigator.lostPasswordRoute);
+                    CommonNavigator.go(context, CommonNavigator.lostPassword);
                   },
               ),
             ),
@@ -155,7 +155,7 @@ class _LoginFormState extends State<LoginForm> {
     if (_formKey.currentState!.validate()) {
       AuthModel authModel = context.read<AuthModel>();
       authModel.login(email, password, keep).then((_) {
-        Navigator.of(context).pushReplacementNamed(authModel.getRedirectionRouteAfterAuthentication());
+        CommonNavigator.goPath(context, authModel.getRedirectionRouteAfterAuthentication());
       }).catchError((error) {
         logger.warning(error);
       });
