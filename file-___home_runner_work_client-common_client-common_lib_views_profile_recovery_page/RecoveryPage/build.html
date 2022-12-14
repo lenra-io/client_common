@@ -76,7 +76,7 @@ Widget build(BuildContext context) {
     title: &quot;Did you lose your password ? Don&#39;t worry, it happens even to the best!&quot;,
     backInkText: &quot;Back to the login page&quot;,
     backInkAction: () {
-      Navigator.pushNamed(context, CommonNavigator.homeRoute);
+      CommonNavigator.pop(context);
     },
     child: RecoveryForm(),
   );

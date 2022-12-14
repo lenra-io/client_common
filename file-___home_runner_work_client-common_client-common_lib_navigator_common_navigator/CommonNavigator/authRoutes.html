@@ -50,9 +50,9 @@
 </h1></div>
 
         <section class="multi-line-signature">
-          <a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>, <span class="type-parameter"><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CustomPageBuilder.html">CustomPageBuilder</a></span>&gt;</span>
+          <a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a>
           <span class="name ">authRoutes</span>
-          <div class="features">final</div>
+          <div class="features">read / write</div>
 
         </section>
         
@@ -60,48 +60,14 @@
         
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">static final Map&lt;String, CustomPageBuilder&gt; authRoutes = {
-  changeLostPasswordRoute: (Map&lt;String, String&gt; params) =&gt; PageGuard(
-        guards: [Guard.checkUnauthenticated],
-        child: ChangeLostPasswordPage(),
-      ),
-  lostPasswordRoute: (Map&lt;String, String&gt; params) =&gt; PageGuard(
-        guards: [Guard.checkUnauthenticated],
-        child: RecoveryPage(),
-      ),
-  changePasswordConfirmationRoute: (Map&lt;String, String&gt; params) =&gt; PageGuard(
-        guards: [Guard.checkUnauthenticated],
-        child: ChangePasswordConfirmationPage(),
-      ),
-  profileRoute: (Map&lt;String, String&gt; params) =&gt; PageGuard(
-        guards: [Guard.checkAuthenticated],
-        child: ProfilePage(),
-      ),
-  loginRoute: (Map&lt;String, String&gt; params) =&gt; PageGuard(
-        guards: [Guard.checkUnauthenticated],
-        child: LoginPage(),
-      ),
-  registerRoute: (Map&lt;String, String&gt; params) =&gt; PageGuard(
-        guards: [Guard.checkUnauthenticated],
-        child: RegisterPage(),
-      ),
-  cguRoute: (Map&lt;String, String&gt; params) =&gt; PageGuard(
-        guards: [Guard.checkAuthenticated],
-        child: CguPage(),
-      ),
-  cguRouteFR: (Map&lt;String, String&gt; params) =&gt; PageGuard(
-        guards: [Guard.checkAuthenticated],
-        child: CguPageFr(),
-      ),
-  userValidationRoute: (Map&lt;String, String&gt; params) =&gt; PageGuard(
-        guards: [
-          Guard.checkAuthenticated,
-          Guard.checkCguAccepted,
-          Guard.checkIsNotUser,
-        ],
-        child: VerifyingCodePage(),
-      ),
-};
+  <pre class="language-dart"><code class="language-dart">static List&lt;RouteBase&gt; authRoutes = [
+  changeLostPassword,
+  changePasswordConfirmation,
+  profile,
+  login,
+  cgu,
+  userValidation,
+];
 
 </code></pre>
 </section>
@@ -147,20 +113,25 @@
 
         <li class="section-title"><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator-class.html#static-properties">Static properties</a></li>
           <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/authRoutes.html">authRoutes</a></li>
-          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/currentRoute.html">currentRoute</a></li>
+          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/cgu.html">cgu</a></li>
+          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/cguFR.html">cguFR</a></li>
+          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/changeLostPassword.html">changeLostPassword</a></li>
+          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/changePasswordConfirmation.html">changePasswordConfirmation</a></li>
+          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/login.html">login</a></li>
+          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/lostPassword.html">lostPassword</a></li>
+          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/profile.html">profile</a></li>
+          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/register.html">register</a></li>
+          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/userValidation.html">userValidation</a></li>
 
+        <li class="section-title"><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator-class.html#static-methods">Static methods</a></li>
+          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/currentLocation.html">currentLocation</a></li>
+          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/go.html">go</a></li>
+          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/goPath.html">goPath</a></li>
+          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/isCurrent.html">isCurrent</a></li>
+          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/pop.html">pop</a></li>
 
         <li class="section-title"><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator-class.html#constants">Constants</a></li>
-          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/cguRoute-constant.html">cguRoute</a></li>
-          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/cguRouteFR-constant.html">cguRouteFR</a></li>
-          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/changeLostPasswordRoute-constant.html">changeLostPasswordRoute</a></li>
-          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/changePasswordConfirmationRoute-constant.html">changePasswordConfirmationRoute</a></li>
           <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/homeRoute-constant.html">homeRoute</a></li>
-          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/loginRoute-constant.html">loginRoute</a></li>
-          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/lostPasswordRoute-constant.html">lostPasswordRoute</a></li>
-          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/profileRoute-constant.html">profileRoute</a></li>
-          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/registerRoute-constant.html">registerRoute</a></li>
-          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/userValidationRoute-constant.html">userValidationRoute</a></li>
           <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/validationDevRoute-constant.html">validationDevRoute</a></li>
 </ol>
 

@@ -79,7 +79,7 @@ Widget build(BuildContext context) {
       child: LenraButton(
         text: &quot;Continue on Lenra&quot;,
         onPressed: () {
-          Navigator.pushNamed(context, CommonNavigator.homeRoute);
+          CommonNavigator.goPath(context, CommonNavigator.homeRoute);
         },
       ),
     ),

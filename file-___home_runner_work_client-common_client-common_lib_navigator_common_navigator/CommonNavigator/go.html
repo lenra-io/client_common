@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the cguRoute constant from the CommonNavigator class, for the Dart programming language.">
-  <title>cguRoute constant - CommonNavigator class - common_navigator library - Dart API</title>
+  <meta name="description" content="API docs for the go method from the CommonNavigator class, for the Dart programming language.">
+  <title>go method - CommonNavigator class - common_navigator library - Dart API</title>
 
 
   
@@ -32,9 +32,9 @@
     <li><a href="../../index.html">client_common</a></li>
     <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator-library.html">common_navigator</a></li>
     <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator-class.html">CommonNavigator</a></li>
-    <li class="self-crumb">cguRoute constant</li>
+    <li class="self-crumb">go method</li>
   </ol>
-  <div class="self-name">cguRoute</div>
+  <div class="self-name">go</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -45,24 +45,33 @@
 
   <div id="dartdoc-main-content" class="main-content">
       <div>
-<h1><span class="kind-property">cguRoute</span> constant 
+<h1><span class="kind-method">go</span> method 
     <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
 </h1></div>
 
-        <section class="multi-line-signature">
-          <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>
-          const <span class="name ">cguRoute</span>
-          
+    <section class="multi-line-signature">
+      
 
-        </section>
-        
+<span class="returntype">void</span>
+<span class="name ">go</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="go-param-context"><span class="type-annotation">dynamic</span> <span class="parameter-name">context</span>, </span></li>
+<li><span class="parameter" id="go-param-route"><span class="type-annotation">dynamic</span> <span class="parameter-name">route</span>, </span></li>
+<li><span class="parameter" id="go-param-params">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>, <span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span></span> <span class="parameter-name">params</span> = <span class="default-value">const &lt;String, String&gt;{}</span>, </span></li>
+<li><span class="parameter" id="go-param-extra"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a>?</span> <span class="parameter-name">extra</span>}</span></li>
+</ol>)
 
-        
+      
+
+    </section>
+    
+
+
+    
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">static const String cguRoute = &quot;&#47;cgu&quot;;
-
-</code></pre>
+  <pre class="language-dart"><code class="language-dart">static void go(BuildContext context, GoRoute route,
+    {Map&lt;String, String&gt; params = const &lt;String, String&gt;{}, Object? extra}) {
+  GoRouter.of(context).goNamed(route.name!, params: params, extra: extra);
+}</code></pre>
 </section>
 
 
@@ -79,7 +88,7 @@
   <li><a href="../../index.html">client_common</a></li>
   <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator-library.html">common_navigator</a></li>
   <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator-class.html">CommonNavigator</a></li>
-  <li class="self-crumb">cguRoute constant</li>
+  <li class="self-crumb">go method</li>
 </ol>
 
 
@@ -106,20 +115,25 @@
 
         <li class="section-title"><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator-class.html#static-properties">Static properties</a></li>
           <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/authRoutes.html">authRoutes</a></li>
-          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/currentRoute.html">currentRoute</a></li>
+          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/cgu.html">cgu</a></li>
+          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/cguFR.html">cguFR</a></li>
+          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/changeLostPassword.html">changeLostPassword</a></li>
+          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/changePasswordConfirmation.html">changePasswordConfirmation</a></li>
+          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/login.html">login</a></li>
+          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/lostPassword.html">lostPassword</a></li>
+          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/profile.html">profile</a></li>
+          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/register.html">register</a></li>
+          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/userValidation.html">userValidation</a></li>
 
+        <li class="section-title"><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator-class.html#static-methods">Static methods</a></li>
+          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/currentLocation.html">currentLocation</a></li>
+          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/go.html">go</a></li>
+          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/goPath.html">goPath</a></li>
+          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/isCurrent.html">isCurrent</a></li>
+          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/pop.html">pop</a></li>
 
         <li class="section-title"><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator-class.html#constants">Constants</a></li>
-          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/cguRoute-constant.html">cguRoute</a></li>
-          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/cguRouteFR-constant.html">cguRouteFR</a></li>
-          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/changeLostPasswordRoute-constant.html">changeLostPasswordRoute</a></li>
-          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/changePasswordConfirmationRoute-constant.html">changePasswordConfirmationRoute</a></li>
           <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/homeRoute-constant.html">homeRoute</a></li>
-          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/loginRoute-constant.html">loginRoute</a></li>
-          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/lostPasswordRoute-constant.html">lostPasswordRoute</a></li>
-          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/profileRoute-constant.html">profileRoute</a></li>
-          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/registerRoute-constant.html">registerRoute</a></li>
-          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/userValidationRoute-constant.html">userValidationRoute</a></li>
           <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/validationDevRoute-constant.html">validationDevRoute</a></li>
 </ol>
 

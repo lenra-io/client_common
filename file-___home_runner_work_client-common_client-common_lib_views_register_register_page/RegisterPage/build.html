@@ -75,7 +75,7 @@ Widget build(BuildContext context) {
   return SimplePage(
     backInkText: &quot;Back to the login page&quot;,
     backInkAction: () {
-      Navigator.pushNamed(context, CommonNavigator.loginRoute);
+      CommonNavigator.pop(context);
     },
     title: &quot;Create your account&quot;,
     child: RegisterForm(),
