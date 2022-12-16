@@ -77,8 +77,8 @@ class AuthModel extends ChangeNotifier {
     return res;
   }
 
-  Future<AuthResponse> validateDev(String code) async {
-    var res = await validateDevStatus.handle(() => UserApi.validateDev(ValidateDevRequest(code)), notifyListeners);
+  Future<AuthResponse> validateDev() async {
+    var res = await validateDevStatus.handle(() => UserApi.validateDev(ValidateDevRequest()), notifyListeners);
     _handleAuthResponse(res);
     return res;
   }
