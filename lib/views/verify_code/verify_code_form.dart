@@ -66,14 +66,12 @@ class _VerifyCodeFormState extends State<VerifyCodeForm> {
                 context.read<AuthModel>().resendRegistrationToken();
                 setState(() {
                   resendEmail = true;
-                  print(resendEmail);
                 });
                 Future.delayed(
                   const Duration(seconds: 30),
                   () {
                     setState(
                       () {
-                        print("30s !");
                         resendEmail = false;
                       },
                     );
