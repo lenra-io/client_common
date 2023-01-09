@@ -23,7 +23,7 @@ class CommonNavigator {
 
   static GoRoute changeLostPassword = GoRoute(
     name: "change-lost",
-    path: "/change-lost",
+    path: "change-lost",
     builder: (ctx, state) => PageGuard(
       guards: [Guard.checkUnauthenticated],
       child: ChangeLostPasswordPage(email: state.extra as String),
@@ -40,7 +40,7 @@ class CommonNavigator {
   );
   static GoRoute changePasswordConfirmation = GoRoute(
     name: "change-confirmation",
-    path: "/change-confirmation",
+    path: "change-confirmation",
     builder: (ctx, state) => PageGuard(
       guards: [Guard.checkUnauthenticated],
       child: ChangePasswordConfirmationPage(),
@@ -48,7 +48,7 @@ class CommonNavigator {
   );
   static GoRoute profile = GoRoute(
     name: "profile",
-    path: "/profile",
+    path: "profile",
     builder: (ctx, state) => PageGuard(
       guards: [Guard.checkAuthenticated],
       child: ProfilePage(),
@@ -56,7 +56,7 @@ class CommonNavigator {
   );
   static GoRoute login = GoRoute(
     name: "login",
-    path: "/sign",
+    path: "sign",
     builder: (ctx, state) => PageGuard(
       guards: [Guard.checkUnauthenticated],
       child: LoginPage(),
@@ -73,7 +73,7 @@ class CommonNavigator {
   );
   static GoRoute cgu = GoRoute(
     name: "cgu",
-    path: "/cgu",
+    path: "cgu",
     builder: (ctx, state) => PageGuard(
       guards: [Guard.checkAuthenticated],
       child: CguPage(),
@@ -92,7 +92,7 @@ class CommonNavigator {
   );
   static GoRoute userValidation = GoRoute(
     name: "validation-user",
-    path: "/validation-user",
+    path: "validation-user",
     builder: (ctx, state) => PageGuard(
       guards: [
         Guard.checkAuthenticated,
