@@ -63,7 +63,7 @@ class _VerifyCodeFormState extends State<VerifyCodeForm> {
             ),
             LenraButton(
               onPressed: () {
-                print("pass");
+                context.read<AuthModel>().resendRegistrationToken();
                 setState(() {
                   resendEmail = true;
                   print(resendEmail);
