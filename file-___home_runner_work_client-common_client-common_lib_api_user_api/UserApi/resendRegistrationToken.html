@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the login method from the UserApi class, for the Dart programming language.">
-  <title>login method - UserApi class - user_api library - Dart API</title>
+  <meta name="description" content="API docs for the resendRegistrationToken method from the UserApi class, for the Dart programming language.">
+  <title>resendRegistrationToken method - UserApi class - user_api library - Dart API</title>
 
 
   
@@ -32,9 +32,9 @@
     <li><a href="../../index.html">client_common</a></li>
     <li><a href="../../file-___home_runner_work_client-common_client-common_lib_api_user_api/file-___home_runner_work_client-common_client-common_lib_api_user_api-library.html">user_api</a></li>
     <li><a href="../../file-___home_runner_work_client-common_client-common_lib_api_user_api/UserApi-class.html">UserApi</a></li>
-    <li class="self-crumb">login method</li>
+    <li class="self-crumb">resendRegistrationToken method</li>
   </ol>
-  <div class="self-name">login</div>
+  <div class="self-name">resendRegistrationToken</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -45,7 +45,7 @@
 
   <div id="dartdoc-main-content" class="main-content">
       <div>
-<h1><span class="kind-method">login</span> method 
+<h1><span class="kind-method">resendRegistrationToken</span> method 
     <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
 </h1></div>
 
@@ -53,8 +53,7 @@
       
 
 <span class="returntype"><a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a></span>
-<span class="name ">login</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="login-param-body"><span class="type-annotation">dynamic</span> <span class="parameter-name">body</span></span></li>
-</ol>)
+<span class="name ">resendRegistrationToken</span>(<wbr>)
 
       
 
@@ -65,10 +64,9 @@
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">static Future&lt;AuthResponse&gt; login(LoginRequest body) =&gt; LenraAuth.instance.post(
-      &quot;&#47;login&quot;,
-      body: body,
-      responseMapper: (json, headers) =&gt; AuthResponse.fromJson(json, headers),
+  <pre class="language-dart"><code class="language-dart">static Future&lt;EmptyResponse&gt; resendRegistrationToken() =&gt; LenraApi.instance.post(
+      &quot;&#47;verify&#47;lost&quot;,
+      responseMapper: (json, headers) =&gt; EmptyResponse.fromJson(json),
     );</code></pre>
 </section>
 
@@ -86,7 +84,7 @@
   <li><a href="../../index.html">client_common</a></li>
   <li><a href="../../file-___home_runner_work_client-common_client-common_lib_api_user_api/file-___home_runner_work_client-common_client-common_lib_api_user_api-library.html">user_api</a></li>
   <li><a href="../../file-___home_runner_work_client-common_client-common_lib_api_user_api/UserApi-class.html">UserApi</a></li>
-  <li class="self-crumb">login method</li>
+  <li class="self-crumb">resendRegistrationToken method</li>
 </ol>
 
 

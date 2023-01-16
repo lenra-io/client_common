@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the changePassword method from the AuthModel class, for the Dart programming language.">
-  <title>changePassword method - AuthModel class - auth_model library - Dart API</title>
+  <meta name="description" content="API docs for the resendRegistrationToken method from the AuthModel class, for the Dart programming language.">
+  <title>resendRegistrationToken method - AuthModel class - auth_model library - Dart API</title>
 
 
   
@@ -32,9 +32,9 @@
     <li><a href="../../index.html">client_common</a></li>
     <li><a href="../../file-___home_runner_work_client-common_client-common_lib_models_auth_model/file-___home_runner_work_client-common_client-common_lib_models_auth_model-library.html">auth_model</a></li>
     <li><a href="../../file-___home_runner_work_client-common_client-common_lib_models_auth_model/AuthModel-class.html">AuthModel</a></li>
-    <li class="self-crumb">changePassword method</li>
+    <li class="self-crumb">resendRegistrationToken method</li>
   </ol>
-  <div class="self-name">changePassword</div>
+  <div class="self-name">resendRegistrationToken</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -45,7 +45,7 @@
 
   <div id="dartdoc-main-content" class="main-content">
       <div>
-<h1><span class="kind-method">changePassword</span> method 
+<h1><span class="kind-method">resendRegistrationToken</span> method 
     <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
 </h1></div>
 
@@ -53,10 +53,7 @@
       
 
 <span class="returntype"><a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a></span>
-<span class="name ">changePassword</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="changePassword-param-old"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">old</span>, </span></li>
-<li><span class="parameter" id="changePassword-param-password"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">password</span>, </span></li>
-<li><span class="parameter" id="changePassword-param-confirmation"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">confirmation</span></span></li>
-</ol>)
+<span class="name ">resendRegistrationToken</span>(<wbr>)
 
       
 
@@ -67,9 +64,8 @@
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">Future&lt;EmptyResponse&gt; changePassword(String old, String password, String confirmation) async {
-  var res = await changePasswordStatus.handle(
-      () =&gt; UserApi.changePassword(ChangePasswordRequest(old, password, confirmation)), notifyListeners);
+  <pre class="language-dart"><code class="language-dart">Future&lt;EmptyResponse&gt; resendRegistrationToken() async {
+  var res = await resendRegistrationTokenStatus.handle(() =&gt; UserApi.resendRegistrationToken(), notifyListeners);
   notifyListeners();
   return res;
 }</code></pre>
@@ -89,7 +85,7 @@
   <li><a href="../../index.html">client_common</a></li>
   <li><a href="../../file-___home_runner_work_client-common_client-common_lib_models_auth_model/file-___home_runner_work_client-common_client-common_lib_models_auth_model-library.html">auth_model</a></li>
   <li><a href="../../file-___home_runner_work_client-common_client-common_lib_models_auth_model/AuthModel-class.html">AuthModel</a></li>
-  <li class="self-crumb">changePassword method</li>
+  <li class="self-crumb">resendRegistrationToken method</li>
 </ol>
 
 
