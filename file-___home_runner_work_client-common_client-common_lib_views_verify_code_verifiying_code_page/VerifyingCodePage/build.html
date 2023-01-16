@@ -76,6 +76,13 @@ Widget build(BuildContext context) {
     title: &quot;Thank you for your registration&quot;,
     message: &quot;Great things are about to happen! We have sent you a registration code to access our platform.&quot;,
     child: VerifyCodeForm(),
+    backInkText: &quot;Logout&quot;,
+    &#47;&#47;For now, when registering, we don&#39;t have a refreshToken. So just delete accessToken&#47;user and redirect to the login page.
+    backInkAction: () =&gt; {
+      context.read&lt;AuthModel&gt;().accessToken = null,
+      context.read&lt;AuthModel&gt;().user = null,
+      CommonNavigator.go(context, CommonNavigator.login)
+    },
   );
 }</code></pre>
 </section>
