@@ -23,6 +23,7 @@ class AuthModel extends ChangeNotifier {
   final Status<AuthResponse> loginStatus = Status();
   final Status<AuthResponse> refreshStatus = Status();
   final Status<AuthResponse> validateUserStatus = Status();
+  final Status<EmptyResponse> resendRegistrationTokenStatus = Status();
   final Status<AuthResponse> validateDevStatus = Status();
 
   final Status<EmptyResponse> logoutStatus = Status();
@@ -74,6 +75,12 @@ class AuthModel extends ChangeNotifier {
   Future<AuthResponse> validateUser(String code) async {
     var res = await validateUserStatus.handle(() => UserApi.validateUser(ValidateUserRequest(code)), notifyListeners);
     _handleAuthResponse(res);
+    return res;
+  }
+
+  Future<EmptyResponse> resendRegistrationToken() async {
+    var res = await resendRegistrationTokenStatus.handle(() => UserApi.resendRegistrationToken(), notifyListeners);
+    notifyListeners();
     return res;
   }
 

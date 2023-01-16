@@ -29,6 +29,11 @@ class UserApi {
         responseMapper: (json, headers) => AuthResponse.fromJson(json, headers),
       );
 
+  static Future<EmptyResponse> resendRegistrationToken() => LenraApi.instance.post(
+        "/verify/lost",
+        responseMapper: (json, headers) => EmptyResponse.fromJson(json),
+      );
+
   static Future<AuthResponse> validateDev(ValidateDevRequest body) => LenraApi.instance.put(
         "/verify/dev",
         body: body,

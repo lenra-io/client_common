@@ -18,6 +18,7 @@ class VerifyCodeForm extends StatefulWidget {
 class _VerifyCodeFormState extends State<VerifyCodeForm> {
   final logger = Logger("VerifyCodeForm");
   String code = "";
+  bool resendEmail = false;
 
   @override
   Widget build(BuildContext context) {
@@ -59,6 +60,37 @@ class _VerifyCodeFormState extends State<VerifyCodeForm> {
                   },
                 ),
               ],
+            ),
+            LenraButton(
+              onPressed: () {
+                context.read<AuthModel>().resendRegistrationToken();
+                setState(() {
+                  resendEmail = true;
+                });
+                Future.delayed(
+                  const Duration(seconds: 30),
+                  () {
+                    setState(
+                      () {
+                        resendEmail = false;
+                      },
+                    );
+                  },
+                );
+              },
+              text: "I didn't receive my token",
+              disabled: resendEmail,
+              type: LenraComponentType.tertiary,
+              rightIcon: resendEmail
+                  ? Container(
+                      margin: EdgeInsets.only(left: 16),
+                      constraints: BoxConstraints.loose(Size(16, 16)),
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                        color: LenraColorThemeData.lenraBlue,
+                      ),
+                    )
+                  : null,
             ),
             if (hasError && validateUserError != null) Error(validateUserError),
           ],
