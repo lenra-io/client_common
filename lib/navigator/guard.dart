@@ -30,6 +30,7 @@ class Guard {
 
   static Future<String?> guards(BuildContext context, List<Guard> guards) async {
     for (Guard checker in guards) {
+      print("GUARD ${checker.onInvalid(context)}");
       try {
         if (!await checker.isValid(context)) {
           return checker.onInvalid(context);
@@ -43,11 +44,14 @@ class Guard {
 
   static Future<bool> Function(BuildContext) _isAuthenticated(bool mustBeAuthenticated) {
     return (BuildContext context) async {
+      print("IS AUTHENTICATED ENTERED");
+      print("MUST BE AUTHENTICATED ? $mustBeAuthenticated");
       AuthModel authModel = context.read<AuthModel>();
       if (!authModel.isAuthenticated() && authModel.refreshStatus.isNone()) {
         try {
           await authModel.refresh();
         } catch (e) {
+          print(authModel.isAuthenticated() == mustBeAuthenticated);
           return authModel.isAuthenticated() == mustBeAuthenticated;
         }
         /*if (authModel.refreshStatus.isNone())
@@ -58,6 +62,7 @@ class Guard {
           await authModel.refreshStatus.wait().catchError((e) => null);*/
       }
       // then check everything
+      print(authModel.isAuthenticated() == mustBeAuthenticated);
       return authModel.isAuthenticated() == mustBeAuthenticated;
     };
   }
@@ -109,22 +114,22 @@ class Guard {
     }
 
     // TODO: Check if .path is properly returning the full path "/sign" or just "sign".
-    return CommonNavigator.login.path;
+    return "/${CommonNavigator.login.path}";
   }
 
   static String _becomeDev(context) {
-    return CommonNavigator.validationDevRoute;
+    return "/${CommonNavigator.validationDevRoute}";
   }
 
   static String _toHome(context) {
-    return CommonNavigator.homeRoute;
+    return "/${CommonNavigator.homeRoute}";
   }
 
   static String _toCgu(context) {
-    return CommonNavigator.cgu.path;
+    return "/${CommonNavigator.cgu.path}";
   }
 
   static String _becomeUser(context) {
-    return CommonNavigator.userValidation.path;
+    return "/${CommonNavigator.userValidation.path}";
   }
 }
