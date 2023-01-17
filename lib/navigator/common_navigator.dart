@@ -1,5 +1,4 @@
 import 'package:client_common/navigator/guard.dart';
-import 'package:client_common/navigator/page_guard.dart';
 import 'package:client_common/views/cgu/cgu_page.dart';
 import 'package:client_common/views/cgu/cgu_page_fr.dart';
 import 'package:client_common/views/login/login_page.dart';
@@ -24,92 +23,85 @@ class CommonNavigator {
   static GoRoute changeLostPassword = GoRoute(
     name: "change-lost",
     path: "change-lost",
-    builder: (ctx, state) => PageGuard(
-      guards: [Guard.checkUnauthenticated],
-      child: ChangeLostPasswordPage(email: state.extra as String),
-    ),
+    redirect: (context, state) => Guard.guards(context, [Guard.checkUnauthenticated]),
+    builder: (ctx, state) => ChangeLostPasswordPage(email: state.extra as String),
   );
 
   static GoRoute lostPassword = GoRoute(
     name: "lost",
     path: "lost",
-    builder: (ctx, state) => PageGuard(
-      guards: [Guard.checkUnauthenticated],
-      child: RecoveryPage(),
-    ),
+    redirect: (context, state) => Guard.guards(context, [Guard.checkUnauthenticated]),
+    builder: (ctx, state) => RecoveryPage(),
   );
+
   static GoRoute changePasswordConfirmation = GoRoute(
     name: "change-confirmation",
     path: "change-confirmation",
-    builder: (ctx, state) => PageGuard(
-      guards: [Guard.checkUnauthenticated],
-      child: ChangePasswordConfirmationPage(),
-    ),
+    redirect: (context, state) => Guard.guards(context, [Guard.checkUnauthenticated]),
+    builder: (ctx, state) => ChangePasswordConfirmationPage(),
   );
+
   static GoRoute profile = GoRoute(
     name: "profile",
     path: "profile",
-    builder: (ctx, state) => PageGuard(
-      guards: [Guard.checkAuthenticated],
-      child: ProfilePage(),
-    ),
+    redirect: (context, state) => Guard.guards(context, [Guard.checkAuthenticated]),
+    builder: (ctx, state) => ProfilePage(),
   );
+
   static GoRoute login = GoRoute(
     name: "login",
     path: "sign",
-    builder: (ctx, state) => PageGuard(
-      guards: [Guard.checkUnauthenticated],
-      child: LoginPage(),
-    ),
+    redirect: (context, state) => Guard.guards(context, [Guard.checkUnauthenticated]),
+    builder: (ctx, state) => LoginPage(),
     routes: [lostPassword, register],
   );
+
   static GoRoute register = GoRoute(
     name: "register",
     path: "register",
-    builder: (ctx, state) => PageGuard(
-      guards: [Guard.checkUnauthenticated],
-      child: RegisterPage(),
-    ),
+    redirect: (context, state) => Guard.guards(context, [Guard.checkUnauthenticated]),
+    builder: (ctx, state) => RegisterPage(),
   );
+
   static GoRoute cgu = GoRoute(
     name: "cgu",
     path: "cgu",
-    builder: (ctx, state) => PageGuard(
-      guards: [Guard.checkAuthenticated],
-      child: CguPage(),
-    ),
+    redirect: (context, state) => Guard.guards(context, [Guard.checkAuthenticated]),
+    builder: (ctx, state) => CguPage(),
     routes: [
       cguFR,
     ],
   );
+
   static GoRoute cguFR = GoRoute(
     name: "cgu-fr",
     path: "fr",
-    builder: (ctx, state) => PageGuard(
-      guards: [Guard.checkAuthenticated],
-      child: CguPageFr(),
-    ),
+    redirect: (context, state) => Guard.guards(context, [Guard.checkAuthenticated]),
+    builder: (ctx, state) => CguPageFr(),
   );
+
   static GoRoute userValidation = GoRoute(
     name: "validation-user",
     path: "validation-user",
-    builder: (ctx, state) => PageGuard(
-      guards: [
-        Guard.checkAuthenticated,
-        Guard.checkCguAccepted,
-        Guard.checkIsNotUser,
-      ],
-      child: VerifyingCodePage(),
-    ),
+    redirect: (context, state) => Guard.guards(context, [
+      Guard.checkAuthenticated,
+      Guard.checkCguAccepted,
+      Guard.checkIsNotUser,
+    ]),
+    builder: (ctx, state) => VerifyingCodePage(),
   );
-  static List<RouteBase> authRoutes = [
-    changeLostPassword,
-    changePasswordConfirmation,
-    profile,
-    login,
-    cgu,
-    userValidation,
-  ];
+
+  static ShellRoute authRoutes = ShellRoute(
+    builder: (context, state, child) => child,
+    routes: [
+      changeLostPassword,
+      changePasswordConfirmation,
+      profile,
+      login,
+      cgu,
+      userValidation,
+    ],
+  );
 
   static void pop(BuildContext context) {
     GoRouter.of(context).pop();
