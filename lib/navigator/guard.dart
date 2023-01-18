@@ -114,22 +114,22 @@ class Guard {
     }
 
     // TODO: Check if .path is properly returning the full path "/sign" or just "sign".
-    return "${CommonNavigator.login.path}";
+    return "/${CommonNavigator.login.path}";
   }
 
   static String _becomeDev(context) {
-    return "${CommonNavigator.validationDevRoute}";
+    return "/${CommonNavigator.validationDevRoute}";
   }
 
   static String _toHome(context) {
-    return "${CommonNavigator.homeRoute}";
+    return "/${CommonNavigator.homeRoute}";
   }
 
   static String _toCgu(context) {
-    return "${CommonNavigator.cgu.path}";
+    return "/${CommonNavigator.cgu.path}";
   }
 
   static String _becomeUser(context) {
-    return "${CommonNavigator.userValidation.path}";
+    return "/${CommonNavigator.userValidation.path}";
   }
 }
