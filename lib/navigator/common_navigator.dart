@@ -91,15 +91,6 @@ class CommonNavigator {
     builder: (ctx, state) => VerifyingCodePage(),
   );
 
-  // static List<RouteBase> authRoutes = [
-  //   changeLostPassword,
-  //   changePasswordConfirmation,
-  //   profile,
-  //   login,
-  //   cgu,
-  //   userValidation,
-  // ];
-
   static ShellRoute authRoutes = ShellRoute(
     builder: (context, state, child) => child,
     routes: [
