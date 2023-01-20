@@ -27,7 +27,7 @@ dependencies:
   phoenix_wings: ^1.0.2
   logging: ^1.0.2
   flutter_markdown: ^0.6.10+2
-  go_router: ^5.2.4
+  go_router: ^6.0.1
 
 flutter:
   uses-material-design: true
