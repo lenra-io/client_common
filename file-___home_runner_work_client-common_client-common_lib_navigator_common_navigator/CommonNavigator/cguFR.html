@@ -63,10 +63,8 @@
   <pre class="language-dart"><code class="language-dart">static GoRoute cguFR = GoRoute(
   name: &quot;cgu-fr&quot;,
   path: &quot;fr&quot;,
-  builder: (ctx, state) =&gt; PageGuard(
-    guards: [Guard.checkAuthenticated],
-    child: CguPageFr(),
-  ),
+  redirect: (context, state) =&gt; Guard.guards(context, [Guard.checkAuthenticated]),
+  builder: (ctx, state) =&gt; CguPageFr(),
 );
 
 </code></pre>

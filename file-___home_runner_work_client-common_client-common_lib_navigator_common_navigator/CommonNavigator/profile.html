@@ -62,11 +62,9 @@
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">static GoRoute profile = GoRoute(
   name: &quot;profile&quot;,
-  path: &quot;&#47;profile&quot;,
-  builder: (ctx, state) =&gt; PageGuard(
-    guards: [Guard.checkAuthenticated],
-    child: ProfilePage(),
-  ),
+  path: &quot;profile&quot;,
+  redirect: (context, state) =&gt; Guard.guards(context, [Guard.checkAuthenticated]),
+  builder: (ctx, state) =&gt; ProfilePage(),
 );
 
 </code></pre>

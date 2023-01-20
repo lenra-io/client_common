@@ -62,11 +62,9 @@
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">static GoRoute login = GoRoute(
   name: &quot;login&quot;,
-  path: &quot;&#47;sign&quot;,
-  builder: (ctx, state) =&gt; PageGuard(
-    guards: [Guard.checkUnauthenticated],
-    child: LoginPage(),
-  ),
+  path: &quot;sign&quot;,
+  redirect: (context, state) =&gt; Guard.guards(context, [Guard.checkUnauthenticated]),
+  builder: (ctx, state) =&gt; LoginPage(),
   routes: [lostPassword, register],
 );
 

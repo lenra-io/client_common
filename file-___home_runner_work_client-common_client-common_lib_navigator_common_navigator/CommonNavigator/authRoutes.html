@@ -50,7 +50,7 @@
 </h1></div>
 
         <section class="multi-line-signature">
-          <a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a>
+          dynamic
           <span class="name ">authRoutes</span>
           <div class="features">read / write</div>
 
@@ -60,14 +60,17 @@
         
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">static List&lt;RouteBase&gt; authRoutes = [
-  changeLostPassword,
-  changePasswordConfirmation,
-  profile,
-  login,
-  cgu,
-  userValidation,
-];
+  <pre class="language-dart"><code class="language-dart">static ShellRoute authRoutes = ShellRoute(
+  builder: (context, state, child) =&gt; child,
+  routes: [
+    changeLostPassword,
+    changePasswordConfirmation,
+    profile,
+    login,
+    cgu,
+    userValidation,
+  ],
+);
 
 </code></pre>
 </section>

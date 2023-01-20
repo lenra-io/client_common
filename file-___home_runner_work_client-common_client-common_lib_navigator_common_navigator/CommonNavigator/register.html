@@ -63,10 +63,8 @@
   <pre class="language-dart"><code class="language-dart">static GoRoute register = GoRoute(
   name: &quot;register&quot;,
   path: &quot;register&quot;,
-  builder: (ctx, state) =&gt; PageGuard(
-    guards: [Guard.checkUnauthenticated],
-    child: RegisterPage(),
-  ),
+  redirect: (context, state) =&gt; Guard.guards(context, [Guard.checkUnauthenticated]),
+  builder: (ctx, state) =&gt; RegisterPage(),
 );
 
 </code></pre>

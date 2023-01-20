@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the checkUnauthenticated property from the Guard class, for the Dart programming language.">
-  <title>checkUnauthenticated property - Guard class - guard library - Dart API</title>
+  <meta name="description" content="API docs for the guards method from the Guard class, for the Dart programming language.">
+  <title>guards method - Guard class - guard library - Dart API</title>
 
 
   
@@ -32,9 +32,9 @@
     <li><a href="../../index.html">client_common</a></li>
     <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_guard/file-___home_runner_work_client-common_client-common_lib_navigator_guard-library.html">guard</a></li>
     <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_guard/Guard-class.html">Guard</a></li>
-    <li class="self-crumb">checkUnauthenticated property</li>
+    <li class="self-crumb">guards method</li>
   </ol>
-  <div class="self-name">checkUnauthenticated</div>
+  <div class="self-name">guards</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -45,24 +45,39 @@
 
   <div id="dartdoc-main-content" class="main-content">
       <div>
-<h1><span class="kind-property">checkUnauthenticated</span> property 
+<h1><span class="kind-method">guards</span> method 
     <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
 </h1></div>
 
-        <section class="multi-line-signature">
-          <a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_guard/Guard-class.html">Guard</a>
-          <span class="name ">checkUnauthenticated</span>
-          <div class="features">final</div>
+    <section class="multi-line-signature">
+      
 
-        </section>
-        
+<span class="returntype"><a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span>&gt;</span></span>
+<span class="name ">guards</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="guards-param-context"><span class="type-annotation">dynamic</span> <span class="parameter-name">context</span>, </span></li>
+<li><span class="parameter" id="guards-param-guards"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_guard/Guard-class.html">Guard</a></span>&gt;</span></span> <span class="parameter-name">guards</span></span></li>
+</ol>)
 
-        
+      
+
+    </section>
+    
+
+
+    
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">static final Guard checkUnauthenticated = Guard(isValid: _isAuthenticated(false), onInvalid: _toHome);
-
-</code></pre>
+  <pre class="language-dart"><code class="language-dart">static Future&lt;String?&gt; guards(BuildContext context, List&lt;Guard&gt; guards) async {
+  for (Guard checker in guards) {
+    try {
+      if (!await checker.isValid(context)) {
+        return checker.onInvalid(context);
+      }
+    } catch (e) {
+      return checker.onInvalid(context);
+    }
+  }
+  return null;
+}</code></pre>
 </section>
 
 
@@ -79,7 +94,7 @@
   <li><a href="../../index.html">client_common</a></li>
   <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_guard/file-___home_runner_work_client-common_client-common_lib_navigator_guard-library.html">guard</a></li>
   <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_guard/Guard-class.html">Guard</a></li>
-  <li class="self-crumb">checkUnauthenticated property</li>
+  <li class="self-crumb">guards method</li>
 </ol>
 
 

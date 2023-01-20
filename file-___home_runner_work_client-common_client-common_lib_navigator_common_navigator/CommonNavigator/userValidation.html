@@ -62,15 +62,13 @@
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">static GoRoute userValidation = GoRoute(
   name: &quot;validation-user&quot;,
-  path: &quot;&#47;validation-user&quot;,
-  builder: (ctx, state) =&gt; PageGuard(
-    guards: [
-      Guard.checkAuthenticated,
-      Guard.checkCguAccepted,
-      Guard.checkIsNotUser,
-    ],
-    child: VerifyingCodePage(),
-  ),
+  path: &quot;validation-user&quot;,
+  redirect: (context, state) =&gt; Guard.guards(context, [
+    Guard.checkAuthenticated,
+    Guard.checkCguAccepted,
+    Guard.checkIsNotUser,
+  ]),
+  builder: (ctx, state) =&gt; VerifyingCodePage(),
 );
 
 </code></pre>
