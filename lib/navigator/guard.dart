@@ -7,7 +7,6 @@ import 'package:client_common/models/cgu_model.dart';
 import 'package:client_common/models/user_application_model.dart';
 import 'package:client_common/navigator/common_navigator.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 /// This class defines guards that are used to stop the user from accessing certain pages.
@@ -29,6 +28,19 @@ class Guard {
   static final Guard checkIsUser = Guard(isValid: _isUser, onInvalid: _becomeUser);
   static final Guard checkIsNotUser = Guard(isValid: _isNotUser, onInvalid: _toHome);
 
+  static Future<String?> guards(BuildContext context, List<Guard> guards) async {
+    for (Guard checker in guards) {
+      try {
+        if (!await checker.isValid(context)) {
+          return checker.onInvalid(context);
+        }
+      } catch (e) {
+        return checker.onInvalid(context);
+      }
+    }
+    return null;
+  }
+
   static Future<bool> Function(BuildContext) _isAuthenticated(bool mustBeAuthenticated) {
     return (BuildContext context) async {
       AuthModel authModel = context.read<AuthModel>();
@@ -38,14 +50,8 @@ class Guard {
         } catch (e) {
           return authModel.isAuthenticated() == mustBeAuthenticated;
         }
-        /*if (authModel.refreshStatus.isNone())
-          // Try to auth user with refresh token
-          await authModel.refresh().catchError((e) => null);
-        else if (authModel.refreshStatus.isFetching())
-          // Wait current refresh response
-          await authModel.refreshStatus.wait().catchError((e) => null);*/
       }
-      // then check everything
+
       return authModel.isAuthenticated() == mustBeAuthenticated;
     };
   }
@@ -89,25 +95,29 @@ class Guard {
     };
   }
 
-  static void _toLogin(BuildContext context) {
-    context.read<AuthModel>().redirectToRoute = CommonNavigator.currentLocation(context);
+  static String _toLogin(BuildContext context) {
+    try {
+      context.read<AuthModel>().redirectToRoute = CommonNavigator.currentLocation(context);
+    } catch (_) {
+      context.read<AuthModel>().redirectToRoute = "/";
+    }
 
-    CommonNavigator.go(context, CommonNavigator.login);
+    return "/${CommonNavigator.login.path}";
   }
 
-  static void _becomeDev(context) {
-    CommonNavigator.goPath(context, CommonNavigator.validationDevRoute);
+  static String _becomeDev(context) {
+    return CommonNavigator.validationDevRoute;
   }
 
-  static void _toHome(context) {
-    GoRouter.of(context).go(CommonNavigator.homeRoute);
+  static String _toHome(context) {
+    return CommonNavigator.homeRoute;
   }
 
-  static void _toCgu(context) {
-    CommonNavigator.go(context, CommonNavigator.cgu);
+  static String _toCgu(context) {
+    return "/${CommonNavigator.cgu.path}";
   }
 
-  static void _becomeUser(context) {
-    CommonNavigator.go(context, CommonNavigator.userValidation);
+  static String _becomeUser(context) {
+    return "/${CommonNavigator.userValidation.path}";
   }
 }
