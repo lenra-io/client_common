@@ -6,6 +6,7 @@ import 'package:client_common/utils/connexion_utils_stub.dart'
     if (dart.library.io) 'package:client_common/utils/connexion_utils_io.dart'
     if (dart.library.js) 'package:client_common/utils/connexion_utils_web.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 typedef ResponseMapper<T> = T Function(dynamic json, dynamic header);
 
@@ -14,6 +15,16 @@ typedef ResponseMapper<T> = T Function(dynamic json, dynamic header);
 /// It provides the basic methods to send HTTP requests and to parse the response.
 abstract class LenraBaseHttpClient {
   final http.Client client;
+  final RegExp refreshTokenRegExp = RegExp(r'guardian_default_token=([^;]+)');
+
+  String? extractRefreshToken(String cookieString) {
+    final match = refreshTokenRegExp.firstMatch(cookieString);
+    if (match != null) {
+      return match.group(1);
+    } else {
+      return null;
+    }
+  }
 
   LenraBaseHttpClient() : client = createHttpClient();
 
@@ -42,6 +53,15 @@ abstract class LenraBaseHttpClient {
     if (response.statusCode >= 400 && response.statusCode < 600) {
       throw ApiError.fromJson(body);
     } else {
+      final cookieString = response.headers['set-cookie'];
+      if (cookieString != null) {
+        final refreshToken = extractRefreshToken(response.headers['set-cookie']!);
+        if (refreshToken != null) {
+          final prefs = await SharedPreferences.getInstance();
+          prefs.setString("refreshToken", refreshToken);
+        }
+      }
+
       return mapper(body, response.headers);
     }
   }
