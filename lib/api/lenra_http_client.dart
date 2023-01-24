@@ -5,8 +5,8 @@ import 'package:client_common/config/config.dart';
 import 'package:client_common/utils/connexion_utils_stub.dart'
     if (dart.library.io) 'package:client_common/utils/connexion_utils_io.dart'
     if (dart.library.js) 'package:client_common/utils/connexion_utils_web.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
 
 typedef ResponseMapper<T> = T Function(dynamic json, dynamic header);
 
@@ -54,11 +54,14 @@ abstract class LenraBaseHttpClient {
       throw ApiError.fromJson(body);
     } else {
       final cookieString = response.headers['set-cookie'];
+      print("HANDLE RESPONSE");
+      print(cookieString);
       if (cookieString != null) {
         final refreshToken = extractRefreshToken(response.headers['set-cookie']!);
         if (refreshToken != null) {
-          final prefs = await SharedPreferences.getInstance();
-          prefs.setString("refreshToken", refreshToken);
+          print("REFRESH TOKEN: $refreshToken");
+          final storage = FlutterSecureStorage();
+          storage.write(key: "refreshToken", value: refreshToken);
         }
       }
 
@@ -74,7 +77,12 @@ abstract class LenraBaseHttpClient {
     return _handleResponse(response, responseMapper: responseMapper);
   }
 
-  Future<T> post<T>(String url, {ResponseMapper<T>? responseMapper, dynamic body}) {
+  Future<T> post<T>(String url, {ResponseMapper<T>? responseMapper, dynamic body, Map<String, String>? headers}) {
+    if (headers != null) {
+      print("POST HEADERS");
+      print(headers);
+      _headers.addAll(headers);
+    }
     print("API Call POST on $_apiUrl$url");
     Future<http.Response> response = client.post(
       Uri.parse("$_apiUrl$url"),
