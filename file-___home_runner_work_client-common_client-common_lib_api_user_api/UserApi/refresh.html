@@ -64,10 +64,23 @@
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">static Future&lt;AuthResponse&gt; refresh() =&gt; LenraAuth.instance.post(
-      &quot;&#47;refresh&quot;,
-      responseMapper: (json, headers) =&gt; AuthResponse.fromJson(json, headers),
-    );</code></pre>
+  <pre class="language-dart"><code class="language-dart">static Future&lt;AuthResponse&gt; refresh() async {
+  Map&lt;String, String&gt;? headers;
+  if (!kIsWeb) {
+    final storage = FlutterSecureStorage();
+
+    String? refreshToken = await storage.read(key: &quot;refreshToken&quot;);
+    if (refreshToken != null) {
+      headers = {&quot;Cookie&quot;: &quot;guardian_default_token=$refreshToken&quot;};
+    }
+  }
+
+  return LenraAuth.instance.post(
+    &quot;&#47;refresh&quot;,
+    responseMapper: (json, headers) =&gt; AuthResponse.fromJson(json, headers),
+    headers: headers,
+  );
+}</code></pre>
 </section>
 
 
