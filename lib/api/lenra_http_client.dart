@@ -54,12 +54,9 @@ abstract class LenraBaseHttpClient {
       throw ApiError.fromJson(body);
     } else {
       final cookieString = response.headers['set-cookie'];
-      print("HANDLE RESPONSE");
-      print(cookieString);
       if (cookieString != null) {
         final refreshToken = extractRefreshToken(response.headers['set-cookie']!);
         if (refreshToken != null) {
-          print("REFRESH TOKEN: $refreshToken");
           final storage = FlutterSecureStorage();
           storage.write(key: "refreshToken", value: refreshToken);
         }
@@ -79,15 +76,13 @@ abstract class LenraBaseHttpClient {
 
   Future<T> post<T>(String url, {ResponseMapper<T>? responseMapper, dynamic body, Map<String, String>? headers}) {
     if (headers != null) {
-      print("POST HEADERS");
-      print(headers);
-      _headers.addAll(headers);
+      headers.addAll(_headers);
     }
     print("API Call POST on $_apiUrl$url");
     Future<http.Response> response = client.post(
       Uri.parse("$_apiUrl$url"),
       body: encodeBody(body),
-      headers: _headers,
+      headers: headers ?? _headers,
     );
     return _handleResponse(response, responseMapper: responseMapper);
   }

@@ -48,10 +48,8 @@ class UserApi {
       final storage = FlutterSecureStorage();
 
       String? refreshToken = await storage.read(key: "refreshToken");
-      print("REFRESH REQUEST");
-      print(refreshToken);
       if (refreshToken != null) {
-        headers = {"guardian_default_token": refreshToken};
+        headers = {"Cookie": "guardian_default_token=$refreshToken"};
       }
     }
 
