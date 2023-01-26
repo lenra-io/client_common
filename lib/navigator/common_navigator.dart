@@ -22,35 +22,35 @@ class CommonNavigator {
 
   static GoRoute changeLostPassword = GoRoute(
     name: "change-lost",
-    path: "change-lost",
+    path: "/change-lost",
     redirect: (context, state) => Guard.guards(context, [Guard.checkUnauthenticated]),
     builder: (ctx, state) => ChangeLostPasswordPage(email: state.extra as String),
   );
 
   static GoRoute lostPassword = GoRoute(
     name: "lost",
-    path: "lost",
+    path: "/lost",
     redirect: (context, state) => Guard.guards(context, [Guard.checkUnauthenticated]),
     builder: (ctx, state) => RecoveryPage(),
   );
 
   static GoRoute changePasswordConfirmation = GoRoute(
     name: "change-confirmation",
-    path: "change-confirmation",
+    path: "/change-confirmation",
     redirect: (context, state) => Guard.guards(context, [Guard.checkUnauthenticated]),
     builder: (ctx, state) => ChangePasswordConfirmationPage(),
   );
 
   static GoRoute profile = GoRoute(
     name: "profile",
-    path: "profile",
+    path: "/profile",
     redirect: (context, state) => Guard.guards(context, [Guard.checkAuthenticated]),
     builder: (ctx, state) => ProfilePage(),
   );
 
   static GoRoute login = GoRoute(
     name: "login",
-    path: "sign",
+    path: "/sign",
     redirect: (context, state) => Guard.guards(context, [Guard.checkUnauthenticated]),
     builder: (ctx, state) => LoginPage(),
     routes: [lostPassword, register],
@@ -58,14 +58,14 @@ class CommonNavigator {
 
   static GoRoute register = GoRoute(
     name: "register",
-    path: "register",
+    path: "/register",
     redirect: (context, state) => Guard.guards(context, [Guard.checkUnauthenticated]),
     builder: (ctx, state) => RegisterPage(),
   );
 
   static GoRoute cgu = GoRoute(
     name: "cgu",
-    path: "cgu",
+    path: "/cgu",
     redirect: (context, state) => Guard.guards(context, [Guard.checkAuthenticated]),
     builder: (ctx, state) => CguPage(),
     routes: [
@@ -82,7 +82,7 @@ class CommonNavigator {
 
   static GoRoute userValidation = GoRoute(
     name: "validation-user",
-    path: "validation-user",
+    path: "/validation-user",
     redirect: (context, state) => Guard.guards(context, [
       Guard.checkAuthenticated,
       Guard.checkCguAccepted,
