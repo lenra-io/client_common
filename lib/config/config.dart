@@ -96,7 +96,6 @@ class Config {
   }
 
   static String _computeSentryDsn() {
-    const sentryDsn = String.fromEnvironment('SENTRY_CLIENT_DSN');
     if (kIsWeb) {
       html.MetaElement? meta = html.document.querySelector('meta[name="sentry-client-dsn"]') as html.MetaElement?;
       if (meta != null) {
@@ -105,6 +104,6 @@ class Config {
         }
       }
     }
-    return sentryDsn;
+    return String.fromEnvironment('SENTRY_CLIENT_DSN');
   }
 }
