@@ -29,7 +29,7 @@ class CommonNavigator {
 
   static GoRoute lostPassword = GoRoute(
     name: "lost",
-    path: "/lost",
+    path: "lost",
     redirect: (context, state) => Guard.guards(context, [Guard.checkUnauthenticated]),
     builder: (ctx, state) => RecoveryPage(),
   );
@@ -58,7 +58,7 @@ class CommonNavigator {
 
   static GoRoute register = GoRoute(
     name: "register",
-    path: "/register",
+    path: "register",
     redirect: (context, state) => Guard.guards(context, [Guard.checkUnauthenticated]),
     builder: (ctx, state) => RegisterPage(),
   );
