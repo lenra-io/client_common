@@ -17,6 +17,7 @@ class Config {
   final String wsEndpoint;
   final String basicAuth;
   final String appBaseUrl;
+  final String sentryDsn;
 
   Config({
     required this.application,
@@ -24,6 +25,7 @@ class Config {
     required this.wsEndpoint,
     required this.basicAuth,
     required this.appBaseUrl,
+    required this.sentryDsn,
   });
 
   static _() {
@@ -32,13 +34,15 @@ class Config {
     String wsEndpoint = _computeWsEndpoint(httpEndpoint);
     Application application = _computeApplication(httpEndpoint);
     String appBaseUrl = _computeAppBaseUrl(application);
+    String sentryDsn = _computeSentryDsn();
 
     return Config(
         application: application,
         httpEndpoint: httpEndpoint,
         wsEndpoint: wsEndpoint,
         basicAuth: basicAuth,
-        appBaseUrl: appBaseUrl);
+        appBaseUrl: appBaseUrl,
+        sentryDsn: sentryDsn);
   }
 
   static String _computeHttpEndpoint() {
@@ -89,5 +93,17 @@ class Config {
       }
     }
     return Application.values.firstWhere((a) => a.toString() == "Application.$appName", orElse: () => Application.app);
+  }
+
+  static String _computeSentryDsn() {
+    if (kIsWeb) {
+      html.MetaElement? meta = html.document.querySelector('meta[name="sentry-client-dsn"]') as html.MetaElement?;
+      if (meta != null) {
+        if (meta.content != '\${SENTRY_CLIENT_DSN}') {
+          return meta.content;
+        }
+      }
+    }
+    return String.fromEnvironment('SENTRY_CLIENT_DSN');
   }
 }
