@@ -103,6 +103,6 @@ class Config {
         }
       }
     }
-    return sentryDsn
+    return sentryDsn;
   }
 }
