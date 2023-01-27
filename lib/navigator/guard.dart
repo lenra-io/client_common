@@ -102,7 +102,7 @@ class Guard {
       context.read<AuthModel>().redirectToRoute = "/";
     }
 
-    return "/${CommonNavigator.login.path}";
+    return CommonNavigator.login.path;
   }
 
   static String _becomeDev(context) {
@@ -114,10 +114,10 @@ class Guard {
   }
 
   static String _toCgu(context) {
-    return "/${CommonNavigator.cgu.path}";
+    return CommonNavigator.cgu.path;
   }
 
   static String _becomeUser(context) {
-    return "/${CommonNavigator.userValidation.path}";
+    return CommonNavigator.userValidation.path;
   }
 }
