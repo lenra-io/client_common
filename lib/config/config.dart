@@ -32,13 +32,15 @@ class Config {
     String wsEndpoint = _computeWsEndpoint(httpEndpoint);
     Application application = _computeApplication(httpEndpoint);
     String appBaseUrl = _computeAppBaseUrl(application);
+    String sentryDsn = _computeSentryDsn();
 
     return Config(
         application: application,
         httpEndpoint: httpEndpoint,
         wsEndpoint: wsEndpoint,
         basicAuth: basicAuth,
-        appBaseUrl: appBaseUrl);
+        appBaseUrl: appBaseUrl,
+        sentryDsn: sentryDsn);
   }
 
   static String _computeHttpEndpoint() {
@@ -89,5 +91,18 @@ class Config {
       }
     }
     return Application.values.firstWhere((a) => a.toString() == "Application.$appName", orElse: () => Application.app);
+  }
+
+  static String _computeSentryDsn() {
+    const sentryDsn = String.fromEnvironment('SENTRY_CLIENT_DSN');
+    if (kIsWeb) {
+      html.MetaElement? meta = html.document.querySelector('meta[name="sentry-client-dsn"]') as html.MetaElement?;
+      if (meta != null) {
+        if (meta.content != '\${SENTRY_CLIENT_DSN}') {
+          return meta.content;
+        }
+      }
+    }
+    return sentryDsn
   }
 }
