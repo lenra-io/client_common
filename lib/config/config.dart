@@ -17,6 +17,7 @@ class Config {
   final String wsEndpoint;
   final String basicAuth;
   final String appBaseUrl;
+  final String sentryDsn;
 
   Config({
     required this.application,
@@ -24,6 +25,7 @@ class Config {
     required this.wsEndpoint,
     required this.basicAuth,
     required this.appBaseUrl,
+    required this.sentryDsn,
   });
 
   static _() {
