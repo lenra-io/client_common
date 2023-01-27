@@ -62,7 +62,7 @@
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">static GoRoute cgu = GoRoute(
   name: &quot;cgu&quot;,
-  path: &quot;cgu&quot;,
+  path: &quot;&#47;cgu&quot;,
   redirect: (context, state) =&gt; Guard.guards(context, [Guard.checkAuthenticated]),
   builder: (ctx, state) =&gt; CguPage(),
   routes: [
