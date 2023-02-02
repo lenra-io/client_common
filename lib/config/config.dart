@@ -104,6 +104,6 @@ class Config {
         }
       }
     }
-    return String.fromEnvironment('SENTRY_CLIENT_DSN');
+    return const String.fromEnvironment('SENTRY_CLIENT_DSN');
   }
 }
