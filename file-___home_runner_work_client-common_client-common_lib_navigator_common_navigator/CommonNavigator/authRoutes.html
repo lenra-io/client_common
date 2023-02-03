@@ -61,7 +61,7 @@
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">static ShellRoute authRoutes = ShellRoute(
-  builder: (context, state, child) =&gt; child,
+  builder: (context, state, child) =&gt; SafeArea(child: child),
   routes: [
     changeLostPassword,
     changePasswordConfirmation,
