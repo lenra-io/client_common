@@ -92,7 +92,7 @@ class CommonNavigator {
   );
 
   static ShellRoute authRoutes = ShellRoute(
-    builder: (context, state, child) => child,
+    builder: (context, state, child) => SafeArea(child: child),
     routes: [
       changeLostPassword,
       changePasswordConfirmation,
