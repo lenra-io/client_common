@@ -1,6 +1,6 @@
 import 'package:client_common/api/response_models/api_response.dart';
 
-enum DeploymentStatus { created, pending, failure, success }
+enum DeploymentStatus { created, waitingForBuild, waitingForAppReady, failure, success }
 
 class DeploymentResponse extends ApiResponse {
   int id;
