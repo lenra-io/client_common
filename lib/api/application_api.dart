@@ -6,6 +6,7 @@ import 'package:client_common/api/response_models/apps_response.dart';
 import 'package:client_common/api/response_models/builds_response.dart';
 import 'package:client_common/api/response_models/create_app_response.dart';
 import 'package:client_common/api/response_models/create_build_response.dart';
+import 'package:client_common/api/response_models/deployments_response.dart';
 import 'package:client_common/api/response_models/get_main_env_response.dart';
 import 'package:client_common/api/response_models/update_app_response.dart';
 
@@ -37,6 +38,11 @@ class ApplicationApi {
         "/apps/$appId/builds",
         body: body,
         responseMapper: (json, header) => CreateBuildResponse.fromJson(json),
+      );
+
+  static Future<DeploymentsResponse> getDeployments(int appId) => LenraApi.instance.get(
+        "/apps/$appId/deployments",
+        responseMapper: (json, header) => DeploymentsResponse.fromJson(json),
       );
 
   static Future<GetMainEnvResponse> getMainEnv(int appId) => LenraApi.instance.get(
