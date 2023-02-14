@@ -69,21 +69,19 @@ class SimplePage extends StatelessWidget {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
-        body: Scrollbar(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.all(padding),
-              child: Column(
-                children: _buildBackInk(context, theme)
-                  ..add(Center(
-                    child: Container(
-                      width: 400,
-                      child: Column(
-                        children: children,
-                      ),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.all(padding),
+            child: Column(
+              children: _buildBackInk(context, theme)
+                ..add(Center(
+                  child: Container(
+                    width: 400,
+                    child: Column(
+                      children: children,
                     ),
-                  )),
-              ),
+                  ),
+                )),
             ),
           ),
         ),
