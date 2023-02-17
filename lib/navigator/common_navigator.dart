@@ -41,13 +41,6 @@ class CommonNavigator {
     builder: (ctx, state) => ChangePasswordConfirmationPage(),
   );
 
-  static GoRoute profile = GoRoute(
-    name: "profile",
-    path: "/profile",
-    redirect: (context, state) => Guard.guards(context, [Guard.checkAuthenticated]),
-    builder: (ctx, state) => ProfilePage(),
-  );
-
   static GoRoute login = GoRoute(
     name: "login",
     path: "/sign",
@@ -96,7 +89,6 @@ class CommonNavigator {
     routes: [
       changeLostPassword,
       changePasswordConfirmation,
-      profile,
       login,
       cgu,
       userValidation,
