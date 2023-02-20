@@ -4,7 +4,6 @@ import 'package:client_common/views/cgu/cgu_page_fr.dart';
 import 'package:client_common/views/login/login_page.dart';
 import 'package:client_common/views/profile/change_lost_password_page.dart';
 import 'package:client_common/views/profile/change_password_confirmation_page.dart';
-import 'package:client_common/views/profile/profile_page.dart';
 import 'package:client_common/views/profile/recovery_page.dart';
 import 'package:client_common/views/register/register_page.dart';
 import 'package:client_common/views/verify_code/verifiying_code_page.dart';
