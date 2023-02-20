@@ -8,6 +8,8 @@ import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
 
 class ChangePasswordForm extends StatefulWidget {
+  const ChangePasswordForm({super.key});
+
   @override
   State<ChangePasswordForm> createState() {
     return _ChangePasswordState();
@@ -41,9 +43,8 @@ class _ChangePasswordState extends State<ChangePasswordForm> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           TextFormField(
-            decoration: InputDecoration(
-              hintText: 'Set your password',
-              labelText: 'Password :',
+            decoration: const InputDecoration(
+              labelText: 'Old password',
             ),
             obscureText: true,
             onChanged: (String value) {
@@ -58,8 +59,7 @@ class _ChangePasswordState extends State<ChangePasswordForm> {
           ),
           TextFormField(
             decoration: InputDecoration(
-              hintText: 'Your new password',
-              labelText: 'New password :',
+              labelText: 'New password',
               suffixIcon: IconButton(
                 icon: Icon(
                   _passwordVisible ? Icons.visibility_off : Icons.visibility,
@@ -84,8 +84,7 @@ class _ChangePasswordState extends State<ChangePasswordForm> {
           ),
           TextFormField(
             decoration: InputDecoration(
-              hintText: 'Confirm your new password',
-              labelText: 'New password :',
+              labelText: 'Confirm new password',
               suffixIcon: IconButton(
                 icon: Icon(
                   _passwordVisibleConfirm ? Icons.visibility_off : Icons.visibility,
@@ -125,7 +124,7 @@ class _ChangePasswordState extends State<ChangePasswordForm> {
                   });
                 }
               },
-              text: 'Update my password',
+              text: 'Update password',
               loading: isChangingPassword,
             ),
           ),
