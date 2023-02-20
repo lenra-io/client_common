@@ -9,6 +9,7 @@ class SimplePage extends StatelessWidget {
   final TextAlign textAlign;
   final String? backInkText;
   final void Function()? backInkAction;
+  final Widget? header;
   final Widget? child;
 
   const SimplePage({
@@ -18,6 +19,7 @@ class SimplePage extends StatelessWidget {
     this.textAlign = TextAlign.center,
     this.backInkText,
     this.backInkAction,
+    this.header,
     this.child,
   }) : super(key: key);
 
@@ -25,10 +27,11 @@ class SimplePage extends StatelessWidget {
   Widget build(BuildContext context) {
     var theme = LenraTheme.of(context);
     List<Widget> children = [
-      Image.asset(
-        'assets/images/logo-vertical.png',
-        height: theme.baseSize * 13,
-      ),
+      header ??
+          Image.asset(
+            'assets/images/logo-vertical.png',
+            height: theme.baseSize * 13,
+          ),
       SizedBox(height: theme.baseSize * 5)
     ];
     if (title.isNotEmpty) {
@@ -69,19 +72,21 @@ class SimplePage extends StatelessWidget {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.all(padding),
-            child: Column(
-              children: _buildBackInk(context, theme)
-                ..add(Center(
-                  child: Container(
-                    width: 400,
-                    child: Column(
-                      children: children,
+        body: Scrollbar(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.all(padding),
+              child: Column(
+                children: _buildBackInk(context, theme)
+                  ..add(Center(
+                    child: Container(
+                      width: 400,
+                      child: Column(
+                        children: children,
+                      ),
                     ),
-                  ),
-                )),
+                  )),
+              ),
             ),
           ),
         ),
