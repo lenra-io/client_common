@@ -1,4 +1,5 @@
 import 'package:client_common/navigator/guard.dart';
+import 'package:client_common/views/auth/auth_page.dart';
 import 'package:client_common/views/cgu/cgu_page.dart';
 import 'package:client_common/views/cgu/cgu_page_fr.dart';
 import 'package:client_common/views/login/login_page.dart';
@@ -53,6 +54,12 @@ class CommonNavigator {
     path: "register",
     redirect: (context, state) => Guard.guards(context, [Guard.checkUnauthenticated]),
     builder: (ctx, state) => RegisterPage(),
+  );
+
+  static GoRoute authRoute = GoRoute(
+    name: "auth",
+    path: "auth",
+    builder: (ctx, state) => AppAuthPage(),
   );
 
   static GoRoute cgu = GoRoute(
