@@ -22,7 +22,7 @@ class Guard {
   static final Guard checkIsDev = Guard(isValid: _isDev, onInvalid: _becomeDev);
   static final Guard checkIsNotDev = Guard(isValid: _isNotDev, onInvalid: _toHome);
   static final Guard checkUnauthenticated = Guard(isValid: _isAuthenticated(false), onInvalid: _toHome);
-  static final Guard checkAuthenticated = Guard(isValid: _isAuthenticated(true), onInvalid: _toLogin);
+  static final Guard checkAuthenticated = Guard(isValid: _isAuthenticated(true), onInvalid: _toRegister);
   static final Guard checkNotHaveApp = Guard(isValid: _haveApp(false), onInvalid: _toHome);
   static final Guard checkCguAccepted = Guard(isValid: _isCguAccepted(), onInvalid: _toCgu);
   static final Guard checkIsUser = Guard(isValid: _isUser, onInvalid: _becomeUser);
@@ -95,14 +95,14 @@ class Guard {
     };
   }
 
-  static String _toLogin(BuildContext context) {
+  static String _toRegister(BuildContext context) {
     try {
       context.read<AuthModel>().redirectToRoute = CommonNavigator.currentLocation(context);
     } catch (_) {
       context.read<AuthModel>().redirectToRoute = "/";
     }
 
-    return CommonNavigator.login.path;
+    return CommonNavigator.register.path;
   }
 
   static String _becomeDev(context) {
