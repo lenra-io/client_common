@@ -58,7 +58,7 @@ class CommonNavigator {
 
   static GoRoute authRoute = GoRoute(
     name: "auth",
-    path: "auth",
+    path: "/auth",
     builder: (ctx, state) => AppAuthPage(),
   );
 
