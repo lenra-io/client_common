@@ -1,6 +1,8 @@
 import 'package:client_common/models/auth_model.dart';
+import 'package:client_common/navigator/common_navigator.dart';
 import 'package:client_common/views/loading_button.dart';
 import 'package:client_common/views/simple_page.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lenra_components/component/lenra_text.dart';
@@ -24,9 +26,14 @@ class _AppAuthPageState extends State<AppAuthPage> {
   bool keep = false;
   bool _hidePassword = true;
   var themeData = LenraThemeData();
+  bool isLogging = false;
 
   @override
   Widget build(BuildContext context) {
+    isLogging = context.select<AuthModel, bool>(
+      (m) => isRegisterPage ? m.registerStatus.isFetching() : m.loginStatus.isFetching(),
+    );
+
     return SimplePage(
       header: Container(),
       child: LenraFlex(
@@ -37,24 +44,43 @@ class _AppAuthPageState extends State<AppAuthPage> {
           Container(
             width: 100,
             height: 100,
-          ),
-          LenraText(
-            text: "App Name",
-            style: themeData.lenraTextThemeData.headline1,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(6),
+              color: Color.fromARGB(255, 187, 234, 255),
+            ),
+            child: LenraText(
+              text: "A",
+              style: TextStyle(
+                fontSize: 80,
+                fontWeight: FontWeight.bold,
+                color: LenraColorThemeData.lenraBlue,
+              ),
+            ),
           ),
           LenraFlex(
-            spacing: 8,
+            direction: Axis.vertical,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              LenraText(text: "by"),
-              Image.asset(
-                "assets/images/logo-horizontal-black.png",
-                scale: 1.5,
+              LenraText(
+                text: "App Name",
+                style: themeData.lenraTextThemeData.headline1,
               ),
-              IconButton(
-                onPressed: () {},
-                icon: Icon(Icons.info_outline),
-              )
+              LenraFlex(
+                spacing: 8,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  LenraText(text: "by"),
+                  Image.asset(
+                    "assets/images/logo-horizontal-black.png",
+                    scale: 1.25,
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.info_outline),
+                  ),
+                ],
+              ),
             ],
           ),
           Container(
@@ -139,7 +165,7 @@ class _AppAuthPageState extends State<AppAuthPage> {
           //------Email------
           LenraTextFormField(
             label: 'Your email',
-            hintText: 'email@email.com',
+            hintText: 'Email',
             onChanged: (String value) {
               email = value;
             },
@@ -173,8 +199,10 @@ class _AppAuthPageState extends State<AppAuthPage> {
           ),
           LoadingButton(
             text: "Create my account",
-            onPressed: () {},
-            loading: true,
+            onPressed: () {
+              submit();
+            },
+            loading: isLogging,
           ),
         ],
       ),
@@ -191,7 +219,7 @@ class _AppAuthPageState extends State<AppAuthPage> {
         children: [
           LenraTextFormField(
             label: 'Your email',
-            hintText: 'email@email.com',
+            hintText: 'Email',
             onChanged: (String value) {
               email = value;
             },
@@ -239,10 +267,31 @@ class _AppAuthPageState extends State<AppAuthPage> {
               ),
             ],
           ),
-          LoadingButton(
-            text: "Log in",
-            onPressed: () {},
-            loading: true,
+          LenraFlex(
+            direction: Axis.vertical,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              LoadingButton(
+                text: "Log in",
+                onPressed: () {
+                  submit();
+                },
+                loading: isLogging,
+              ),
+              Container(
+                padding: EdgeInsets.only(top: 10.0),
+                child: RichText(
+                  text: TextSpan(
+                    text: "I forgot my password",
+                    style: themeData.lenraTextThemeData.blueBodyText,
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        CommonNavigator.go(context, CommonNavigator.lostPassword);
+                      },
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),
