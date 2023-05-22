@@ -3,11 +3,11 @@ import 'package:client_common/utils/color_parser.dart';
 import 'package:flutter/material.dart';
 
 class AppResponse extends ApiResponse {
-  int id;
-  String name;
-  String serviceName;
-  IconData icon;
-  Color color;
+  int? id;
+  String? name;
+  String? serviceName;
+  IconData? icon;
+  Color? color;
   String? repository;
   String? repositoryBranch;
 
