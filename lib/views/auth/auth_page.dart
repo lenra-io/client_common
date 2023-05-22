@@ -1,4 +1,5 @@
 import 'package:client_common/models/auth_model.dart';
+import 'package:client_common/models/user_application_model.dart';
 import 'package:client_common/navigator/common_navigator.dart';
 import 'package:client_common/views/loading_button.dart';
 import 'package:client_common/views/simple_page.dart';
@@ -28,11 +29,23 @@ class _AppAuthPageState extends State<AppAuthPage> {
   var themeData = LenraThemeData();
   bool isLogging = false;
 
+  String? redirectTo;
+
   @override
   Widget build(BuildContext context) {
     isLogging = context.select<AuthModel, bool>(
       (m) => isRegisterPage ? m.registerStatus.isFetching() : m.loginStatus.isFetching(),
     );
+
+    redirectTo = context.read<AuthModel>().redirectToRoute;
+    RegExp regExp = RegExp(r"app\/([a-fA-F0-9-]{36})");
+    final match = regExp.firstMatch(redirectTo ?? "/");
+    String? appServiceName = match?.group(1);
+
+    if (appServiceName != null) {
+      context.read<UserApplicationModel>().getAppByServiceName(appServiceName);
+      // TODO continue this code
+    }
 
     return SimplePage(
       header: Container(),
