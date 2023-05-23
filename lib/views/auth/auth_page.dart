@@ -12,6 +12,9 @@ import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
 
 class AppAuthPage extends StatefulWidget {
+  final bool? isRegisterPage;
+  AppAuthPage({Key? key, this.isRegisterPage}) : super(key: key);
+
   @override
   State<AppAuthPage> createState() => _AppAuthPageState();
 }
@@ -43,7 +46,7 @@ class _AppAuthPageState extends State<AppAuthPage> {
         fillParent: true,
         children: [
           appHeader(),
-          AuthPageForm(),
+          AuthPageForm(widget.isRegisterPage),
         ],
       ),
     );

@@ -10,6 +10,9 @@ import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
 
 class AuthPageForm extends StatefulWidget {
+  final bool? isRegisterPage;
+  AuthPageForm(this.isRegisterPage, {Key? key}) : super(key: key);
+
   @override
   State<AuthPageForm> createState() => _AuthPageFormState();
 }
@@ -29,6 +32,12 @@ class _AuthPageFormState extends State<AuthPageForm> {
 
   String? redirectTo;
   String? appServiceName;
+
+  @override
+  void initState() {
+    super.initState();
+    isRegisterPage = widget.isRegisterPage ?? true;
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -102,7 +102,7 @@ class Guard {
       context.read<AuthModel>().redirectToRoute = "/";
     }
 
-    return CommonNavigator.authRoute.path;
+    return CommonNavigator.sign.path;
   }
 
   static String _becomeDev(context) {
