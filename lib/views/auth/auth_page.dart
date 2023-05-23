@@ -1,5 +1,3 @@
-import 'dart:html' as html;
-
 import 'package:client_common/api/application_api.dart';
 import 'package:client_common/api/response_models/app_response.dart';
 import 'package:client_common/models/auth_model.dart';
@@ -10,6 +8,7 @@ import 'package:lenra_components/component/lenra_text.dart';
 import 'package:lenra_components/lenra_components.dart';
 import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AppAuthPage extends StatefulWidget {
   final bool? isRegisterPage;
@@ -100,8 +99,11 @@ class _AppAuthPageState extends State<AppAuthPage> {
                           scale: 1.25,
                         ),
                         IconButton(
-                          onPressed: () {
-                            html.window.open('https://lenra.io', "_blank");
+                          onPressed: () async {
+                            final Uri url = Uri.parse('https://lenra.io');
+                            if (!await launchUrl(url)) {
+                              throw Exception('Could not launch $url');
+                            }
                           },
                           icon: Icon(Icons.info_outline),
                         ),
