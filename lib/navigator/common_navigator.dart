@@ -39,6 +39,15 @@ class CommonNavigator {
     builder: (ctx, state) => ChangePasswordConfirmationPage(),
   );
 
+  static GoRoute register = GoRoute(
+    name: "register",
+    path: "register",
+    builder: (ctx, state) {
+      CommonNavigator.go(ctx, CommonNavigator.sign, extra: {"register": true});
+      return Container();
+    },
+  );
+
   static GoRoute sign = GoRoute(
     name: "sign",
     path: "/sign",
@@ -48,7 +57,7 @@ class CommonNavigator {
         isRegisterPage: args?["register"],
       );
     },
-    routes: [lostPassword],
+    routes: [lostPassword, register],
   );
 
   static GoRoute cgu = GoRoute(
