@@ -43,7 +43,7 @@ class CommonNavigator {
     name: "register",
     path: "register",
     builder: (ctx, state) {
-      CommonNavigator.go(ctx, CommonNavigator.sign, extra: {"register": true});
+      CommonNavigator.go(ctx, CommonNavigator.sign);
       return Container();
     },
   );

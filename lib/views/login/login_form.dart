@@ -52,7 +52,7 @@ class _LoginFormState extends State<LoginForm> {
               type: LenraComponentType.secondary,
               text: "Create my account",
               onPressed: () {
-                CommonNavigator.go(context, CommonNavigator.sign, extra: {"register": true});
+                CommonNavigator.go(context, CommonNavigator.sign);
               },
             ),
           ),
