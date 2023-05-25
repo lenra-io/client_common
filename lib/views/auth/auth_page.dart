@@ -36,18 +36,8 @@ class _AppAuthPageState extends State<AppAuthPage> {
     print("appServiceName $appServiceName");
 
     return SimplePage(
-      header: appServiceName != null ? Container() : null,
-      child: LenraFlex(
-        spacing: 32,
-        direction: Axis.vertical,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        fillParent: true,
-        children: [
-          appHeader(),
-          AuthPageForm(widget.isRegisterPage),
-        ],
-      ),
+      header: appServiceName != null ? appHeader() : null,
+      child: AuthPageForm(widget.isRegisterPage),
     );
   }
 
