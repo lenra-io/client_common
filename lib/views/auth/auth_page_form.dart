@@ -280,19 +280,12 @@ class _AuthPageFormState extends State<AuthPageForm> {
   void submit() {
     if (_formKey.currentState!.validate()) {
       AuthModel authModel = context.read<AuthModel>();
-      if (isRegisterPage) {
-        authModel.register(email, password).then((_) {
-          GoRouter.of(context).go(context.read<AuthModel>().redirectToRoute ?? '/');
-        }).catchError((error) {
-          logger.warning(error);
-        });
-      } else {
-        authModel.login(email, password, keep).then((_) {
-          GoRouter.of(context).go(context.read<AuthModel>().redirectToRoute ?? '/');
-        }).catchError((error) {
-          logger.warning(error);
-        });
-      }
+      final future = isRegisterPage ? authModel.register(email, password) : authModel.login(email, password, keep);
+      future.then((_) {
+        GoRouter.of(context).go(context.read<AuthModel>().redirectToRoute ?? '/');
+      }).catchError((error) {
+        logger.warning(error);
+      });
     }
   }
 }
