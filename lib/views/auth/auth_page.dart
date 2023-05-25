@@ -42,71 +42,72 @@ class _AppAuthPageState extends State<AppAuthPage> {
   }
 
   Widget appHeader() {
-    if (appServiceName != null) {
-      return FutureBuilder(
-        future: ApplicationApi.getAppByServiceName(appServiceName!),
-        builder: (context, AsyncSnapshot<AppResponse> snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
-          } else {
-            return LenraFlex(
-              direction: Axis.vertical,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              spacing: 32,
-              children: [
-                Container(
-                  width: 100,
-                  height: 100,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(6),
-                    color: Color.fromARGB(255, 187, 234, 255),
-                  ),
-                  child: LenraText(
-                    text: snapshot.data?.name?[0].toUpperCase() ?? "A",
-                    style: TextStyle(
-                      fontSize: 80,
-                      fontWeight: FontWeight.bold,
-                      color: LenraColorThemeData.lenraBlue,
-                    ),
+    if (appServiceName == null) {
+      return Container();
+    }
+
+    return FutureBuilder(
+      future: ApplicationApi.getAppByServiceName(appServiceName!),
+      builder: (context, AsyncSnapshot<AppResponse> snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return CircularProgressIndicator();
+        } else {
+          return LenraFlex(
+            direction: Axis.vertical,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            spacing: 32,
+            children: [
+              Container(
+                width: 100,
+                height: 100,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(6),
+                  color: Color.fromARGB(255, 187, 234, 255),
+                ),
+                child: LenraText(
+                  text: snapshot.data?.name?[0].toUpperCase() ?? "A",
+                  style: TextStyle(
+                    fontSize: 80,
+                    fontWeight: FontWeight.bold,
+                    color: LenraColorThemeData.lenraBlue,
                   ),
                 ),
-                LenraFlex(
-                  direction: Axis.vertical,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    LenraText(
-                      text: snapshot.data?.name ?? "App",
-                      style: themeData.lenraTextThemeData.headline1,
-                    ),
-                    LenraFlex(
-                      spacing: 8,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        LenraText(text: "by"),
-                        Image.asset(
-                          "assets/images/logo-horizontal-black.png",
-                          scale: 1.25,
-                        ),
-                        IconButton(
-                          onPressed: () async {
-                            final Uri url = Uri.parse('https://lenra.io');
-                            if (!await launchUrl(url)) {
-                              throw Exception('Could not launch $url');
-                            }
-                          },
-                          icon: Icon(Icons.info_outline),
-                        ),
-                      ],
-                    ),
-                  ],
-                )
-              ],
-            );
-          }
-        },
-      );
-    }
-    return Container();
+              ),
+              LenraFlex(
+                direction: Axis.vertical,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  LenraText(
+                    text: snapshot.data?.name ?? "App",
+                    style: themeData.lenraTextThemeData.headline1,
+                  ),
+                  LenraFlex(
+                    spacing: 8,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      LenraText(text: "by"),
+                      Image.asset(
+                        "assets/images/logo-horizontal-black.png",
+                        scale: 1.25,
+                      ),
+                      IconButton(
+                        onPressed: () async {
+                          final Uri url = Uri.parse('https://lenra.io');
+                          if (!await launchUrl(url)) {
+                            throw Exception('Could not launch $url');
+                          }
+                        },
+                        icon: Icon(Icons.info_outline),
+                      ),
+                    ],
+                  ),
+                ],
+              )
+            ],
+          );
+        }
+      },
+    );
   }
 }
