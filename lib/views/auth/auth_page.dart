@@ -41,9 +41,9 @@ class _AuthPageState extends State<AuthPage> {
     );
   }
 
-  Widget appHeader() {
+  Widget? appHeader() {
     if (appServiceName == null) {
-      return Container();
+      return null;
     }
 
     return FutureBuilder(
@@ -51,6 +51,8 @@ class _AuthPageState extends State<AuthPage> {
       builder: (context, AsyncSnapshot<AppResponse> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return CircularProgressIndicator();
+        } else if (snapshot.hasError) {
+          return Container();
         } else {
           return LenraFlex(
             direction: Axis.vertical,
