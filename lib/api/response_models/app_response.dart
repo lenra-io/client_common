@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 
 class AppResponse extends ApiResponse {
   int? id;
-  String? name;
-  String? serviceName;
+  String name;
+  String serviceName;
   IconData? icon;
-  Color? color;
+  Color color;
   String? repository;
   String? repositoryBranch;
 
