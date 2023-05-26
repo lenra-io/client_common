@@ -53,7 +53,7 @@ class CommonNavigator {
     path: "/sign",
     builder: (ctx, state) {
       Map<String, dynamic>? args = state.extra as Map<String, dynamic>?;
-      return AppAuthPage(
+      return AuthPage(
         isRegisterPage: args?["register"],
       );
     },

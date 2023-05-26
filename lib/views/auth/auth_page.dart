@@ -10,15 +10,15 @@ import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class AppAuthPage extends StatefulWidget {
+class AuthPage extends StatefulWidget {
   final bool? isRegisterPage;
-  AppAuthPage({Key? key, this.isRegisterPage}) : super(key: key);
+  AuthPage({Key? key, this.isRegisterPage}) : super(key: key);
 
   @override
-  State<AppAuthPage> createState() => _AppAuthPageState();
+  State<AuthPage> createState() => _AuthPageState();
 }
 
-class _AppAuthPageState extends State<AppAuthPage> {
+class _AuthPageState extends State<AuthPage> {
   final logger = Logger('AuthPage');
 
   var themeData = LenraThemeData();
