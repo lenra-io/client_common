@@ -81,7 +81,7 @@ Widget build(BuildContext context) {
     backInkAction: () =&gt; {
       context.read&lt;AuthModel&gt;().accessToken = null,
       context.read&lt;AuthModel&gt;().user = null,
-      CommonNavigator.go(context, CommonNavigator.login)
+      CommonNavigator.go(context, CommonNavigator.sign, extra: {&quot;register&quot;: false})
     },
   );
 }</code></pre>
