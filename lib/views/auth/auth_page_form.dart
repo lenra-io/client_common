@@ -189,6 +189,7 @@ class _AuthPageFormState extends State<AuthPageForm> {
   }
 
   Widget loginForm() {
+    var themeData = LenraThemeData();
     return Form(
       key: _formKey,
       child: LenraFlex(
@@ -251,14 +252,29 @@ class _AuthPageFormState extends State<AuthPageForm> {
             direction: Axis.vertical,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              LenraButton(
+              TextButton(
                 onPressed: !isLogging
                     ? () {
                         submit();
                       }
                     : null,
-                disabled: isLogging ? true : false,
-                text: "Login",
+                child: LenraText(text: "Login", style: TextStyle(color: Colors.white)),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.resolveWith((states) {
+                    if (states.contains(MaterialState.disabled)) {
+                      return themeData.lenraColorThemeData.primaryBackgroundDisabledColor;
+                    } else if (states.contains(MaterialState.hovered)) {
+                      return themeData.lenraColorThemeData.primaryBackgroundHoverColor;
+                    }
+                    return themeData.lenraColorThemeData.primaryBackgroundColor;
+                  }),
+                  shape: MaterialStateProperty.all(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                  ),
+                  fixedSize: MaterialStateProperty.all(Size(136, 36)),
+                ),
               ),
               Container(
                 padding: EdgeInsets.only(top: 10.0),
