@@ -68,7 +68,7 @@ class _AuthPageState extends State<AuthPage> {
                   color: Color.fromARGB(255, 187, 234, 255),
                 ),
                 child: LenraText(
-                  text: snapshot.data?.name?[0].toUpperCase() ?? "A",
+                  text: snapshot.data?.name[0].toUpperCase() ?? "A",
                   style: TextStyle(
                     fontSize: 80,
                     fontWeight: FontWeight.bold,
