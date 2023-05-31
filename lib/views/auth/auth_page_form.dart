@@ -105,7 +105,7 @@ class _AuthPageFormState extends State<AuthPageForm> {
                   }
                 },
                 child: LenraText(
-                  text: "Log in",
+                  text: "Login",
                   style: !isRegisterPage
                       ? TextStyle(color: LenraColorThemeData.lenraWhite)
                       : TextStyle(color: LenraColorThemeData.lenraBlue),
@@ -230,6 +230,7 @@ class _AuthPageFormState extends State<AuthPageForm> {
             },
           ),
           LenraFlex(
+            fillParent: true,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               LenraCheckbox(
@@ -250,12 +251,14 @@ class _AuthPageFormState extends State<AuthPageForm> {
             direction: Axis.vertical,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              LoadingButton(
-                text: "Log in",
-                onPressed: () {
-                  submit();
-                },
-                loading: isLogging,
+              LenraButton(
+                onPressed: !isLogging
+                    ? () {
+                        submit();
+                      }
+                    : null,
+                disabled: isLogging ? true : false,
+                text: "Login",
               ),
               Container(
                 padding: EdgeInsets.only(top: 10.0),
