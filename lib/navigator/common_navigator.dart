@@ -1,11 +1,10 @@
 import 'package:client_common/navigator/guard.dart';
+import 'package:client_common/views/auth/auth_page.dart';
 import 'package:client_common/views/cgu/cgu_page.dart';
 import 'package:client_common/views/cgu/cgu_page_fr.dart';
-import 'package:client_common/views/login/login_page.dart';
 import 'package:client_common/views/profile/change_lost_password_page.dart';
 import 'package:client_common/views/profile/change_password_confirmation_page.dart';
 import 'package:client_common/views/profile/recovery_page.dart';
-import 'package:client_common/views/register/register_page.dart';
 import 'package:client_common/views/verify_code/verifiying_code_page.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
@@ -40,19 +39,25 @@ class CommonNavigator {
     builder: (ctx, state) => ChangePasswordConfirmationPage(),
   );
 
-  static GoRoute login = GoRoute(
-    name: "login",
-    path: "/sign",
-    redirect: (context, state) => Guard.guards(context, [Guard.checkUnauthenticated]),
-    builder: (ctx, state) => LoginPage(),
-    routes: [lostPassword, register],
-  );
-
   static GoRoute register = GoRoute(
     name: "register",
     path: "register",
-    redirect: (context, state) => Guard.guards(context, [Guard.checkUnauthenticated]),
-    builder: (ctx, state) => RegisterPage(),
+    builder: (ctx, state) {
+      CommonNavigator.go(ctx, CommonNavigator.sign);
+      return Container();
+    },
+  );
+
+  static GoRoute sign = GoRoute(
+    name: "sign",
+    path: "/sign",
+    builder: (ctx, state) {
+      Map<String, dynamic>? args = state.extra as Map<String, dynamic>?;
+      return AuthPage(
+        isRegisterPage: args?["register"],
+      );
+    },
+    routes: [lostPassword, register],
   );
 
   static GoRoute cgu = GoRoute(
@@ -88,7 +93,7 @@ class CommonNavigator {
     routes: [
       changeLostPassword,
       changePasswordConfirmation,
-      login,
+      sign,
       cgu,
       userValidation,
     ],

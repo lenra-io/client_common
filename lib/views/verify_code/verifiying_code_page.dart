@@ -19,7 +19,7 @@ class VerifyingCodePage extends StatelessWidget {
       backInkAction: () => {
         context.read<AuthModel>().accessToken = null,
         context.read<AuthModel>().user = null,
-        CommonNavigator.go(context, CommonNavigator.login)
+        CommonNavigator.go(context, CommonNavigator.sign, extra: {"register": false})
       },
     );
   }
