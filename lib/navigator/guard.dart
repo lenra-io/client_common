@@ -96,10 +96,12 @@ class Guard {
   }
 
   static String _toAuth(BuildContext context) {
-    try {
-      context.read<AuthModel>().redirectToRoute = Uri.base.path;
-    } catch (_) {
-      context.read<AuthModel>().redirectToRoute = "/";
+    if (context.read<AuthModel>().redirectToRoute == null) {
+      try {
+        context.read<AuthModel>().redirectToRoute = Uri.base.path;
+      } catch (_) {
+        context.read<AuthModel>().redirectToRoute = "/";
+      }
     }
 
     return CommonNavigator.sign.path;
