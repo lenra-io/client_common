@@ -1,5 +1,7 @@
+import 'package:client_common/api/response_models/api_error.dart';
 import 'package:client_common/models/auth_model.dart';
 import 'package:client_common/navigator/common_navigator.dart';
+import 'package:client_common/views/error.dart';
 import 'package:client_common/views/loading_button.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -45,6 +47,9 @@ class _AuthPageFormState extends State<AuthPageForm> {
       (m) => isRegisterPage ? m.registerStatus.isFetching() : m.loginStatus.isFetching(),
     );
 
+    ApiError? loginError = context.select<AuthModel, ApiError?>((m) => m.loginStatus.error);
+    ApiError? registerError = context.select<AuthModel, ApiError?>((m) => m.registerStatus.error);
+
     redirectTo = context.read<AuthModel>().redirectToRoute;
     print("redirectTo $redirectTo");
     RegExp regExp = RegExp(r"app\/([a-fA-F0-9-]{36})");
@@ -66,7 +71,7 @@ class _AuthPageFormState extends State<AuthPageForm> {
           ),
           child: LenraFlex(
             spacing: 16,
-            children: [
+            children: <Widget>[
               TextButton(
                 onPressed: () {
                   if (!isRegisterPage) {
@@ -128,12 +133,12 @@ class _AuthPageFormState extends State<AuthPageForm> {
             ],
           ),
         ),
-        isRegisterPage ? registerForm() : loginForm(),
+        isRegisterPage ? registerForm(registerError) : loginForm(loginError),
       ],
     );
   }
 
-  Widget registerForm() {
+  Widget registerForm(ApiError? registerError) {
     return Form(
       key: _formKey,
       child: LenraFlex(
@@ -176,6 +181,7 @@ class _AuthPageFormState extends State<AuthPageForm> {
               });
             },
           ),
+          if (registerError != null) Error(registerError),
           LoadingButton(
             text: "Create my account",
             onPressed: () {
@@ -188,7 +194,7 @@ class _AuthPageFormState extends State<AuthPageForm> {
     );
   }
 
-  Widget loginForm() {
+  Widget loginForm(ApiError? loginError) {
     var themeData = LenraThemeData();
     return Form(
       key: _formKey,
@@ -248,6 +254,7 @@ class _AuthPageFormState extends State<AuthPageForm> {
               ),
             ],
           ),
+          if (loginError != null) Error(loginError),
           LenraFlex(
             direction: Axis.vertical,
             crossAxisAlignment: CrossAxisAlignment.center,
