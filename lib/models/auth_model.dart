@@ -19,8 +19,8 @@ class AuthModel extends ChangeNotifier {
   /// The access token of the user.
   String? accessToken;
   User? user;
-  final Status<AuthResponse> registerStatus = Status();
-  final Status<AuthResponse> loginStatus = Status();
+  Status<AuthResponse> registerStatus = Status();
+  Status<AuthResponse> loginStatus = Status();
   final Status<AuthResponse> refreshStatus = Status();
   final Status<AuthResponse> validateUserStatus = Status();
   final Status<EmptyResponse> resendRegistrationTokenStatus = Status();
