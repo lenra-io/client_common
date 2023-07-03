@@ -1,4 +1,5 @@
 import 'package:client_common/models/auth_model.dart';
+import 'package:client_common/models/status.dart';
 import 'package:client_common/views/auth/login_form.dart';
 import 'package:client_common/views/auth/register_form.dart';
 import 'package:flutter/material.dart';
@@ -58,6 +59,8 @@ class _AuthPageFormState extends State<AuthPageForm> {
                 onPressed: () {
                   if (!isRegisterPage) {
                     setState(() {
+                      context.read<AuthModel>().loginStatus = Status();
+                      context.read<AuthModel>().registerStatus = Status();
                       isRegisterPage = true;
                     });
                   }
@@ -87,6 +90,8 @@ class _AuthPageFormState extends State<AuthPageForm> {
                 onPressed: () {
                   if (isRegisterPage) {
                     setState(() {
+                      context.read<AuthModel>().loginStatus = Status();
+                      context.read<AuthModel>().registerStatus = Status();
                       isRegisterPage = false;
                     });
                   }
