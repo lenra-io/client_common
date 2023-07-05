@@ -73,13 +73,14 @@ class LenraOauth extends ChangeNotifier {
   Client? client;
 
   void createClient(
-    String identifier,
     Uri authorizationEndpoint,
     Uri tokenEndpoint,
     Uri redirectUrl,
-    String? secret,
   ) async {
     // TODO: Fetch credentials from storage
+
+    String identifier = String.fromEnvironment('OAUTH_CLIENT_ID');
+    String secret = String.fromEnvironment('OAUTH_CLIENT_SECRET');
 
     AuthorizationCodeGrant grant = AuthorizationCodeGrant(
       identifier,
