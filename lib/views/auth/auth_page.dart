@@ -1,6 +1,7 @@
 import 'package:client_common/api/application_api.dart';
 import 'package:client_common/api/response_models/app_response.dart';
 import 'package:client_common/models/auth_model.dart';
+import 'package:client_common/oauth/oauth_model.dart';
 import 'package:client_common/views/auth/auth_page_form.dart';
 import 'package:client_common/views/simple_page.dart';
 import 'package:flutter/material.dart';
@@ -34,6 +35,9 @@ class _AuthPageState extends State<AuthPage> {
     final match = regExp.firstMatch(redirectTo ?? "/");
     appServiceName = match?.group(1);
     print("appServiceName $appServiceName");
+
+    print("AUTH PAGE ACCESS TOKEN FROM OAUTH");
+    print(context.read<OAuthModel>().accessToken);
 
     return SimplePage(
       header: appServiceName != null ? appHeader() : null,

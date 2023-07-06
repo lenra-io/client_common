@@ -6,7 +6,9 @@ import 'package:client_common/models/auth_model.dart';
 import 'package:client_common/models/cgu_model.dart';
 import 'package:client_common/models/user_application_model.dart';
 import 'package:client_common/navigator/common_navigator.dart';
+import 'package:client_common/oauth/oauth_model.dart';
 import 'package:flutter/material.dart';
+import 'package:oauth2_client/access_token_response.dart';
 import 'package:provider/provider.dart';
 
 /// This class defines guards that are used to stop the user from accessing certain pages.
@@ -44,15 +46,28 @@ class Guard {
   static Future<bool> Function(BuildContext) _isAuthenticated(bool mustBeAuthenticated) {
     return (BuildContext context) async {
       AuthModel authModel = context.read<AuthModel>();
-      if (!authModel.isAuthenticated() && authModel.refreshStatus.isNone()) {
-        try {
-          await authModel.refresh();
-        } catch (e) {
-          return authModel.isAuthenticated() == mustBeAuthenticated;
-        }
+      // if (!authModel.isAuthenticated() && authModel.refreshStatus.isNone()) {
+      //   try {
+      //     await authModel.refresh();
+      //   } catch (e) {
+      //     return authModel.isAuthenticated() == mustBeAuthenticated;
+      //   }
+      // }
+
+      // return authModel.isAuthenticated() == mustBeAuthenticated;
+
+      print("CHECK AUTHENTICATED GUARD");
+
+      OAuthModel oauthModel = context.read<OAuthModel>();
+      if (!authModel.isAuthenticated()) {
+        print("NOT AUTHENTICATED");
+        AccessTokenResponse? response = await oauthModel.authenticate();
+        print("ACCESS TOKEN FROM OAUTH");
+        print(response);
+        return true;
       }
 
-      return authModel.isAuthenticated() == mustBeAuthenticated;
+      return false;
     };
   }
 

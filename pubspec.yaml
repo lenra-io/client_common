@@ -28,8 +28,7 @@ dependencies:
       url: https://github.com/lenra-io/lenra_components.git
       ref: v1.0.0-beta.52
   url_launcher: ^6.1.11
-  oauth2: ^2.0.2
-  uni_links: ^0.5.1
+  oauth2_client: ^3.2.0
 flutter:
   uses-material-design: true
   assets:
