@@ -8,11 +8,17 @@ import 'package:client_common/api/request_models/validate_dev_request.dart';
 import 'package:client_common/api/request_models/validate_user_request.dart';
 import 'package:client_common/api/response_models/auth_response.dart';
 import 'package:client_common/api/response_models/empty_response.dart';
+import 'package:client_common/api/response_models/user_response.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 /// All of the user requests that can be done on Lenra.
 class UserApi {
+  static Future<UserResponse> me() => LenraApi.instance.get(
+        "/me",
+        responseMapper: (json, headers) => UserResponse.fromJson(json, headers),
+      );
+
   static Future<AuthResponse> register(RegisterRequest body) => LenraAuth.instance.post(
         "/register",
         body: body,

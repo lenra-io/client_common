@@ -1,8 +1,5 @@
-import 'package:client_common/api/lenra_http_client.dart';
 import 'package:client_common/api/request_models/ask_code_lost_password_request.dart';
 import 'package:client_common/api/request_models/change_password_request.dart';
-import 'package:client_common/api/request_models/login_request.dart';
-import 'package:client_common/api/request_models/register_request.dart';
 import 'package:client_common/api/request_models/send_code_lost_password_request.dart';
 import 'package:client_common/api/request_models/validate_dev_request.dart';
 import 'package:client_common/api/request_models/validate_user_request.dart';
@@ -13,11 +10,12 @@ import 'package:client_common/api/user_api.dart';
 import 'package:client_common/models/status.dart';
 import 'package:client_common/navigator/common_navigator.dart';
 import 'package:flutter/material.dart';
+import 'package:oauth2_client/access_token_response.dart';
 
 /// The model that manages the authentication of the user.
 class AuthModel extends ChangeNotifier {
   /// The access token of the user.
-  String? accessToken;
+  AccessTokenResponse? accessToken;
   User? user;
   Status<AuthResponse> registerStatus = Status();
   Status<AuthResponse> loginStatus = Status();
@@ -47,30 +45,27 @@ class AuthModel extends ChangeNotifier {
 
   /// Handle the response of authentication requests.
   AuthResponse _handleAuthResponse(AuthResponse res) {
-    accessToken = res.accessToken;
-    // Set the token for the global API instance
-    LenraApi.instance.token = accessToken;
     user = res.user;
     return res;
   }
 
-  Future<AuthResponse> register(String email, String password) async {
-    var res = await registerStatus.handle(() => UserApi.register(RegisterRequest(email, password)), notifyListeners);
-    _handleAuthResponse(res);
-    return res;
-  }
+  // Future<AuthResponse> register(String email, String password) async {
+  //   var res = await registerStatus.handle(() => UserApi.register(RegisterRequest(email, password)), notifyListeners);
+  //   _handleAuthResponse(res);
+  //   return res;
+  // }
 
-  Future<AuthResponse> login(String email, String password, bool keep) async {
-    var res = await loginStatus.handle(() => UserApi.login(LoginRequest(email, password, keep)), notifyListeners);
-    _handleAuthResponse(res);
-    return res;
-  }
+  // Future<AuthResponse> login(String email, String password, bool keep) async {
+  //   var res = await loginStatus.handle(() => UserApi.login(LoginRequest(email, password, keep)), notifyListeners);
+  //   _handleAuthResponse(res);
+  //   return res;
+  // }
 
-  Future<AuthResponse> refresh() async {
-    var res = await refreshStatus.handle(UserApi.refresh, notifyListeners);
-    _handleAuthResponse(res);
-    return res;
-  }
+  // Future<AuthResponse> refresh() async {
+  //   var res = await refreshStatus.handle(UserApi.refresh, notifyListeners);
+  //   _handleAuthResponse(res);
+  //   return res;
+  // }
 
   Future<AuthResponse> validateUser(String code) async {
     var res = await validateUserStatus.handle(() => UserApi.validateUser(ValidateUserRequest(code)), notifyListeners);

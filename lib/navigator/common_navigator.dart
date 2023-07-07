@@ -1,5 +1,5 @@
 import 'package:client_common/navigator/guard.dart';
-import 'package:client_common/views/auth/auth_page.dart';
+import 'package:client_common/views/auth/oauth_page.dart';
 import 'package:client_common/views/cgu/cgu_page.dart';
 import 'package:client_common/views/cgu/cgu_page_fr.dart';
 import 'package:client_common/views/profile/change_lost_password_page.dart';
@@ -52,10 +52,7 @@ class CommonNavigator {
     name: "sign",
     path: "/sign",
     builder: (ctx, state) {
-      Map<String, dynamic>? args = state.extra as Map<String, dynamic>?;
-      return AuthPage(
-        isRegisterPage: args?["register"],
-      );
+      return OAuthPage();
     },
     routes: [lostPassword, register],
   );
