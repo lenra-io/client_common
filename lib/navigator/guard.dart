@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:client_common/api/response_models/app_response.dart';
-import 'package:client_common/api/response_models/user.dart';
 import 'package:client_common/models/auth_model.dart';
 import 'package:client_common/models/cgu_model.dart';
 import 'package:client_common/models/user_application_model.dart';
@@ -17,17 +16,9 @@ class Guard {
 
   Guard({required this.isValid, required this.onInvalid});
 
-  static const List<UserRole> _devOrMore = [UserRole.admin, UserRole.dev];
-  static const List<UserRole> _userOrMore = [UserRole.user, UserRole.admin, UserRole.dev];
-
-  static final Guard checkIsDev = Guard(isValid: _isDev, onInvalid: _becomeDev);
-  static final Guard checkIsNotDev = Guard(isValid: _isNotDev, onInvalid: _toHome);
   static final Guard checkUnauthenticated = Guard(isValid: _isAuthenticated(false), onInvalid: _toHome);
   static final Guard checkAuthenticated = Guard(isValid: _isAuthenticated(true), onInvalid: _toAuth);
   static final Guard checkNotHaveApp = Guard(isValid: _haveApp(false), onInvalid: _toHome);
-  static final Guard checkCguAccepted = Guard(isValid: _isCguAccepted(), onInvalid: _toCgu);
-  static final Guard checkIsUser = Guard(isValid: _isUser, onInvalid: _becomeUser);
-  static final Guard checkIsNotUser = Guard(isValid: _isNotUser, onInvalid: _toHome);
 
   static Future<String?> guards(BuildContext context, List<Guard> guards) async {
     for (Guard checker in guards) {
@@ -44,45 +35,11 @@ class Guard {
 
   static Future<bool> Function(BuildContext) _isAuthenticated(bool mustBeAuthenticated) {
     return (BuildContext context) async {
-      // AuthModel authModel = context.read<AuthModel>();
-      // if (!authModel.isAuthenticated() && authModel.refreshStatus.isNone()) {
-      //   try {
-      //     await authModel.refresh();
-      //   } catch (e) {
-      //     return authModel.isAuthenticated() == mustBeAuthenticated;
-      //   }
-      // }
-
-      // return authModel.isAuthenticated() == mustBeAuthenticated;
-
       OAuthModel oauthModel = context.read<OAuthModel>();
       // TODO: Is there a refresh feature on oauth2 ?
-      // if (!authModel.isAuthenticated()) {
-      //   return authModel.isAuthenticated() == mustBeAuthenticated;
-      // }
 
       return (oauthModel.accessToken != null) == mustBeAuthenticated;
     };
-  }
-
-  static Future<bool> _isUser(BuildContext context) async {
-    AuthModel authModel = context.read<AuthModel>();
-    return authModel.isOneOfRole(_userOrMore);
-  }
-
-  static Future<bool> _isNotUser(BuildContext context) async {
-    AuthModel authModel = context.read<AuthModel>();
-    return authModel.isOneOfRole(UserRole.values.where((ur) => !_userOrMore.contains(ur)).toList());
-  }
-
-  static Future<bool> _isDev(BuildContext context) async {
-    AuthModel authModel = context.read<AuthModel>();
-    return authModel.isOneOfRole(_devOrMore);
-  }
-
-  static Future<bool> _isNotDev(BuildContext context) async {
-    AuthModel authModel = context.read<AuthModel>();
-    return authModel.isOneOfRole(UserRole.values.where((ur) => !_devOrMore.contains(ur)).toList());
   }
 
   static Future<bool> Function(BuildContext) _haveApp(bool mustHaveApp) {
@@ -116,19 +73,7 @@ class Guard {
     return CommonNavigator.sign.path;
   }
 
-  static String _becomeDev(context) {
-    return CommonNavigator.validationDevRoute;
-  }
-
   static String _toHome(context) {
     return CommonNavigator.homeRoute;
-  }
-
-  static String _toCgu(context) {
-    return CommonNavigator.cgu.path;
-  }
-
-  static String _becomeUser(context) {
-    return CommonNavigator.userValidation.path;
   }
 }

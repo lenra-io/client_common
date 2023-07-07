@@ -1,11 +1,8 @@
 import 'package:client_common/navigator/guard.dart';
 import 'package:client_common/views/auth/oauth_page.dart';
-import 'package:client_common/views/cgu/cgu_page.dart';
-import 'package:client_common/views/cgu/cgu_page_fr.dart';
 import 'package:client_common/views/profile/change_lost_password_page.dart';
 import 'package:client_common/views/profile/change_password_confirmation_page.dart';
 import 'package:client_common/views/profile/recovery_page.dart';
-import 'package:client_common/views/verify_code/verifiying_code_page.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 
@@ -39,50 +36,13 @@ class CommonNavigator {
     builder: (ctx, state) => ChangePasswordConfirmationPage(),
   );
 
-  static GoRoute register = GoRoute(
-    name: "register",
-    path: "register",
-    builder: (ctx, state) {
-      CommonNavigator.go(ctx, CommonNavigator.sign);
-      return Container();
-    },
-  );
-
   static GoRoute sign = GoRoute(
     name: "sign",
     path: "/sign",
     builder: (ctx, state) {
       return OAuthPage();
     },
-    routes: [lostPassword, register],
-  );
-
-  static GoRoute cgu = GoRoute(
-    name: "cgu",
-    path: "/cgu",
-    redirect: (context, state) => Guard.guards(context, [Guard.checkAuthenticated]),
-    builder: (ctx, state) => CguPage(),
-    routes: [
-      cguFR,
-    ],
-  );
-
-  static GoRoute cguFR = GoRoute(
-    name: "cgu-fr",
-    path: "fr",
-    redirect: (context, state) => Guard.guards(context, [Guard.checkAuthenticated]),
-    builder: (ctx, state) => CguPageFr(),
-  );
-
-  static GoRoute userValidation = GoRoute(
-    name: "validation-user",
-    path: "/validation-user",
-    redirect: (context, state) => Guard.guards(context, [
-      Guard.checkAuthenticated,
-      Guard.checkCguAccepted,
-      Guard.checkIsNotUser,
-    ]),
-    builder: (ctx, state) => VerifyingCodePage(),
+    routes: [lostPassword],
   );
 
   static ShellRoute authRoutes = ShellRoute(
@@ -91,8 +51,6 @@ class CommonNavigator {
       changeLostPassword,
       changePasswordConfirmation,
       sign,
-      cgu,
-      userValidation,
     ],
   );
 

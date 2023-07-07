@@ -17,8 +17,7 @@ class AuthModel extends ChangeNotifier {
   /// The access token of the user.
   AccessTokenResponse? accessToken;
   User? user;
-  Status<AuthResponse> registerStatus = Status();
-  Status<AuthResponse> loginStatus = Status();
+
   final Status<AuthResponse> refreshStatus = Status();
   final Status<AuthResponse> validateUserStatus = Status();
   final Status<EmptyResponse> resendRegistrationTokenStatus = Status();
@@ -48,24 +47,6 @@ class AuthModel extends ChangeNotifier {
     user = res.user;
     return res;
   }
-
-  // Future<AuthResponse> register(String email, String password) async {
-  //   var res = await registerStatus.handle(() => UserApi.register(RegisterRequest(email, password)), notifyListeners);
-  //   _handleAuthResponse(res);
-  //   return res;
-  // }
-
-  // Future<AuthResponse> login(String email, String password, bool keep) async {
-  //   var res = await loginStatus.handle(() => UserApi.login(LoginRequest(email, password, keep)), notifyListeners);
-  //   _handleAuthResponse(res);
-  //   return res;
-  // }
-
-  // Future<AuthResponse> refresh() async {
-  //   var res = await refreshStatus.handle(UserApi.refresh, notifyListeners);
-  //   _handleAuthResponse(res);
-  //   return res;
-  // }
 
   Future<AuthResponse> validateUser(String code) async {
     var res = await validateUserStatus.handle(() => UserApi.validateUser(ValidateUserRequest(code)), notifyListeners);
