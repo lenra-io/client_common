@@ -14,7 +14,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 /// All of the user requests that can be done on Lenra.
 class UserApi {
-  static Future<UserResponse> me() => LenraApi.instance.get(
+  static Future<UserResponse> me() => LenraAuth.instance.get(
         "/me",
         responseMapper: (json, headers) => UserResponse.fromJson(json, headers),
       );
