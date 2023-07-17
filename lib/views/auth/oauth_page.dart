@@ -35,15 +35,17 @@ class OAuthPage extends StatelessWidget {
 
                 // Accept latest CGU if not already accepted
                 // This is done by default when the user registers as long as the oauth does not implement it
+                // TODO: Implement oauth cgu acceptance
                 print('ACCEPTING CGU MANUALLY FOR THE MOMENT');
                 if (!(await cguModel.userAcceptedLatestCgu()).accepted) {
                   CguResponse latestCGUResponse = await cguModel.getLatestCgu();
                   await cguModel.acceptCgu(latestCGUResponse.id);
                 }
 
-                // TODO: Update the role of the user
                 AuthModel authModel = context.read<AuthModel>();
 
+                // TODO: Implement oauth role validation?
+                print('SETTING USER ROLE TO DEV MANUALLY FOR THE MOMENT');
                 if (!authModel.isOneOfRole([UserRole.admin, UserRole.dev])) {
                   authModel.validateDev();
                 }
