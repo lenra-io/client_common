@@ -1,5 +1,6 @@
 import 'package:client_common/api/lenra_http_client.dart';
 import 'package:client_common/api/response_models/cgu_response.dart';
+import 'package:client_common/api/response_models/user.dart';
 import 'package:client_common/models/auth_model.dart';
 import 'package:client_common/models/cgu_model.dart';
 import 'package:client_common/oauth/oauth_model.dart';
@@ -34,14 +35,20 @@ class OAuthPage extends StatelessWidget {
 
                 // Accept latest CGU if not already accepted
                 // This is done by default when the user registers as long as the oauth does not implement it
+                print('ACCEPTING CGU MANUALLY FOR THE MOMENT');
                 if (!(await cguModel.userAcceptedLatestCgu()).accepted) {
                   CguResponse latestCGUResponse = await cguModel.getLatestCgu();
                   await cguModel.acceptCgu(latestCGUResponse.id);
                 }
 
                 // TODO: Update the role of the user
+                AuthModel authModel = context.read<AuthModel>();
 
-                GoRouter.of(context).go(context.read<AuthModel>().redirectToRoute ?? '/');
+                if (!authModel.isOneOfRole([UserRole.admin, UserRole.dev])) {
+                  authModel.validateDev();
+                }
+
+                GoRouter.of(context).go(authModel.redirectToRoute ?? '/');
               }
             },
             text: 'Sign in to Lenra',
