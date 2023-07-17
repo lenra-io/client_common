@@ -1,8 +1,5 @@
 import 'package:client_common/api/lenra_http_client.dart';
-import 'package:client_common/api/response_models/cgu_response.dart';
-import 'package:client_common/api/response_models/user.dart';
 import 'package:client_common/models/auth_model.dart';
-import 'package:client_common/models/cgu_model.dart';
 import 'package:client_common/oauth/oauth_model.dart';
 import 'package:client_common/views/simple_page.dart';
 import 'package:flutter/material.dart';
@@ -28,29 +25,11 @@ class OAuthPage extends StatelessWidget {
                 // Set the token for the global API instance
                 LenraApi.instance.token = response.accessToken;
 
+                // TODO: Should i uncomment this code ?
                 // UserResponse user = await UserApi.me();
                 // context.read<AuthModel>().user = user.user;
 
-                CguModel cguModel = context.read<CguModel>();
-
-                // Accept latest CGU if not already accepted
-                // This is done by default when the user registers as long as the oauth does not implement it
-                // TODO: Implement oauth cgu acceptance
-                print('ACCEPTING CGU MANUALLY FOR THE MOMENT');
-                if (!(await cguModel.userAcceptedLatestCgu()).accepted) {
-                  CguResponse latestCGUResponse = await cguModel.getLatestCgu();
-                  await cguModel.acceptCgu(latestCGUResponse.id);
-                }
-
-                AuthModel authModel = context.read<AuthModel>();
-
-                // TODO: Implement oauth role validation?
-                print('SETTING USER ROLE TO DEV MANUALLY FOR THE MOMENT');
-                if (!authModel.isOneOfRole([UserRole.admin, UserRole.dev])) {
-                  authModel.validateDev();
-                }
-
-                GoRouter.of(context).go(authModel.redirectToRoute ?? '/');
+                GoRouter.of(context).go(context.read<AuthModel>().redirectToRoute ?? '/');
               }
             },
             text: 'Sign in to Lenra',

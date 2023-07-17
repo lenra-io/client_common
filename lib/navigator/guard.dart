@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:client_common/api/response_models/app_response.dart';
 import 'package:client_common/models/auth_model.dart';
-import 'package:client_common/models/cgu_model.dart';
 import 'package:client_common/models/user_application_model.dart';
 import 'package:client_common/navigator/common_navigator.dart';
 import 'package:client_common/oauth/oauth_model.dart';
@@ -50,14 +49,6 @@ class Guard {
       } catch (e) {
         return false;
       }
-    };
-  }
-
-  static Future<bool> Function(BuildContext) _isCguAccepted() {
-    return (BuildContext context) async {
-      CguModel cguModel = context.read<CguModel>();
-      bool res = await cguModel.userAcceptedLatestCgu().then((value) => value.accepted);
-      return res;
     };
   }
 
