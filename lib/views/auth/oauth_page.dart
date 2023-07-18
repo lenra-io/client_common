@@ -13,10 +13,10 @@ class OAuthPage extends StatefulWidget {
   const OAuthPage({Key? key, required this.child}) : super(key: key);
 
   @override
-  _OAuthPageState createState() => _OAuthPageState();
+  OAuthPageState createState() => OAuthPageState();
 }
 
-class _OAuthPageState extends State<OAuthPage> {
+class OAuthPageState extends State<OAuthPage> {
   @override
   Widget build(BuildContext context) {
     if (!_isAuthenticated(context)) {
