@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io' show Platform;
 
 import 'package:client_common/oauth/oauth.dart';
 import 'package:flutter/widgets.dart';
@@ -20,7 +21,12 @@ class OAuthModel extends ChangeNotifier {
     OAuth2Helper oauth2Helper = OAuth2Helper(
       LenraOAuth2Client(
         redirectUri: redirectUrl,
-        customUriScheme: "http",
+        // TODO: On Windows/Linux it should be set to `http://localhost:{port}`
+        // TODO: On web it should be `http`
+        // TODO: On Android i don't know what is the best solution, it seems that `http` is working properly
+        customUriScheme: getPlatformCustomUriScheme(),
+
+        // "http",
       ),
       grantType: OAuth2Helper.authorizationCode,
       clientId: clientId,
@@ -32,5 +38,15 @@ class OAuthModel extends ChangeNotifier {
     notifyListeners();
 
     return completer.future;
+  }
+
+  String getPlatformCustomUriScheme() {
+    if (Platform.isWindows || Platform.isLinux) {
+      print("WINDOWS OR LINUX");
+      return const String.fromEnvironment("OAUTH_REDIRECT_BASE_URL", defaultValue: "http://localhost:10000");
+    } else {
+      print("HTTP");
+      return "http";
+    }
   }
 }
