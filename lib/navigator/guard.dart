@@ -1,10 +1,8 @@
 import 'dart:async';
 
 import 'package:client_common/api/response_models/app_response.dart';
-import 'package:client_common/models/auth_model.dart';
 import 'package:client_common/models/user_application_model.dart';
 import 'package:client_common/navigator/common_navigator.dart';
-import 'package:client_common/oauth/oauth_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,8 +13,6 @@ class Guard {
 
   Guard({required this.isValid, required this.onInvalid});
 
-  static final Guard checkUnauthenticated = Guard(isValid: _isAuthenticated(false), onInvalid: _toHome);
-  static final Guard checkAuthenticated = Guard(isValid: _isAuthenticated(true), onInvalid: _toAuth);
   static final Guard checkNotHaveApp = Guard(isValid: _haveApp(false), onInvalid: _toHome);
 
   static Future<String?> guards(BuildContext context, List<Guard> guards) async {
@@ -32,15 +28,6 @@ class Guard {
     return null;
   }
 
-  static Future<bool> Function(BuildContext) _isAuthenticated(bool mustBeAuthenticated) {
-    return (BuildContext context) async {
-      OAuthModel oauthModel = context.read<OAuthModel>();
-      // TODO: Is there a refresh feature on oauth2 ?
-
-      return (oauthModel.accessToken != null) == mustBeAuthenticated;
-    };
-  }
-
   static Future<bool> Function(BuildContext) _haveApp(bool mustHaveApp) {
     return (BuildContext context) async {
       try {
@@ -50,18 +37,6 @@ class Guard {
         return false;
       }
     };
-  }
-
-  static String _toAuth(BuildContext context) {
-    if (context.read<AuthModel>().redirectToRoute == null) {
-      try {
-        context.read<AuthModel>().redirectToRoute = Uri.base.path;
-      } catch (_) {
-        context.read<AuthModel>().redirectToRoute = "/";
-      }
-    }
-
-    return CommonNavigator.sign.path;
   }
 
   static String _toHome(context) {

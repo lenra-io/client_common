@@ -1,8 +1,7 @@
 import 'dart:async';
-import 'dart:io' show Platform;
 
 import 'package:client_common/oauth/oauth.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/foundation.dart';
 import 'package:oauth2_client/access_token_response.dart';
 import 'package:oauth2_client/oauth2_helper.dart';
 
@@ -41,7 +40,10 @@ class OAuthModel extends ChangeNotifier {
   }
 
   String getPlatformCustomUriScheme() {
-    if (Platform.isWindows || Platform.isLinux) {
+    // It is important to check for web first because web is also returning the TargetPlatform of the device.
+    if (kIsWeb) {
+      return "http";
+    } else if (defaultTargetPlatform == TargetPlatform.windows || defaultTargetPlatform == TargetPlatform.linux) {
       print("WINDOWS OR LINUX");
       return const String.fromEnvironment("OAUTH_REDIRECT_BASE_URL", defaultValue: "http://localhost:10000");
     } else {

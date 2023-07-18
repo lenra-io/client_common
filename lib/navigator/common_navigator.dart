@@ -1,5 +1,3 @@
-import 'package:client_common/navigator/guard.dart';
-import 'package:client_common/views/auth/oauth_page.dart';
 import 'package:client_common/views/profile/change_lost_password_page.dart';
 import 'package:client_common/views/profile/change_password_confirmation_page.dart';
 import 'package:client_common/views/profile/recovery_page.dart';
@@ -18,31 +16,19 @@ class CommonNavigator {
   static GoRoute changeLostPassword = GoRoute(
     name: "change-lost",
     path: "/change-lost",
-    redirect: (context, state) => Guard.guards(context, [Guard.checkUnauthenticated]),
     builder: (ctx, state) => ChangeLostPasswordPage(email: state.extra as String),
   );
 
   static GoRoute lostPassword = GoRoute(
     name: "lost",
-    path: "lost",
-    redirect: (context, state) => Guard.guards(context, [Guard.checkUnauthenticated]),
+    path: "/lost",
     builder: (ctx, state) => RecoveryPage(),
   );
 
   static GoRoute changePasswordConfirmation = GoRoute(
     name: "change-confirmation",
     path: "/change-confirmation",
-    redirect: (context, state) => Guard.guards(context, [Guard.checkUnauthenticated]),
     builder: (ctx, state) => ChangePasswordConfirmationPage(),
-  );
-
-  static GoRoute sign = GoRoute(
-    name: "sign",
-    path: "/sign",
-    builder: (ctx, state) {
-      return OAuthPage();
-    },
-    routes: [lostPassword],
   );
 
   static ShellRoute authRoutes = ShellRoute(
@@ -50,7 +36,7 @@ class CommonNavigator {
     routes: [
       changeLostPassword,
       changePasswordConfirmation,
-      sign,
+      lostPassword,
     ],
   );
 
