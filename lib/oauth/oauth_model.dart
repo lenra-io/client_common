@@ -7,17 +7,14 @@ import 'package:oauth2_client/oauth2_helper.dart';
 
 class OAuthModel extends ChangeNotifier {
   AccessTokenResponse? accessToken;
+  late OAuth2Helper helper;
 
   String clientId;
   String redirectUrl;
   List<String> scopes;
 
-  OAuthModel(this.clientId, this.redirectUrl, {this.scopes = const []}) : super();
-
-  Future<AccessTokenResponse?> authenticate() async {
-    Completer<AccessTokenResponse?> completer = Completer();
-
-    OAuth2Helper oauth2Helper = OAuth2Helper(
+  OAuthModel(this.clientId, this.redirectUrl, {this.scopes = const []}) {
+    helper = OAuth2Helper(
       LenraOAuth2Client(
         redirectUri: redirectUrl,
         // TODO: On Windows/Linux it should be set to `http://localhost:{port}`
@@ -31,12 +28,14 @@ class OAuthModel extends ChangeNotifier {
       clientId: clientId,
       scopes: scopes,
     );
+  }
 
-    accessToken = await oauth2Helper.getToken();
-    completer.complete(accessToken);
+  Future<AccessTokenResponse?> authenticate() async {
+    accessToken = await helper.getToken();
+
     notifyListeners();
 
-    return completer.future;
+    return accessToken;
   }
 
   String getPlatformCustomUriScheme() {

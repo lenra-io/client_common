@@ -19,42 +19,63 @@ class OAuthPage extends StatefulWidget {
 class OAuthPageState extends State<OAuthPage> {
   @override
   Widget build(BuildContext context) {
-    if (!_isAuthenticated(context)) {
-      return SimplePage(
-        child: Flex(
-          direction: Axis.vertical,
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            LenraButton(
-              onPressed: () async {
-                AccessTokenResponse? response = await context.read<OAuthModel>().authenticate();
-                if (response != null) {
-                  context.read<AuthModel>().accessToken = response;
-                  // Set the token for the global API instance
-                  LenraApi.instance.token = response.accessToken;
-
-                  // TODO: Should i uncomment this code ?
-                  // UserResponse user = await UserApi.me();
-                  // context.read<AuthModel>().user = user.user;
-
-                  setState(() {});
-                }
-              },
-              text: 'Sign in to Lenra',
-            )
-          ],
-        ),
-      );
-    } else {
-      return widget.child;
-    }
+    return FutureBuilder<bool>(
+      future: _isAuthenticated(context),
+      builder: ((context, snapshot) {
+        if (!(snapshot.data ?? false)) {
+          return SimplePage(
+            child: Flex(
+              direction: Axis.vertical,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                LenraButton(
+                  onPressed: () async {
+                    await authenticate();
+                    setState(() {});
+                  },
+                  text: 'Sign in to Lenra',
+                )
+              ],
+            ),
+          );
+        } else {
+          return widget.child;
+        }
+      }),
+    );
   }
 
-  bool _isAuthenticated(BuildContext context) {
+  Future<bool> _isAuthenticated(BuildContext context) async {
     OAuthModel oauthModel = context.read<OAuthModel>();
     // TODO: Is there a refresh feature on oauth2 ?
 
+    AccessTokenResponse? token = await oauthModel.helper.getTokenFromStorage();
+    print("GET TOKEN FROM STORAGE");
+    print(token?.accessToken);
+    if (token?.accessToken != null) {
+      return await authenticate();
+    }
+
     return oauthModel.accessToken != null;
+  }
+
+  Future<bool> authenticate() async {
+    print("AUTHENTICATING FROM OAUTH PAGE");
+    AccessTokenResponse? response = await context.read<OAuthModel>().authenticate();
+    print("GOT TOKEN: ${response}");
+    if (response != null) {
+      context.read<AuthModel>().accessToken = response;
+      print(response.accessToken);
+      // Set the token for the global API instance
+      LenraApi.instance.token = response.accessToken;
+
+      // TODO: Should i uncomment this code ?
+      // UserResponse user = await UserApi.me();
+      // context.read<AuthModel>().user = user.user;
+      return true;
+    }
+
+    return false;
   }
 }
