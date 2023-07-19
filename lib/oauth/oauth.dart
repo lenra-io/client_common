@@ -3,7 +3,6 @@ import 'package:oauth2_client/oauth2_client.dart';
 class LenraOAuth2Client extends OAuth2Client {
   LenraOAuth2Client({required String redirectUri, required String customUriScheme})
       : super(
-          // TODO: use OAUTH_BASE_URL
           authorizeUrl:
               '${const String.fromEnvironment("OAUTH_BASE_URL", defaultValue: 'http://localhost:4444')}/oauth2/auth',
           tokenUrl:

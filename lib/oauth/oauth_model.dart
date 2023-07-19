@@ -44,10 +44,10 @@ class OAuthModel extends ChangeNotifier {
     if (kIsWeb) {
       return "http";
     } else if (defaultTargetPlatform == TargetPlatform.windows || defaultTargetPlatform == TargetPlatform.linux) {
-      print("WINDOWS OR LINUX");
       return const String.fromEnvironment("OAUTH_REDIRECT_BASE_URL", defaultValue: "http://localhost:10000");
+    } else if (defaultTargetPlatform == TargetPlatform.android) {
+      return "io.lenra.app";
     } else {
-      print("HTTP");
       return "http";
     }
   }
