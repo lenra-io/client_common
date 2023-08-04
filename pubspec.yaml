@@ -23,6 +23,7 @@ dependencies:
   flutter_markdown: ^0.6.10+2
   go_router: ^6.0.1
   flutter_secure_storage: ^7.0.1
+  catcher: ^0.7.0
   lenra_components:
     git:
       url: https://github.com/lenra-io/lenra_components.git
