@@ -48,11 +48,8 @@ class OAuthPageState extends State<OAuthPage> {
 
   Future<bool> _isAuthenticated(BuildContext context) async {
     OAuthModel oauthModel = context.read<OAuthModel>();
-    // TODO: Is there a refresh feature on oauth2 ?
 
     AccessTokenResponse? token = await oauthModel.helper.getTokenFromStorage();
-    print("GET TOKEN FROM STORAGE");
-    print(token?.accessToken);
     if (token?.accessToken != null) {
       return await authenticate();
     }
@@ -61,9 +58,7 @@ class OAuthPageState extends State<OAuthPage> {
   }
 
   Future<bool> authenticate() async {
-    print("AUTHENTICATING FROM OAUTH PAGE");
     AccessTokenResponse? response = await context.read<OAuthModel>().authenticate();
-    print("GOT TOKEN: ${response}");
     if (response != null) {
       context.read<AuthModel>().accessToken = response;
       print(response.accessToken);
