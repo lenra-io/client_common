@@ -9,7 +9,17 @@ import 'package:flutter/material.dart';
 class LenraReportMode extends ReportMode {
   @override
   void requestAction(Report report, BuildContext? context) {
-    _showDialog(report, context);
+    print("\n\n\nGOT ERROR");
+    print(report.error.runtimeType);
+    print(report.error);
+    print(report.errorDetails);
+    print(report.stackTrace);
+    if (report.error is FlutterError) {
+      // Report error to Sentry and do not show dialog
+      super.onActionConfirmed(report);
+    } else {
+      _showDialog(report, context);
+    }
   }
 
   Future _showDialog(Report report, BuildContext? context) async {

@@ -1,3 +1,4 @@
+import 'package:client_common/views/auth/oauth_page.dart';
 import 'package:client_common/views/profile/change_lost_password_page.dart';
 import 'package:client_common/views/profile/change_password_confirmation_page.dart';
 import 'package:client_common/views/profile/recovery_page.dart';
@@ -31,12 +32,19 @@ class CommonNavigator {
     builder: (ctx, state) => ChangePasswordConfirmationPage(),
   );
 
+  static GoRoute oauth = GoRoute(
+    name: "oauth",
+    path: "/oauth",
+    builder: (ctx, state) => OAuthPage(),
+  );
+
   static ShellRoute authRoutes = ShellRoute(
     builder: (context, state, child) => SafeArea(child: child),
     routes: [
       changeLostPassword,
       changePasswordConfirmation,
       lostPassword,
+      oauth,
     ],
   );
 

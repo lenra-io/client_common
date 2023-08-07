@@ -1,4 +1,6 @@
 import 'package:client_common/api/lenra_http_client.dart';
+import 'package:client_common/api/response_models/user_response.dart';
+import 'package:client_common/api/user_api.dart';
 import 'package:client_common/models/auth_model.dart';
 import 'package:client_common/oauth/oauth_model.dart';
 import 'package:client_common/views/simple_page.dart';
@@ -8,9 +10,7 @@ import 'package:oauth2_client/access_token_response.dart';
 import 'package:provider/provider.dart';
 
 class OAuthPage extends StatefulWidget {
-  final Widget child;
-
-  const OAuthPage({Key? key, required this.child}) : super(key: key);
+  const OAuthPage({Key? key}) : super(key: key);
 
   @override
   OAuthPageState createState() => OAuthPageState();
@@ -20,7 +20,7 @@ class OAuthPageState extends State<OAuthPage> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<bool>(
-      future: _isAuthenticated(context),
+      future: isAuthenticated(context),
       builder: ((context, snapshot) {
         if (!(snapshot.data ?? false)) {
           return SimplePage(
@@ -31,7 +31,7 @@ class OAuthPageState extends State<OAuthPage> {
               children: [
                 LenraButton(
                   onPressed: () async {
-                    await authenticate();
+                    await authenticate(context);
                     setState(() {});
                   },
                   text: 'Sign in to Lenra',
@@ -40,34 +40,40 @@ class OAuthPageState extends State<OAuthPage> {
             ),
           );
         } else {
-          return widget.child;
+          return Center(child: CircularProgressIndicator());
         }
       }),
     );
   }
 
-  Future<bool> _isAuthenticated(BuildContext context) async {
+  static Future<bool> isAuthenticated(BuildContext context) async {
     OAuthModel oauthModel = context.read<OAuthModel>();
 
     AccessTokenResponse? token = await oauthModel.helper.getTokenFromStorage();
     if (token?.accessToken != null) {
-      return await authenticate();
+      print("Found token in storage");
+      return await authenticate(context);
     }
 
     return oauthModel.accessToken != null;
   }
 
-  Future<bool> authenticate() async {
+  static Future<bool> authenticate(BuildContext context) async {
     AccessTokenResponse? response = await context.read<OAuthModel>().authenticate();
     if (response != null) {
+      print("Authenticated with token: ${response.accessToken}");
       context.read<AuthModel>().accessToken = response;
-      print(response.accessToken);
+
       // Set the token for the global API instance
       LenraApi.instance.token = response.accessToken;
 
-      // TODO: Should i uncomment this code ?
-      // UserResponse user = await UserApi.me();
-      // context.read<AuthModel>().user = user.user;
+      if (context.read<AuthModel>().user == null) {
+        print("Fetching user");
+        UserResponse user = await UserApi.me();
+        context.read<AuthModel>().user = user.user;
+        print("Fetched user: ${user.user}");
+      }
+
       return true;
     }
 

@@ -9,7 +9,7 @@ import 'package:client_common/api/response_models/user_response.dart';
 
 /// All of the user requests that can be done on Lenra.
 class UserApi {
-  static Future<UserResponse> me() => LenraAuth.instance.get(
+  static Future<UserResponse> me() => LenraApi.instance.get(
         "/me",
         responseMapper: (json, headers) => UserResponse.fromJson(json, headers),
       );
