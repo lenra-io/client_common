@@ -18,11 +18,17 @@ class Guard {
   static const List<UserRole> _devOrMore = [UserRole.admin, UserRole.dev];
 
   static final Guard checkIsDev = Guard(isValid: _isDev, onInvalid: _becomeDev);
+  static final Guard checkIsNotDev = Guard(isValid: _isNotDev, onInvalid: _toHome);
   static final Guard checkNotHaveApp = Guard(isValid: _haveApp(false), onInvalid: _toHome);
 
   static Future<bool> _isDev(BuildContext context) async {
     AuthModel authModel = context.read<AuthModel>();
     return authModel.isOneOfRole(_devOrMore);
+  }
+
+  static Future<bool> _isNotDev(BuildContext context) async {
+    AuthModel authModel = context.read<AuthModel>();
+    return authModel.isOneOfRole(UserRole.values.where((ur) => !_devOrMore.contains(ur)).toList());
   }
 
   static Future<String?> guards(BuildContext context, List<Guard> guards) async {
