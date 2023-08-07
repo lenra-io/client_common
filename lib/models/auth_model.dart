@@ -1,6 +1,7 @@
 import 'package:client_common/api/request_models/ask_code_lost_password_request.dart';
 import 'package:client_common/api/request_models/change_password_request.dart';
 import 'package:client_common/api/request_models/send_code_lost_password_request.dart';
+import 'package:client_common/api/request_models/validate_dev_request.dart';
 import 'package:client_common/api/response_models/auth_response.dart';
 import 'package:client_common/api/response_models/empty_response.dart';
 import 'package:client_common/api/response_models/user.dart';
@@ -38,6 +39,12 @@ class AuthModel extends ChangeNotifier {
   bool isOneOfRole(List<UserRole> roles) {
     if (user == null) return false;
     return roles.contains(user?.role);
+  }
+
+  Future<AuthResponse> validateDev() async {
+    var res = await validateDevStatus.handle(() => UserApi.validateDev(ValidateDevRequest()), notifyListeners);
+    user = res.user;
+    return res;
   }
 
   Future<EmptyResponse> logout() async {
