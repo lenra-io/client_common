@@ -7,7 +7,6 @@ import 'package:client_common/models/user_application_model.dart';
 import 'package:client_common/navigator/common_navigator.dart';
 import 'package:client_common/views/auth/oauth_page.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 /// This class defines guards that are used to stop the user from accessing certain pages.
@@ -44,16 +43,15 @@ class Guard {
     // TODO: Find a way to get the GoRouter here or find another way of setting the current location to the AuthModel
     // TODO: There is no way to get the current route from the GoRouter here because the context is empty if the redirect
     // TODO: is called at the root of the application. This is because the last route in the context was poped.
-    print("CURRENT ROUTE");
-    print(GoRouter.of(context).location);
-    context.read<AuthModel>().redirectToRoute = GoRouter.of(context).location;
-    print(context.read<AuthModel>().redirectToRoute);
+    // print("CURRENT ROUTE");
+    // print(GoRouter.of(context).location);
+    // Catcher.navigatorKey?.currentState?.popUntil((route) {
+    //   context.read<AuthModel>().redirectToRoute = route.settings.name;
+    //   return true;
+    // });
+    // print(context.read<AuthModel>().redirectToRoute);
     for (Guard checker in guards) {
-      try {
-        if (!await checker.isValid(context)) {
-          return checker.onInvalid(context);
-        }
-      } catch (e) {
+      if (!await checker.isValid(context)) {
         return checker.onInvalid(context);
       }
     }

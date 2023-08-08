@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:catcher/model/platform_type.dart';
 import 'package:catcher/model/report.dart';
 import 'package:catcher/model/report_mode.dart';
@@ -7,6 +9,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class LenraReportMode extends ReportMode {
+  final streamController = StreamController<dynamic>();
+
   @override
   void requestAction(Report report, BuildContext? context) {
     print("\n\n\nGOT ERROR");
@@ -14,6 +18,7 @@ class LenraReportMode extends ReportMode {
     print(report.error);
     print(report.errorDetails);
     print(report.stackTrace);
+    streamController.add(report.error);
     if (report.error is FlutterError) {
       // Report error to Sentry and do not show dialog
       super.onActionConfirmed(report);
@@ -94,11 +99,6 @@ class LenraReportMode extends ReportMode {
   void _onCancelReportClicked(BuildContext context, Report report) {
     super.onActionRejected(report);
     Navigator.pop(context);
-  }
-
-  @override
-  bool isContextRequired() {
-    return true;
   }
 
   @override
