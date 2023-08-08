@@ -41,6 +41,9 @@ class Guard {
   }
 
   static Future<String?> guards(BuildContext context, List<Guard> guards) async {
+    // TODO: Find a way to get the GoRouter here or find another way of setting the current location to the AuthModel
+    // TODO: There is no way to get the current route from the GoRouter here because the context is empty if the redirect
+    // TODO: is called at the root of the application. This is because the last route in the context was poped.
     print("CURRENT ROUTE");
     print(GoRouter.of(context).location);
     context.read<AuthModel>().redirectToRoute = GoRouter.of(context).location;
