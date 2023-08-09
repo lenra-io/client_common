@@ -3,7 +3,6 @@ import 'package:client_common/api/request_models/ask_code_lost_password_request.
 import 'package:client_common/api/request_models/change_password_request.dart';
 import 'package:client_common/api/request_models/send_code_lost_password_request.dart';
 import 'package:client_common/api/request_models/validate_dev_request.dart';
-import 'package:client_common/api/response_models/auth_response.dart';
 import 'package:client_common/api/response_models/empty_response.dart';
 import 'package:client_common/api/response_models/user_response.dart';
 
@@ -14,10 +13,10 @@ class UserApi {
         responseMapper: (json, headers) => UserResponse.fromJson(json, headers),
       );
 
-  static Future<AuthResponse> validateDev(ValidateDevRequest body) => LenraApi.instance.put(
+  static Future<UserResponse> validateDev(ValidateDevRequest body) => LenraApi.instance.put(
         "/verify/dev",
         body: body,
-        responseMapper: (json, headers) => AuthResponse.fromJson(json, headers),
+        responseMapper: (json, headers) => UserResponse.fromJson(json, headers),
       );
 
   static Future<EmptyResponse> logout() => LenraAuth.instance.post(

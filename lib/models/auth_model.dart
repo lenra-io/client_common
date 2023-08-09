@@ -2,9 +2,9 @@ import 'package:client_common/api/request_models/ask_code_lost_password_request.
 import 'package:client_common/api/request_models/change_password_request.dart';
 import 'package:client_common/api/request_models/send_code_lost_password_request.dart';
 import 'package:client_common/api/request_models/validate_dev_request.dart';
-import 'package:client_common/api/response_models/auth_response.dart';
 import 'package:client_common/api/response_models/empty_response.dart';
 import 'package:client_common/api/response_models/user.dart';
+import 'package:client_common/api/response_models/user_response.dart';
 import 'package:client_common/api/user_api.dart';
 import 'package:client_common/models/status.dart';
 import 'package:client_common/navigator/common_navigator.dart';
@@ -17,10 +17,10 @@ class AuthModel extends ChangeNotifier {
   AccessTokenResponse? accessToken;
   User? user;
 
-  final Status<AuthResponse> refreshStatus = Status();
-  final Status<AuthResponse> validateUserStatus = Status();
+  final Status<UserResponse> refreshStatus = Status();
+  final Status<UserResponse> validateUserStatus = Status();
   final Status<EmptyResponse> resendRegistrationTokenStatus = Status();
-  final Status<AuthResponse> validateDevStatus = Status();
+  final Status<UserResponse> validateDevStatus = Status();
 
   final Status<EmptyResponse> logoutStatus = Status();
 
@@ -41,7 +41,7 @@ class AuthModel extends ChangeNotifier {
     return roles.contains(user?.role);
   }
 
-  Future<AuthResponse> validateDev() async {
+  Future<UserResponse> validateDev() async {
     var res = await validateDevStatus.handle(() => UserApi.validateDev(ValidateDevRequest()), notifyListeners);
     user = res.user;
     return res;
