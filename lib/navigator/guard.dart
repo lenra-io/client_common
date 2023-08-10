@@ -5,13 +5,14 @@ import 'package:client_common/api/response_models/user.dart';
 import 'package:client_common/models/auth_model.dart';
 import 'package:client_common/models/user_application_model.dart';
 import 'package:client_common/navigator/common_navigator.dart';
+import 'package:client_common/oauth/oauth_model.dart';
 import 'package:client_common/views/auth/oauth_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 /// This class defines guards that are used to stop the user from accessing certain pages.
 class Guard {
-  Future<bool> Function(BuildContext) isValid;
+  Future<bool> Function(BuildContext, Map<String, dynamic>?) isValid;
   Function(BuildContext) onInvalid;
 
   Guard({required this.isValid, required this.onInvalid});
@@ -23,43 +24,37 @@ class Guard {
   static final Guard checkNotHaveApp = Guard(isValid: _haveApp(false), onInvalid: _toHome);
   static final Guard checkIsAuthenticated = Guard(isValid: _isAuthenticated, onInvalid: _toOauth);
 
-  static Future<bool> _isAuthenticated(BuildContext context) async {
+  static Future<bool> _isAuthenticated(BuildContext context, Map<String, dynamic>? metadata) async {
     return OAuthPageState.isAuthenticated(context);
   }
 
-  static Future<bool> _isDev(BuildContext context) async {
+  static Future<bool> _isDev(BuildContext context, Map<String, dynamic>? metadata) async {
     AuthModel authModel = context.read<AuthModel>();
     return authModel.isOneOfRole(_devOrMore);
   }
 
-  static Future<bool> _isNotDev(BuildContext context) async {
+  static Future<bool> _isNotDev(BuildContext context, Map<String, dynamic>? metadata) async {
     AuthModel authModel = context.read<AuthModel>();
     print("CHECKIGN IS NOT DEV");
     print(authModel.user?.role);
     return authModel.isOneOfRole(UserRole.values.where((ur) => !_devOrMore.contains(ur)).toList());
   }
 
-  static Future<String?> guards(BuildContext context, List<Guard> guards) async {
-    // TODO: Find a way to get the GoRouter here or find another way of setting the current location to the AuthModel
-    // TODO: There is no way to get the current route from the GoRouter here because the context is empty if the redirect
-    // TODO: is called at the root of the application. This is because the last route in the context was poped.
-    // print("CURRENT ROUTE");
-    // print(GoRouter.of(context).location);
-    // Catcher.navigatorKey?.currentState?.popUntil((route) {
-    //   context.read<AuthModel>().redirectToRoute = route.settings.name;
-    //   return true;
-    // });
-    // print(context.read<AuthModel>().redirectToRoute);
+  static Future<String?> guards(BuildContext context, List<Guard> guards, {Map<String, dynamic>? metadata}) async {
+    if (metadata?.containsKey('initialRoute') ?? false) {
+      context.read<OAuthModel>().beforeRedirectPath = metadata!["initialRoute"];
+    }
+
     for (Guard checker in guards) {
-      if (!await checker.isValid(context)) {
+      if (!await checker.isValid(context, metadata)) {
         return checker.onInvalid(context);
       }
     }
     return null;
   }
 
-  static Future<bool> Function(BuildContext) _haveApp(bool mustHaveApp) {
-    return (BuildContext context) async {
+  static Future<bool> Function(BuildContext, Map<String, dynamic>?) _haveApp(bool mustHaveApp) {
+    return (BuildContext context, Map<String, dynamic>? metadata) async {
       List<AppResponse> userApps = await context.read<UserApplicationModel>().fetchUserApplications();
       return userApps.isNotEmpty == mustHaveApp;
     };

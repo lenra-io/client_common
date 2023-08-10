@@ -8,6 +8,7 @@ import 'package:oauth2_client/oauth2_helper.dart';
 class OAuthModel extends ChangeNotifier {
   AccessTokenResponse? accessToken;
   late OAuth2Helper helper;
+  String beforeRedirectPath = "/";
 
   String clientId;
   String redirectUrl;

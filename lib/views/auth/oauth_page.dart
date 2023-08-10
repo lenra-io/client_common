@@ -5,6 +5,7 @@ import 'package:client_common/models/auth_model.dart';
 import 'package:client_common/oauth/oauth_model.dart';
 import 'package:client_common/views/simple_page.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lenra_components/lenra_components.dart';
 import 'package:oauth2_client/access_token_response.dart';
 import 'package:provider/provider.dart';
@@ -31,8 +32,10 @@ class OAuthPageState extends State<OAuthPage> {
               children: [
                 LenraButton(
                   onPressed: () async {
-                    await authenticate(context);
-                    setState(() {});
+                    bool authenticated = await authenticate(context);
+                    if (authenticated) {
+                      context.go(context.read<OAuthModel>().beforeRedirectPath);
+                    }
                   },
                   text: 'Sign in to Lenra',
                 )
