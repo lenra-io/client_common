@@ -35,22 +35,7 @@ class Guard {
 
   static Future<bool> _isNotDev(BuildContext context, Map<String, dynamic>? metadata) async {
     AuthModel authModel = context.read<AuthModel>();
-    print("CHECKIGN IS NOT DEV");
-    print(authModel.user?.role);
     return authModel.isOneOfRole(UserRole.values.where((ur) => !_devOrMore.contains(ur)).toList());
-  }
-
-  static Future<String?> guards(BuildContext context, List<Guard> guards, {Map<String, dynamic>? metadata}) async {
-    if (metadata?.containsKey('initialRoute') ?? false) {
-      context.read<OAuthModel>().beforeRedirectPath = metadata!["initialRoute"];
-    }
-
-    for (Guard checker in guards) {
-      if (!await checker.isValid(context, metadata)) {
-        return checker.onInvalid(context);
-      }
-    }
-    return null;
   }
 
   static Future<bool> Function(BuildContext, Map<String, dynamic>?) _haveApp(bool mustHaveApp) {
@@ -70,5 +55,18 @@ class Guard {
 
   static String _toOauth(context) {
     return CommonNavigator.oauth.path;
+  }
+
+  static Future<String?> guards(BuildContext context, List<Guard> guards, {Map<String, dynamic>? metadata}) async {
+    if (metadata?.containsKey('initialRoute') ?? false) {
+      context.read<OAuthModel>().beforeRedirectPath = metadata!["initialRoute"];
+    }
+
+    for (Guard checker in guards) {
+      if (!await checker.isValid(context, metadata)) {
+        return checker.onInvalid(context);
+      }
+    }
+    return null;
   }
 }

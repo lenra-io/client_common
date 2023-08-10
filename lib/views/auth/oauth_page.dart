@@ -54,7 +54,6 @@ class OAuthPageState extends State<OAuthPage> {
 
     AccessTokenResponse? token = await oauthModel.helper.getTokenFromStorage();
     if (token?.accessToken != null) {
-      print("Found token in storage");
       return await authenticate(context);
     }
 
@@ -64,17 +63,14 @@ class OAuthPageState extends State<OAuthPage> {
   static Future<bool> authenticate(BuildContext context) async {
     AccessTokenResponse? response = await context.read<OAuthModel>().authenticate();
     if (response != null) {
-      print("Authenticated with token: ${response.accessToken}");
       context.read<AuthModel>().accessToken = response;
 
       // Set the token for the global API instance
       LenraApi.instance.token = response.accessToken;
 
       if (context.read<AuthModel>().user == null) {
-        print("Fetching user");
         UserResponse user = await UserApi.me();
         context.read<AuthModel>().user = user.user;
-        print("Fetched user: ${user.user}");
       }
 
       return true;
