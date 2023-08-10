@@ -12,12 +12,13 @@ class LenraReportMode extends ReportMode {
 
   @override
   void requestAction(Report report, BuildContext? context) {
+    // Show error to console when in debug mode
+    if (kDebugMode) {
+      print(report.error);
+      print(report.stackTrace);
+    }
+
     if (report.error is FlutterError) {
-      // Show error to console when in debug mode
-      if (kDebugMode) {
-        print(report.error);
-        print(report.stackTrace);
-      }
       // Report error to Sentry and do not show dialog
       super.onActionConfirmed(report);
     } else {
