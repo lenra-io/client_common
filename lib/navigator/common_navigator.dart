@@ -1,7 +1,4 @@
 import 'package:client_common/views/auth/oauth_page.dart';
-import 'package:client_common/views/profile/change_lost_password_page.dart';
-import 'package:client_common/views/profile/change_password_confirmation_page.dart';
-import 'package:client_common/views/profile/recovery_page.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 
@@ -14,24 +11,6 @@ class CommonNavigator {
   static const String homeRoute = "/";
   static const String validationDevRoute = "/validation-dev";
 
-  static GoRoute changeLostPassword = GoRoute(
-    name: "change-lost",
-    path: "/change-lost",
-    builder: (ctx, state) => ChangeLostPasswordPage(email: state.extra as String),
-  );
-
-  static GoRoute lostPassword = GoRoute(
-    name: "lost",
-    path: "/lost",
-    builder: (ctx, state) => RecoveryPage(),
-  );
-
-  static GoRoute changePasswordConfirmation = GoRoute(
-    name: "change-confirmation",
-    path: "/change-confirmation",
-    builder: (ctx, state) => ChangePasswordConfirmationPage(),
-  );
-
   static GoRoute oauth = GoRoute(
     name: "oauth",
     path: "/oauth",
@@ -41,9 +20,6 @@ class CommonNavigator {
   static ShellRoute authRoutes = ShellRoute(
     builder: (context, state, child) => SafeArea(child: child),
     routes: [
-      changeLostPassword,
-      changePasswordConfirmation,
-      lostPassword,
       oauth,
     ],
   );
