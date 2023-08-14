@@ -12,7 +12,7 @@ import 'package:provider/provider.dart';
 
 /// This class defines guards that are used to stop the user from accessing certain pages.
 class Guard {
-  Future<bool> Function(BuildContext, Map<String, dynamic>?) isValid;
+  Future<bool> Function(BuildContext) isValid;
   Function(BuildContext) onInvalid;
 
   Guard({required this.isValid, required this.onInvalid});
@@ -24,22 +24,22 @@ class Guard {
   static final Guard checkNotHaveApp = Guard(isValid: _haveApp(false), onInvalid: _toHome);
   static final Guard checkIsAuthenticated = Guard(isValid: _isAuthenticated, onInvalid: _toOauth);
 
-  static Future<bool> _isAuthenticated(BuildContext context, Map<String, dynamic>? metadata) async {
+  static Future<bool> _isAuthenticated(BuildContext context) async {
     return OAuthPageState.isAuthenticated(context);
   }
 
-  static Future<bool> _isDev(BuildContext context, Map<String, dynamic>? metadata) async {
+  static Future<bool> _isDev(BuildContext context) async {
     AuthModel authModel = context.read<AuthModel>();
     return authModel.isOneOfRole(_devOrMore);
   }
 
-  static Future<bool> _isNotDev(BuildContext context, Map<String, dynamic>? metadata) async {
+  static Future<bool> _isNotDev(BuildContext context) async {
     AuthModel authModel = context.read<AuthModel>();
     return authModel.isOneOfRole(UserRole.values.where((ur) => !_devOrMore.contains(ur)).toList());
   }
 
-  static Future<bool> Function(BuildContext, Map<String, dynamic>?) _haveApp(bool mustHaveApp) {
-    return (BuildContext context, Map<String, dynamic>? metadata) async {
+  static Future<bool> Function(BuildContext) _haveApp(bool mustHaveApp) {
+    return (BuildContext context) async {
       List<AppResponse> userApps = await context.read<UserApplicationModel>().fetchUserApplications();
       return userApps.isNotEmpty == mustHaveApp;
     };
@@ -63,7 +63,7 @@ class Guard {
     }
 
     for (Guard checker in guards) {
-      if (!await checker.isValid(context, metadata)) {
+      if (!await checker.isValid(context)) {
         return checker.onInvalid(context);
       }
     }
