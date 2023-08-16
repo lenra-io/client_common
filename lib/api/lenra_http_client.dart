@@ -45,7 +45,7 @@ abstract class LenraBaseHttpClient {
     try {
       response = await futureReponse;
     } catch (e) {
-      throw ApiError.connexionRefusedError;
+      throw ApiError.connexionRefusedError();
     }
 
     dynamic body = json.decode(response.body);
