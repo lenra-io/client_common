@@ -8,7 +8,7 @@ on:
       - "*.x"
 
 env:
-  flutter_version: "3.0.x"
+  flutter_version: "3.10.x"
 
 jobs:
   release:
