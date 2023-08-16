@@ -10,35 +10,37 @@ import 'package:client_common/views/auth/oauth_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+typedef IsValid = Future<bool> Function(BuildContext);
+
 /// This class defines guards that are used to stop the user from accessing certain pages.
 class Guard {
-  Future<bool> Function(BuildContext) isValid;
+  IsValid isValid;
   Function(BuildContext) onInvalid;
 
   Guard({required this.isValid, required this.onInvalid});
 
   static const List<UserRole> _devOrMore = [UserRole.admin, UserRole.dev];
 
-  static final Guard checkIsDev = Guard(isValid: _isDev, onInvalid: _becomeDev);
-  static final Guard checkIsNotDev = Guard(isValid: _isNotDev, onInvalid: _toHome);
-  static final Guard checkNotHaveApp = Guard(isValid: _haveApp(false), onInvalid: _toHome);
-  static final Guard checkIsAuthenticated = Guard(isValid: _isAuthenticated, onInvalid: _toOauth);
+  static final Guard checkIsDev = Guard(isValid: isDev, onInvalid: _becomeDev);
+  static final Guard checkIsNotDev = Guard(isValid: isNotDev, onInvalid: toHome);
+  static final Guard checkNotHaveApp = Guard(isValid: haveApp(false), onInvalid: toHome);
+  static final Guard checkIsAuthenticated = Guard(isValid: isAuthenticated, onInvalid: toOauth);
 
-  static Future<bool> _isAuthenticated(BuildContext context) async {
+  static Future<bool> isAuthenticated(BuildContext context) async {
     return OAuthPageState.isAuthenticated(context);
   }
 
-  static Future<bool> _isDev(BuildContext context) async {
+  static Future<bool> isDev(BuildContext context) async {
     AuthModel authModel = context.read<AuthModel>();
     return authModel.isOneOfRole(_devOrMore);
   }
 
-  static Future<bool> _isNotDev(BuildContext context) async {
+  static Future<bool> isNotDev(BuildContext context) async {
     AuthModel authModel = context.read<AuthModel>();
     return authModel.isOneOfRole(UserRole.values.where((ur) => !_devOrMore.contains(ur)).toList());
   }
 
-  static Future<bool> Function(BuildContext) _haveApp(bool mustHaveApp) {
+  static IsValid haveApp(bool mustHaveApp) {
     return (BuildContext context) async {
       List<AppResponse> userApps = await context.read<UserApplicationModel>().fetchUserApplications();
       return userApps.isNotEmpty == mustHaveApp;
@@ -49,11 +51,11 @@ class Guard {
     return CommonNavigator.validationDevRoute;
   }
 
-  static String _toHome(context) {
+  static String toHome(context) {
     return CommonNavigator.homeRoute;
   }
 
-  static String _toOauth(context) {
+  static String toOauth(context) {
     return CommonNavigator.oauth.path;
   }
 
