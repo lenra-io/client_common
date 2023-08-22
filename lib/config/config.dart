@@ -19,6 +19,8 @@ class Config {
   final String appBaseUrl;
   final String sentryDsn;
   final String oauthClientId;
+  final String oauthBaseUrl;
+  final String oauthRedirectUrl;
 
   Config({
     required this.application,
@@ -28,6 +30,8 @@ class Config {
     required this.appBaseUrl,
     required this.sentryDsn,
     required this.oauthClientId,
+    required this.oauthBaseUrl,
+    required this.oauthRedirectUrl,
   });
 
   static _() {
@@ -38,6 +42,8 @@ class Config {
     String appBaseUrl = _computeAppBaseUrl(application);
     String sentryDsn = _computeSentryDsn();
     String oauthClientId = _computeOAuthClientId();
+    String oauthBaseUrl = _computeOAuthBaseUrl();
+    String oauthRedirectUrl = _computeOAuthRedirectUrl();
 
     return Config(
       application: application,
@@ -47,6 +53,8 @@ class Config {
       appBaseUrl: appBaseUrl,
       sentryDsn: sentryDsn,
       oauthClientId: oauthClientId,
+      oauthBaseUrl: oauthBaseUrl,
+      oauthRedirectUrl: oauthRedirectUrl,
     );
   }
 
@@ -122,5 +130,29 @@ class Config {
       }
     }
     return const String.fromEnvironment('OAUTH_CLIENT_ID');
+  }
+
+  static String _computeOAuthBaseUrl() {
+    if (kIsWeb) {
+      html.MetaElement? meta = html.document.querySelector('meta[name="oauth-base-url"]') as html.MetaElement?;
+      if (meta != null) {
+        if (meta.content != '\${OAUTH_BASE_URL}') {
+          return meta.content;
+        }
+      }
+    }
+    return const String.fromEnvironment('OAUTH_BASE_URL');
+  }
+
+  static String _computeOAuthRedirectUrl() {
+    if (kIsWeb) {
+      html.MetaElement? meta = html.document.querySelector('meta[name="oauth-redirect-url"]') as html.MetaElement?;
+      if (meta != null) {
+        if (meta.content != '\${OAUTH_REDIRECT_URL}') {
+          return meta.content;
+        }
+      }
+    }
+    return const String.fromEnvironment('OAUTH_REDIRECT_URL');
   }
 }
