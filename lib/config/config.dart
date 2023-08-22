@@ -141,7 +141,7 @@ class Config {
         }
       }
     }
-    return const String.fromEnvironment('OAUTH_BASE_URL');
+    return const String.fromEnvironment('OAUTH_BASE_URL', defaultValue: "http://localhost:4444");
   }
 
   static String _computeOAuthRedirectUrl() {
@@ -153,6 +153,6 @@ class Config {
         }
       }
     }
-    return const String.fromEnvironment('OAUTH_REDIRECT_URL');
+    return const String.fromEnvironment('OAUTH_REDIRECT_URL', defaultValue: "http://localhost:10000/redirect.html");
   }
 }
