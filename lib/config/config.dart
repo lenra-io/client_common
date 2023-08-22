@@ -18,6 +18,7 @@ class Config {
   final String basicAuth;
   final String appBaseUrl;
   final String sentryDsn;
+  final String oauthClientId;
 
   Config({
     required this.application,
@@ -26,6 +27,7 @@ class Config {
     required this.basicAuth,
     required this.appBaseUrl,
     required this.sentryDsn,
+    required this.oauthClientId,
   });
 
   static _() {
@@ -35,14 +37,17 @@ class Config {
     Application application = _computeApplication(httpEndpoint);
     String appBaseUrl = _computeAppBaseUrl(application);
     String sentryDsn = _computeSentryDsn();
+    String oauthClientId = _computeOAuthClientId();
 
     return Config(
-        application: application,
-        httpEndpoint: httpEndpoint,
-        wsEndpoint: wsEndpoint,
-        basicAuth: basicAuth,
-        appBaseUrl: appBaseUrl,
-        sentryDsn: sentryDsn);
+      application: application,
+      httpEndpoint: httpEndpoint,
+      wsEndpoint: wsEndpoint,
+      basicAuth: basicAuth,
+      appBaseUrl: appBaseUrl,
+      sentryDsn: sentryDsn,
+      oauthClientId: oauthClientId,
+    );
   }
 
   static String _computeHttpEndpoint() {
@@ -105,5 +110,17 @@ class Config {
       }
     }
     return const String.fromEnvironment('SENTRY_CLIENT_DSN');
+  }
+
+  static String _computeOAuthClientId() {
+    if (kIsWeb) {
+      html.MetaElement? meta = html.document.querySelector('meta[name="oauth-client-id"]') as html.MetaElement?;
+      if (meta != null) {
+        if (meta.content != '\${OAUTH_CLIENT_ID}') {
+          return meta.content;
+        }
+      }
+    }
+    return const String.fromEnvironment('OAUTH_CLIENT_ID');
   }
 }
