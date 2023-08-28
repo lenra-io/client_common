@@ -24,6 +24,7 @@ class OAuthPageState extends State<OAuthPage> {
       builder: ((context, snapshot) {
         if (!(snapshot.data ?? false)) {
           var theme = LenraTheme.of(context);
+          bool isMobileDevice = MediaQuery.of(context).size.width <= 875;
 
           return Scaffold(
             body: Row(
@@ -73,40 +74,42 @@ class OAuthPageState extends State<OAuthPage> {
                     ],
                   ),
                 ),
-                Flexible(
-                  child: Container(
-                    constraints: BoxConstraints.expand(),
-                    padding: EdgeInsets.all(32),
-                    decoration: BoxDecoration(color: Color(0xFF1E232C)),
-                    child: SingleChildScrollView(
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Column(
-                            children: List.generate(
-                              37,
-                              (index) => Text(
-                                (index + 1).toString(),
-                                style: TextStyle(color: Color(0xFF475367), fontSize: 14),
-                              ),
+                isMobileDevice
+                    ? SizedBox()
+                    : Flexible(
+                        child: Container(
+                          constraints: BoxConstraints.expand(),
+                          padding: EdgeInsets.all(32),
+                          decoration: BoxDecoration(color: Color(0xFF1E232C)),
+                          child: SingleChildScrollView(
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Column(
+                                  children: List.generate(
+                                    37,
+                                    (index) => Text(
+                                      (index + 1).toString(),
+                                      style: TextStyle(color: Color(0xFF475367), fontSize: 14),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 16,
+                                ),
+                                Column(
+                                  children: [
+                                    Text(
+                                      "module.exports = (data, counter) => {\n        return {\n                \"type\": \"flex\",\n                \"spacing\": 2, \n                \"mainAxisAlignment\": \n                \"spaceEvenly\", \n                \"crossAxisAlignment\": \n                \"center\", \n                \"children\": [ \n                        { \n                                \"type\": \"text\", \n                                \"value\": `\${counter.text}: \${data[0].count}` \n                        }, \n                        { \n                                \"type\": \"button\", \n                                \"text\": \"+\", \n                                \"onPressed\": { \n                                        \"action\": \"increment\", \n                                        \"props\": { \n                                                \"id\": data[0]._id, \n                                                \"datastore\": data[0].datastore \n                                        } \n                                } \n                        } \n                ] \n        }\n}",
+                                      style: TextStyle(color: Color(0xFF70CBF2), fontSize: 14),
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
                           ),
-                          SizedBox(
-                            width: 16,
-                          ),
-                          Column(
-                            children: [
-                              Text(
-                                "module.exports = (data, counter) => {\n        return {\n                \"type\": \"flex\",\n                \"spacing\": 2, \n                \"mainAxisAlignment\": \n                \"spaceEvenly\", \n                \"crossAxisAlignment\": \n                \"center\", \n                \"children\": [ \n                        { \n                                \"type\": \"text\", \n                                \"value\": `\${counter.text}: \${data[0].count}` \n                        }, \n                        { \n                                \"type\": \"button\", \n                                \"text\": \"+\", \n                                \"onPressed\": { \n                                        \"action\": \"increment\", \n                                        \"props\": { \n                                                \"id\": data[0]._id, \n                                                \"datastore\": data[0].datastore \n                                        } \n                                } \n                        } \n                ] \n        }\n}",
-                                style: TextStyle(color: Color(0xFF70CBF2), fontSize: 14),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                )
+                        ),
+                      )
               ],
             ),
           );
