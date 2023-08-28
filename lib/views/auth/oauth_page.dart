@@ -3,7 +3,6 @@ import 'package:client_common/api/response_models/user_response.dart';
 import 'package:client_common/api/user_api.dart';
 import 'package:client_common/models/auth_model.dart';
 import 'package:client_common/oauth/oauth_model.dart';
-import 'package:client_common/views/simple_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lenra_components/lenra_components.dart';
@@ -24,20 +23,86 @@ class OAuthPageState extends State<OAuthPage> {
       future: isAuthenticated(context),
       builder: ((context, snapshot) {
         if (!(snapshot.data ?? false)) {
-          return SimplePage(
-            child: Flex(
-              direction: Axis.vertical,
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
+          var theme = LenraTheme.of(context);
+
+          return Scaffold(
+            body: Row(
               children: [
-                LenraButton(
-                  onPressed: () async {
-                    bool authenticated = await authenticate(context);
-                    if (authenticated) {
-                      context.go(context.read<OAuthModel>().beforeRedirectPath);
-                    }
-                  },
-                  text: 'Sign in to Lenra',
+                Flexible(
+                  child: Column(
+                    children: [
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 60, top: 60),
+                          child: Image.asset(
+                            'assets/images/logo-vertical.png',
+                            height: theme.baseSize * 8,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.all(100),
+                        child: Column(
+                          children: [
+                            RichText(
+                              text: TextSpan(
+                                style: theme.lenraTextThemeData.headline1,
+                                text: "Welcome to the ",
+                                children: [
+                                  TextSpan(
+                                      text: "technical platform",
+                                      style: TextStyle(color: LenraColorThemeData.lenraBlue)),
+                                  TextSpan(text: " !"),
+                                ],
+                              ),
+                            ),
+                            SizedBox(height: 32),
+                            LenraButton(
+                              onPressed: () async {
+                                bool authenticated = await authenticate(context);
+                                if (authenticated) {
+                                  context.go(context.read<OAuthModel>().beforeRedirectPath);
+                                }
+                              },
+                              text: 'Sign in to Lenra',
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Flexible(
+                  child: Container(
+                    constraints: BoxConstraints.expand(),
+                    padding: EdgeInsets.all(32),
+                    decoration: BoxDecoration(color: Color(0xFF1E232C)),
+                    child: Row(
+                      children: [
+                        Column(
+                          children: List.generate(
+                            37,
+                            (index) => Text(
+                              (index + 1).toString(),
+                              style: TextStyle(color: Color(0xFF475367), fontSize: 14),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 16,
+                        ),
+                        Column(
+                          children: [
+                            Text(
+                              "module.exports = (data, counter) => {\n        return {\n                \"type\": \"flex\",\n                \"spacing\": 2, \n                \"mainAxisAlignment\": \n                \"spaceEvenly\", \n                \"crossAxisAlignment\": \n                \"center\", \n                \"children\": [ \n                        { \n                                \"type\": \"text\", \n                                \"value\": `\${counter.text}: \${data[0].count}` \n                        }, \n                        { \n                                \"type\": \"button\", \n                                \"text\": \"+\", \n                                \"onPressed\": { \n                                        \"action\": \"increment\", \n                                        \"props\": { \n                                                \"id\": data[0]._id, \n                                                \"datastore\": data[0].datastore \n                                        } \n                                } \n                        } \n                ] \n        }\n}",
+                              style: TextStyle(color: Color(0xFF70CBF2), fontSize: 14),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                 )
               ],
             ),
