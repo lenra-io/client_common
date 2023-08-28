@@ -1,4 +1,3 @@
-import 'package:client_common/views/auth/oauth_page.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 
@@ -10,19 +9,6 @@ typedef CustomPageBuilder = Widget Function(Map<String, String>);
 class CommonNavigator {
   static const String homeRoute = "/";
   static const String validationDevRoute = "/validation-dev";
-
-  static GoRoute oauth = GoRoute(
-    name: "oauth",
-    path: "/oauth",
-    builder: (ctx, state) => OAuthPage(),
-  );
-
-  static ShellRoute authRoutes = ShellRoute(
-    builder: (context, state, child) => SafeArea(child: child),
-    routes: [
-      oauth,
-    ],
-  );
 
   static void pop(BuildContext context) {
     GoRouter.of(context).pop();

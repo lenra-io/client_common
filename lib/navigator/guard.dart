@@ -6,7 +6,6 @@ import 'package:client_common/models/auth_model.dart';
 import 'package:client_common/models/user_application_model.dart';
 import 'package:client_common/navigator/common_navigator.dart';
 import 'package:client_common/oauth/oauth_model.dart';
-import 'package:client_common/views/auth/oauth_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -24,11 +23,6 @@ class Guard {
   static final Guard checkIsDev = Guard(isValid: isDev, onInvalid: _becomeDev);
   static final Guard checkIsNotDev = Guard(isValid: isNotDev, onInvalid: toHome);
   static final Guard checkNotHaveApp = Guard(isValid: haveApp(false), onInvalid: toHome);
-  static final Guard checkIsAuthenticated = Guard(isValid: isAuthenticated, onInvalid: toOauth);
-
-  static Future<bool> isAuthenticated(BuildContext context) async {
-    return OAuthPageState.isAuthenticated(context);
-  }
 
   static Future<bool> isDev(BuildContext context) async {
     AuthModel authModel = context.read<AuthModel>();
@@ -53,10 +47,6 @@ class Guard {
 
   static String toHome(context) {
     return CommonNavigator.homeRoute;
-  }
-
-  static String toOauth(context) {
-    return CommonNavigator.oauth.path;
   }
 
   static Future<String?> guards(BuildContext context, List<Guard> guards, {Map<String, dynamic>? metadata}) async {
