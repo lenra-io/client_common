@@ -112,16 +112,11 @@ class _ChangePasswordState extends State<ChangePasswordForm> {
             child: LoadingButton(
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
-                  context
-                      .read<AuthModel>()
-                      .changePassword(
+                  context.read<AuthModel>().changePassword(
                         oldPassword,
                         newPassword,
                         newPasswordConfirmation,
-                      )
-                      .catchError((error) {
-                    logger.warning(error);
-                  });
+                      );
                 }
               },
               text: 'Update password',
