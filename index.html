@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="generator" content="made with love by dartdoc 5.1.0-dev">
+  <meta name="generator" content="made with love by dartdoc 6.2.2">
   <meta name="description" content="client_common API docs, for the Dart programming language.">
   <title>client_common - Dart API docs</title>
 
@@ -12,7 +12,7 @@
   
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" rel="stylesheet">
   
   <link rel="stylesheet" href="static-assets/github.css?v1">
   <link rel="stylesheet" href="static-assets/styles.css?v1">
@@ -22,13 +22,12 @@
 </head>
 
 
-<body data-base-href=""
-      data-using-base-href="false">
+<body data-base-href="" data-using-base-href="false" class="light-theme">
 
 <div id="overlay-under-drawer"></div>
 
 <header id="title">
-  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li class="self-crumb">client_common package</li>
   </ol>
@@ -36,10 +35,19 @@
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
+  <div class="toggle" id="theme-button">
+    <label for="theme">
+      <input type="checkbox" id="theme" value="light-theme">
+      <span id="dark-theme-button" class="material-symbols-outlined">
+        brightness_4
+      </span>
+      <span id="light-theme-button" class="material-symbols-outlined">
+        brightness_5
+      </span>
+    </label>
+  </div>
 </header>
-
 <main>
-
 
   <div id="dartdoc-main-content" class="main-content">
       
@@ -47,14 +55,17 @@
   <div id="top"></div>
 <!--
 *** This README was created with https://github.com/othneildrew/Best-README-Template
---><!-- PROJECT SHIELDS -->
+-->
+<!-- PROJECT SHIELDS -->
 <p><a href="https://github.com/lenra-io/client-common/graphs/contributors"><img src="https://img.shields.io/github/contributors/lenra-io/client-common.svg?style=for-the-badge" alt="Contributors"></a>
 <a href="https://github.com/lenra-io/client-common/network/members"><img src="https://img.shields.io/github/forks/lenra-io/client-common.svg?style=for-the-badge" alt="Forks"></a>
 <a href="https://github.com/lenra-io/client-common/stargazers"><img src="https://img.shields.io/github/stars/lenra-io/client-common.svg?style=for-the-badge" alt="Stargazers"></a>
 <a href="https://github.com/lenra-io/client-common/issues"><img src="https://img.shields.io/github/issues/lenra-io/client-common.svg?style=for-the-badge" alt="Issues"></a>
-<a href="https://github.com/lenra-io/client-common/blob/master/LICENSE"><img src="https://img.shields.io/github/license/lenra-io/client-common.svg?style=for-the-badge" alt="MIT License"></a></p><!-- PROJECT LOGO --><br>
+<a href="https://github.com/lenra-io/client-common/blob/master/LICENSE"><img src="https://img.shields.io/github/license/lenra-io/client-common.svg?style=for-the-badge" alt="MIT License"></a></p>
+<!-- PROJECT LOGO -->
 <div align="center">
-<p></p><h3 align="center">Lenra Client Common</h3><p></p><p align="center">
+<h3 align="center">Lenra Client Common</h3>
+<p align="center">
 The Lenra Client Common package.
 <br>
 <br>
@@ -62,27 +73,39 @@ The Lenra Client Common package.
 ·
 <a href="https://github.com/lenra-io/client-common/issues">Request Feature</a>
 </p>
-</div><!-- GETTING STARTED -->
+</div>
+<!-- GETTING STARTED -->
 <h2 id="prerequisites">Prerequisites</h2>
 <ul>
 <li><a href="https://flutter.dev/docs/get-started/install">flutter</a></li>
-</ul><p align="right">(<a href="#top">back to top</a>)</p><!-- USAGE EXAMPLES -->
+</ul>
+<p align="right">(<a href="#top">back to top</a>)</p>
+<!-- USAGE EXAMPLES -->
 <h2 id="usage">Usage</h2>
 <p>Run tests</p>
 <pre class="language-sh"><code class="language-sh">flutter test
 </code></pre>
 <p>Run tests with coverage report (need to install lcov)</p>
 <pre class="language-sh"><code class="language-sh">flutter test --coverage &amp;&amp; lcov --list coverage/lcov.info
-</code></pre><p align="right">(<a href="#top">back to top</a>)</p><!-- CONTRIBUTING -->
+</code></pre>
+<p align="right">(<a href="#top">back to top</a>)</p>
+<!-- CONTRIBUTING -->
 <h2 id="contributing">Contributing</h2>
 <p>Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are <strong>greatly appreciated</strong>.</p>
 <p>If you have a suggestion that would make this better, please open an issue with the tag "enhancement".
-Don't forget to give the project a star if you liked it! Thanks again!</p><p align="right">(<a href="#top">back to top</a>)</p><!-- LICENSE -->
+Don't forget to give the project a star if you liked it! Thanks again!</p>
+<p align="right">(<a href="#top">back to top</a>)</p>
+<!-- LICENSE -->
 <h2 id="license">License</h2>
-<p>Distributed under the <strong>MIT</strong> License. See <a href="./LICENSE">LICENSE</a> for more information.</p><p align="right">(<a href="#top">back to top</a>)</p><!-- CONTACT -->
+<p>Distributed under the <strong>MIT</strong> License. See <a href="./LICENSE">LICENSE</a> for more information.</p>
+<p align="right">(<a href="#top">back to top</a>)</p>
+<!-- CONTACT -->
 <h2 id="contact">Contact</h2>
-<p>Lenra - <a href="https://twitter.com/lenra_dev">@lenra_dev</a> - contact@lenra.io</p>
-<p>Project Link: <a href="https://github.com/lenra-io/client-common">https://github.com/lenra-io/client-common</a></p><p align="right">(<a href="#top">back to top</a>)</p><!-- MARKDOWN LINKS & IMAGES --><!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+<p>Lenra - <a href="https://twitter.com/lenra_dev">@lenra_dev</a> - <a href="mailto:contact@lenra.io">contact@lenra.io</a></p>
+<p>Project Link: <a href="https://github.com/lenra-io/client-common">https://github.com/lenra-io/client-common</a></p>
+<p align="right">(<a href="#top">back to top</a>)</p>
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 </section>
 
 
@@ -166,27 +189,6 @@ Don't forget to give the project a star if you liked it! Thanks again!</p><p ali
 <dd>
 </dd>
 
-          <dt id="auth_page">
-  <span class="name"><a href="file-___home_runner_work_client-common_client-common_lib_views_auth_auth_page/file-___home_runner_work_client-common_client-common_lib_views_auth_auth_page-library.html">auth_page</a></span> 
-
-</dt>
-<dd>
-</dd>
-
-          <dt id="auth_page_form">
-  <span class="name"><a href="file-___home_runner_work_client-common_client-common_lib_views_auth_auth_page_form/file-___home_runner_work_client-common_client-common_lib_views_auth_auth_page_form-library.html">auth_page_form</a></span> 
-
-</dt>
-<dd>
-</dd>
-
-          <dt id="auth_response">
-  <span class="name"><a href="file-___home_runner_work_client-common_client-common_lib_api_response_models_auth_response/file-___home_runner_work_client-common_client-common_lib_api_response_models_auth_response-library.html">auth_response</a></span> 
-
-</dt>
-<dd>
-</dd>
-
           <dt id="build_model">
   <span class="name"><a href="file-___home_runner_work_client-common_client-common_lib_models_build_model/file-___home_runner_work_client-common_client-common_lib_models_build_model-library.html">build_model</a></span> 
 
@@ -203,55 +205,6 @@ Don't forget to give the project a star if you liked it! Thanks again!</p><p ali
 
           <dt id="builds_response">
   <span class="name"><a href="file-___home_runner_work_client-common_client-common_lib_api_response_models_builds_response/file-___home_runner_work_client-common_client-common_lib_api_response_models_builds_response-library.html">builds_response</a></span> 
-
-</dt>
-<dd>
-</dd>
-
-          <dt id="cgu_api">
-  <span class="name"><a href="file-___home_runner_work_client-common_client-common_lib_api_cgu_api/file-___home_runner_work_client-common_client-common_lib_api_cgu_api-library.html">cgu_api</a></span> 
-
-</dt>
-<dd>
-</dd>
-
-          <dt id="cgu_model">
-  <span class="name"><a href="file-___home_runner_work_client-common_client-common_lib_models_cgu_model/file-___home_runner_work_client-common_client-common_lib_models_cgu_model-library.html">cgu_model</a></span> 
-
-</dt>
-<dd>
-</dd>
-
-          <dt id="cgu_page">
-  <span class="name"><a href="file-___home_runner_work_client-common_client-common_lib_views_cgu_cgu_page/file-___home_runner_work_client-common_client-common_lib_views_cgu_cgu_page-library.html">cgu_page</a></span> 
-
-</dt>
-<dd>
-</dd>
-
-          <dt id="cgu_page_fr">
-  <span class="name"><a href="file-___home_runner_work_client-common_client-common_lib_views_cgu_cgu_page_fr/file-___home_runner_work_client-common_client-common_lib_views_cgu_cgu_page_fr-library.html">cgu_page_fr</a></span> 
-
-</dt>
-<dd>
-</dd>
-
-          <dt id="cgu_response">
-  <span class="name"><a href="file-___home_runner_work_client-common_client-common_lib_api_response_models_cgu_response/file-___home_runner_work_client-common_client-common_lib_api_response_models_cgu_response-library.html">cgu_response</a></span> 
-
-</dt>
-<dd>
-</dd>
-
-          <dt id="change_lost_password_form">
-  <span class="name"><a href="file-___home_runner_work_client-common_client-common_lib_views_login_change_lost_password_form/file-___home_runner_work_client-common_client-common_lib_views_login_change_lost_password_form-library.html">change_lost_password_form</a></span> 
-
-</dt>
-<dd>
-</dd>
-
-          <dt id="change_lost_password_page">
-  <span class="name"><a href="file-___home_runner_work_client-common_client-common_lib_views_profile_change_lost_password_page/file-___home_runner_work_client-common_client-common_lib_views_profile_change_lost_password_page-library.html">change_lost_password_page</a></span> 
 
 </dt>
 <dd>
@@ -474,6 +427,13 @@ Don't forget to give the project a star if you liked it! Thanks again!</p><p ali
 <dd>
 </dd>
 
+          <dt id="lenra_report_mode">
+  <span class="name"><a href="file-___home_runner_work_client-common_client-common_lib_views_lenra_report_mode/file-___home_runner_work_client-common_client-common_lib_views_lenra_report_mode-library.html">lenra_report_mode</a></span> 
+
+</dt>
+<dd>
+</dd>
+
           <dt id="loading_button">
   <span class="name"><a href="file-___home_runner_work_client-common_client-common_lib_views_loading_button/file-___home_runner_work_client-common_client-common_lib_views_loading_button-library.html">loading_button</a></span> 
 
@@ -481,15 +441,15 @@ Don't forget to give the project a star if you liked it! Thanks again!</p><p ali
 <dd>
 </dd>
 
-          <dt id="login_form">
-  <span class="name"><a href="file-___home_runner_work_client-common_client-common_lib_views_auth_login_form/file-___home_runner_work_client-common_client-common_lib_views_auth_login_form-library.html">login_form</a></span> 
+          <dt id="oauth">
+  <span class="name"><a href="file-___home_runner_work_client-common_client-common_lib_oauth_oauth/file-___home_runner_work_client-common_client-common_lib_oauth_oauth-library.html">oauth</a></span> 
 
 </dt>
 <dd>
 </dd>
 
-          <dt id="login_request">
-  <span class="name"><a href="file-___home_runner_work_client-common_client-common_lib_api_request_models_login_request/file-___home_runner_work_client-common_client-common_lib_api_request_models_login_request-library.html">login_request</a></span> 
+          <dt id="oauth_model">
+  <span class="name"><a href="file-___home_runner_work_client-common_client-common_lib_oauth_oauth_model/file-___home_runner_work_client-common_client-common_lib_oauth_oauth_model-library.html">oauth_model</a></span> 
 
 </dt>
 <dd>
@@ -497,55 +457,6 @@ Don't forget to give the project a star if you liked it! Thanks again!</p><p ali
 
           <dt id="page_404">
   <span class="name"><a href="file-___home_runner_work_client-common_client-common_lib_views_page_404/file-___home_runner_work_client-common_client-common_lib_views_page_404-library.html">page_404</a></span> 
-
-</dt>
-<dd>
-</dd>
-
-          <dt id="page_guard">
-  <span class="name"><a href="file-___home_runner_work_client-common_client-common_lib_navigator_page_guard/file-___home_runner_work_client-common_client-common_lib_navigator_page_guard-library.html">page_guard</a></span> 
-
-</dt>
-<dd>
-</dd>
-
-          <dt id="recovery_form">
-  <span class="name"><a href="file-___home_runner_work_client-common_client-common_lib_views_login_recovery_form/file-___home_runner_work_client-common_client-common_lib_views_login_recovery_form-library.html">recovery_form</a></span> 
-
-</dt>
-<dd>
-</dd>
-
-          <dt id="recovery_page">
-  <span class="name"><a href="file-___home_runner_work_client-common_client-common_lib_views_profile_recovery_page/file-___home_runner_work_client-common_client-common_lib_views_profile_recovery_page-library.html">recovery_page</a></span> 
-
-</dt>
-<dd>
-</dd>
-
-          <dt id="register_form">
-  <span class="name"><a href="file-___home_runner_work_client-common_client-common_lib_views_auth_register_form/file-___home_runner_work_client-common_client-common_lib_views_auth_register_form-library.html">register_form</a></span> 
-
-</dt>
-<dd>
-</dd>
-
-          <dt id="register_form">
-  <span class="name"><a href="file-___home_runner_work_client-common_client-common_lib_views_register_register_form/file-___home_runner_work_client-common_client-common_lib_views_register_register_form-library.html">register_form</a></span> 
-
-</dt>
-<dd>
-</dd>
-
-          <dt id="register_page">
-  <span class="name"><a href="file-___home_runner_work_client-common_client-common_lib_views_register_register_page/file-___home_runner_work_client-common_client-common_lib_views_register_register_page-library.html">register_page</a></span> 
-
-</dt>
-<dd>
-</dd>
-
-          <dt id="register_request">
-  <span class="name"><a href="file-___home_runner_work_client-common_client-common_lib_api_request_models_register_request/file-___home_runner_work_client-common_client-common_lib_api_request_models_register_request-library.html">register_request</a></span> 
 
 </dt>
 <dd>
@@ -621,20 +532,6 @@ Don't forget to give the project a star if you liked it! Thanks again!</p><p ali
 <dd>
 </dd>
 
-          <dt id="user_accept_cgu_version_response">
-  <span class="name"><a href="file-___home_runner_work_client-common_client-common_lib_api_response_models_user_accept_cgu_version_response/file-___home_runner_work_client-common_client-common_lib_api_response_models_user_accept_cgu_version_response-library.html">user_accept_cgu_version_response</a></span> 
-
-</dt>
-<dd>
-</dd>
-
-          <dt id="user_accepted_latest_cgu_response">
-  <span class="name"><a href="file-___home_runner_work_client-common_client-common_lib_api_response_models_user_accepted_latest_cgu_response/file-___home_runner_work_client-common_client-common_lib_api_response_models_user_accepted_latest_cgu_response-library.html">user_accepted_latest_cgu_response</a></span> 
-
-</dt>
-<dd>
-</dd>
-
           <dt id="user_api">
   <span class="name"><a href="file-___home_runner_work_client-common_client-common_lib_api_user_api/file-___home_runner_work_client-common_client-common_lib_api_user_api-library.html">user_api</a></span> 
 
@@ -656,29 +553,15 @@ Don't forget to give the project a star if you liked it! Thanks again!</p><p ali
 <dd>
 </dd>
 
+          <dt id="user_response">
+  <span class="name"><a href="file-___home_runner_work_client-common_client-common_lib_api_response_models_user_response/file-___home_runner_work_client-common_client-common_lib_api_response_models_user_response-library.html">user_response</a></span> 
+
+</dt>
+<dd>
+</dd>
+
           <dt id="validate_dev_request">
   <span class="name"><a href="file-___home_runner_work_client-common_client-common_lib_api_request_models_validate_dev_request/file-___home_runner_work_client-common_client-common_lib_api_request_models_validate_dev_request-library.html">validate_dev_request</a></span> 
-
-</dt>
-<dd>
-</dd>
-
-          <dt id="validate_user_request">
-  <span class="name"><a href="file-___home_runner_work_client-common_client-common_lib_api_request_models_validate_user_request/file-___home_runner_work_client-common_client-common_lib_api_request_models_validate_user_request-library.html">validate_user_request</a></span> 
-
-</dt>
-<dd>
-</dd>
-
-          <dt id="verifiying_code_page">
-  <span class="name"><a href="file-___home_runner_work_client-common_client-common_lib_views_verify_code_verifiying_code_page/file-___home_runner_work_client-common_client-common_lib_views_verify_code_verifiying_code_page-library.html">verifiying_code_page</a></span> 
-
-</dt>
-<dd>
-</dd>
-
-          <dt id="verify_code_form">
-  <span class="name"><a href="file-___home_runner_work_client-common_client-common_lib_views_verify_code_verify_code_form/file-___home_runner_work_client-common_client-common_lib_views_verify_code_verify_code_form-library.html">verify_code_form</a></span> 
 
 </dt>
 <dd>
@@ -715,19 +598,9 @@ Don't forget to give the project a star if you liked it! Thanks again!</p><p ali
       <li><a href="file-___home_runner_work_client-common_client-common_lib_api_response_models_apps_response/file-___home_runner_work_client-common_client-common_lib_api_response_models_apps_response-library.html">apps_response</a></li>
       <li><a href="file-___home_runner_work_client-common_client-common_lib_api_request_models_ask_code_lost_password_request/file-___home_runner_work_client-common_client-common_lib_api_request_models_ask_code_lost_password_request-library.html">ask_code_lost_password_request</a></li>
       <li><a href="file-___home_runner_work_client-common_client-common_lib_models_auth_model/file-___home_runner_work_client-common_client-common_lib_models_auth_model-library.html">auth_model</a></li>
-      <li><a href="file-___home_runner_work_client-common_client-common_lib_views_auth_auth_page/file-___home_runner_work_client-common_client-common_lib_views_auth_auth_page-library.html">auth_page</a></li>
-      <li><a href="file-___home_runner_work_client-common_client-common_lib_views_auth_auth_page_form/file-___home_runner_work_client-common_client-common_lib_views_auth_auth_page_form-library.html">auth_page_form</a></li>
-      <li><a href="file-___home_runner_work_client-common_client-common_lib_api_response_models_auth_response/file-___home_runner_work_client-common_client-common_lib_api_response_models_auth_response-library.html">auth_response</a></li>
       <li><a href="file-___home_runner_work_client-common_client-common_lib_models_build_model/file-___home_runner_work_client-common_client-common_lib_models_build_model-library.html">build_model</a></li>
       <li><a href="file-___home_runner_work_client-common_client-common_lib_api_response_models_build_response/file-___home_runner_work_client-common_client-common_lib_api_response_models_build_response-library.html">build_response</a></li>
       <li><a href="file-___home_runner_work_client-common_client-common_lib_api_response_models_builds_response/file-___home_runner_work_client-common_client-common_lib_api_response_models_builds_response-library.html">builds_response</a></li>
-      <li><a href="file-___home_runner_work_client-common_client-common_lib_api_cgu_api/file-___home_runner_work_client-common_client-common_lib_api_cgu_api-library.html">cgu_api</a></li>
-      <li><a href="file-___home_runner_work_client-common_client-common_lib_models_cgu_model/file-___home_runner_work_client-common_client-common_lib_models_cgu_model-library.html">cgu_model</a></li>
-      <li><a href="file-___home_runner_work_client-common_client-common_lib_views_cgu_cgu_page/file-___home_runner_work_client-common_client-common_lib_views_cgu_cgu_page-library.html">cgu_page</a></li>
-      <li><a href="file-___home_runner_work_client-common_client-common_lib_views_cgu_cgu_page_fr/file-___home_runner_work_client-common_client-common_lib_views_cgu_cgu_page_fr-library.html">cgu_page_fr</a></li>
-      <li><a href="file-___home_runner_work_client-common_client-common_lib_api_response_models_cgu_response/file-___home_runner_work_client-common_client-common_lib_api_response_models_cgu_response-library.html">cgu_response</a></li>
-      <li><a href="file-___home_runner_work_client-common_client-common_lib_views_login_change_lost_password_form/file-___home_runner_work_client-common_client-common_lib_views_login_change_lost_password_form-library.html">change_lost_password_form</a></li>
-      <li><a href="file-___home_runner_work_client-common_client-common_lib_views_profile_change_lost_password_page/file-___home_runner_work_client-common_client-common_lib_views_profile_change_lost_password_page-library.html">change_lost_password_page</a></li>
       <li><a href="file-___home_runner_work_client-common_client-common_lib_views_profile_change_password_confirmation_page/file-___home_runner_work_client-common_client-common_lib_views_profile_change_password_confirmation_page-library.html">change_password_confirmation_page</a></li>
       <li><a href="file-___home_runner_work_client-common_client-common_lib_views_profile_change_password_form/file-___home_runner_work_client-common_client-common_lib_views_profile_change_password_form-library.html">change_password_form</a></li>
       <li><a href="file-___home_runner_work_client-common_client-common_lib_api_request_models_change_password_request/file-___home_runner_work_client-common_client-common_lib_api_request_models_change_password_request-library.html">change_password_request</a></li>
@@ -759,17 +632,11 @@ Don't forget to give the project a star if you liked it! Thanks again!</p><p ali
       <li><a href="file-___home_runner_work_client-common_client-common_lib_lenra_application_lenra_error_page/file-___home_runner_work_client-common_client-common_lib_lenra_application_lenra_error_page-library.html">lenra_error_page</a></li>
       <li><a href="file-___home_runner_work_client-common_client-common_lib_api_lenra_http_client/file-___home_runner_work_client-common_client-common_lib_api_lenra_http_client-library.html">lenra_http_client</a></li>
       <li><a href="file-___home_runner_work_client-common_client-common_lib_test_lenra_page_test_help/file-___home_runner_work_client-common_client-common_lib_test_lenra_page_test_help-library.html">lenra_page_test_help</a></li>
+      <li><a href="file-___home_runner_work_client-common_client-common_lib_views_lenra_report_mode/file-___home_runner_work_client-common_client-common_lib_views_lenra_report_mode-library.html">lenra_report_mode</a></li>
       <li><a href="file-___home_runner_work_client-common_client-common_lib_views_loading_button/file-___home_runner_work_client-common_client-common_lib_views_loading_button-library.html">loading_button</a></li>
-      <li><a href="file-___home_runner_work_client-common_client-common_lib_views_auth_login_form/file-___home_runner_work_client-common_client-common_lib_views_auth_login_form-library.html">login_form</a></li>
-      <li><a href="file-___home_runner_work_client-common_client-common_lib_api_request_models_login_request/file-___home_runner_work_client-common_client-common_lib_api_request_models_login_request-library.html">login_request</a></li>
+      <li><a href="file-___home_runner_work_client-common_client-common_lib_oauth_oauth/file-___home_runner_work_client-common_client-common_lib_oauth_oauth-library.html">oauth</a></li>
+      <li><a href="file-___home_runner_work_client-common_client-common_lib_oauth_oauth_model/file-___home_runner_work_client-common_client-common_lib_oauth_oauth_model-library.html">oauth_model</a></li>
       <li><a href="file-___home_runner_work_client-common_client-common_lib_views_page_404/file-___home_runner_work_client-common_client-common_lib_views_page_404-library.html">page_404</a></li>
-      <li><a href="file-___home_runner_work_client-common_client-common_lib_navigator_page_guard/file-___home_runner_work_client-common_client-common_lib_navigator_page_guard-library.html">page_guard</a></li>
-      <li><a href="file-___home_runner_work_client-common_client-common_lib_views_login_recovery_form/file-___home_runner_work_client-common_client-common_lib_views_login_recovery_form-library.html">recovery_form</a></li>
-      <li><a href="file-___home_runner_work_client-common_client-common_lib_views_profile_recovery_page/file-___home_runner_work_client-common_client-common_lib_views_profile_recovery_page-library.html">recovery_page</a></li>
-      <li><a href="file-___home_runner_work_client-common_client-common_lib_views_auth_register_form/file-___home_runner_work_client-common_client-common_lib_views_auth_register_form-library.html">register_form</a></li>
-      <li><a href="file-___home_runner_work_client-common_client-common_lib_views_register_register_form/file-___home_runner_work_client-common_client-common_lib_views_register_register_form-library.html">register_form</a></li>
-      <li><a href="file-___home_runner_work_client-common_client-common_lib_views_register_register_page/file-___home_runner_work_client-common_client-common_lib_views_register_register_page-library.html">register_page</a></li>
-      <li><a href="file-___home_runner_work_client-common_client-common_lib_api_request_models_register_request/file-___home_runner_work_client-common_client-common_lib_api_request_models_register_request-library.html">register_request</a></li>
       <li><a href="file-___home_runner_work_client-common_client-common_lib_api_request_models_send_code_lost_password_request/file-___home_runner_work_client-common_client-common_lib_api_request_models_send_code_lost_password_request-library.html">send_code_lost_password_request</a></li>
       <li><a href="file-___home_runner_work_client-common_client-common_lib_views_simple_page/file-___home_runner_work_client-common_client-common_lib_views_simple_page-library.html">simple_page</a></li>
       <li><a href="file-___home_runner_work_client-common_client-common_lib_views_stateful_wrapper/file-___home_runner_work_client-common_client-common_lib_views_stateful_wrapper-library.html">stateful_wrapper</a></li>
@@ -780,15 +647,11 @@ Don't forget to give the project a star if you liked it! Thanks again!</p><p ali
       <li><a href="file-___home_runner_work_client-common_client-common_lib_api_request_models_update_environment_request/file-___home_runner_work_client-common_client-common_lib_api_request_models_update_environment_request-library.html">update_environment_request</a></li>
       <li><a href="file-___home_runner_work_client-common_client-common_lib_api_response_models_update_environment_response/file-___home_runner_work_client-common_client-common_lib_api_response_models_update_environment_response-library.html">update_environment_response</a></li>
       <li><a href="file-___home_runner_work_client-common_client-common_lib_api_response_models_user/file-___home_runner_work_client-common_client-common_lib_api_response_models_user-library.html">user</a></li>
-      <li><a href="file-___home_runner_work_client-common_client-common_lib_api_response_models_user_accept_cgu_version_response/file-___home_runner_work_client-common_client-common_lib_api_response_models_user_accept_cgu_version_response-library.html">user_accept_cgu_version_response</a></li>
-      <li><a href="file-___home_runner_work_client-common_client-common_lib_api_response_models_user_accepted_latest_cgu_response/file-___home_runner_work_client-common_client-common_lib_api_response_models_user_accepted_latest_cgu_response-library.html">user_accepted_latest_cgu_response</a></li>
       <li><a href="file-___home_runner_work_client-common_client-common_lib_api_user_api/file-___home_runner_work_client-common_client-common_lib_api_user_api-library.html">user_api</a></li>
       <li><a href="file-___home_runner_work_client-common_client-common_lib_models_user_application_model/file-___home_runner_work_client-common_client-common_lib_models_user_application_model-library.html">user_application_model</a></li>
       <li><a href="file-___home_runner_work_client-common_client-common_lib_api_user_environment_access_api/file-___home_runner_work_client-common_client-common_lib_api_user_environment_access_api-library.html">user_environment_access_api</a></li>
+      <li><a href="file-___home_runner_work_client-common_client-common_lib_api_response_models_user_response/file-___home_runner_work_client-common_client-common_lib_api_response_models_user_response-library.html">user_response</a></li>
       <li><a href="file-___home_runner_work_client-common_client-common_lib_api_request_models_validate_dev_request/file-___home_runner_work_client-common_client-common_lib_api_request_models_validate_dev_request-library.html">validate_dev_request</a></li>
-      <li><a href="file-___home_runner_work_client-common_client-common_lib_api_request_models_validate_user_request/file-___home_runner_work_client-common_client-common_lib_api_request_models_validate_user_request-library.html">validate_user_request</a></li>
-      <li><a href="file-___home_runner_work_client-common_client-common_lib_views_verify_code_verifiying_code_page/file-___home_runner_work_client-common_client-common_lib_views_verify_code_verifiying_code_page-library.html">verifiying_code_page</a></li>
-      <li><a href="file-___home_runner_work_client-common_client-common_lib_views_verify_code_verify_code_form/file-___home_runner_work_client-common_client-common_lib_views_verify_code_verify_code_form-library.html">verify_code_form</a></li>
 </ol>
 
   </div>
@@ -810,7 +673,7 @@ Don't forget to give the project a star if you liked it! Thanks again!</p><p ali
 
 
 <script src="static-assets/highlight.pack.js?v1"></script>
-<script src="static-assets/script.js?v1"></script>
+<script src="static-assets/docs.dart.js"></script>
 
 
 

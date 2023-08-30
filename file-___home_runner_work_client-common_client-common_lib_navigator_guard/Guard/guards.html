@@ -11,7 +11,7 @@
   
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" rel="stylesheet">
   
   <link rel="stylesheet" href="../../static-assets/github.css?v1">
   <link rel="stylesheet" href="../../static-assets/styles.css?v1">
@@ -21,32 +21,39 @@
 </head>
 
 
-<body data-base-href="../../"
-      data-using-base-href="false">
+<body data-base-href="../../" data-using-base-href="false" class="light-theme">
 
 <div id="overlay-under-drawer"></div>
 
 <header id="title">
-  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../../index.html">client_common</a></li>
     <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_guard/file-___home_runner_work_client-common_client-common_lib_navigator_guard-library.html">guard</a></li>
     <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_guard/Guard-class.html">Guard</a></li>
-    <li class="self-crumb">guards method</li>
+    <li class="self-crumb">guards static method</li>
   </ol>
   <div class="self-name">guards</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
+  <div class="toggle" id="theme-button">
+    <label for="theme">
+      <input type="checkbox" id="theme" value="light-theme">
+      <span id="dark-theme-button" class="material-symbols-outlined">
+        brightness_4
+      </span>
+      <span id="light-theme-button" class="material-symbols-outlined">
+        brightness_5
+      </span>
+    </label>
+  </div>
 </header>
-
 <main>
-
 
   <div id="dartdoc-main-content" class="main-content">
       <div>
-<h1><span class="kind-method">guards</span> method 
-    <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
+<h1><span class="kind-method">guards</span> static method 
 </h1></div>
 
     <section class="multi-line-signature">
@@ -54,7 +61,8 @@
 
 <span class="returntype"><a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span>&gt;</span></span>
 <span class="name ">guards</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="guards-param-context"><span class="type-annotation">dynamic</span> <span class="parameter-name">context</span>, </span></li>
-<li><span class="parameter" id="guards-param-guards"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_guard/Guard-class.html">Guard</a></span>&gt;</span></span> <span class="parameter-name">guards</span></span></li>
+<li><span class="parameter" id="guards-param-guards"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_guard/Guard-class.html">Guard</a></span>&gt;</span></span> <span class="parameter-name">guards</span>, </span></li>
+<li><span class="parameter" id="guards-param-metadata">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span>?</span> <span class="parameter-name">metadata</span>}</span></li>
 </ol>)
 
       
@@ -66,13 +74,13 @@
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">static Future&lt;String?&gt; guards(BuildContext context, List&lt;Guard&gt; guards) async {
+  <pre class="language-dart"><code class="language-dart">static Future&lt;String?&gt; guards(BuildContext context, List&lt;Guard&gt; guards, {Map&lt;String, dynamic&gt;? metadata}) async {
+  if (metadata?.containsKey(&#39;initialRoute&#39;) ?? false) {
+    context.read&lt;OAuthModel&gt;().beforeRedirectPath = metadata![&quot;initialRoute&quot;];
+  }
+
   for (Guard checker in guards) {
-    try {
-      if (!await checker.isValid(context)) {
-        return checker.onInvalid(context);
-      }
-    } catch (e) {
+    if (!await checker.isValid(context)) {
       return checker.onInvalid(context);
     }
   }
@@ -94,7 +102,7 @@
   <li><a href="../../index.html">client_common</a></li>
   <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_guard/file-___home_runner_work_client-common_client-common_lib_navigator_guard-library.html">guard</a></li>
   <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_guard/Guard-class.html">Guard</a></li>
-  <li class="self-crumb">guards method</li>
+  <li class="self-crumb">guards static method</li>
 </ol>
 
 
@@ -105,34 +113,33 @@
           <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_guard/Guard/Guard.html">Guard</a></li>
 
 
-    <li class="section-title">
-      <a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_guard/Guard-class.html#instance-properties">Properties</a>
-    </li>
-    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/hashCode.html">hashCode</a></li>
-    <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_guard/Guard/isValid.html">isValid</a></li>
-    <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_guard/Guard/onInvalid.html">onInvalid</a></li>
-    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/runtimeType.html">runtimeType</a></li>
+        <li class="section-title">
+          <a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_guard/Guard-class.html#instance-properties">Properties</a>
+        </li>
+          <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/hashCode.html">hashCode</a></li>
+          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_guard/Guard/isValid.html">isValid</a></li>
+          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_guard/Guard/onInvalid.html">onInvalid</a></li>
+          <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/runtimeType.html">runtimeType</a></li>
 
-    <li class="section-title inherited"><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_guard/Guard-class.html#instance-methods">Methods</a></li>
-    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
-    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/toString.html">toString</a></li>
+        <li class="section-title inherited"><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_guard/Guard-class.html#instance-methods">Methods</a></li>
+          <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
+          <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/toString.html">toString</a></li>
 
-    <li class="section-title inherited"><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_guard/Guard-class.html#operators">Operators</a></li>
-    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/operator_equals.html">operator ==</a></li>
+        <li class="section-title inherited"><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_guard/Guard-class.html#operators">Operators</a></li>
+          <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/operator_equals.html">operator ==</a></li>
 
 
         <li class="section-title"><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_guard/Guard-class.html#static-properties">Static properties</a></li>
-          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_guard/Guard/checkAuthenticated.html">checkAuthenticated</a></li>
-          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_guard/Guard/checkCguAccepted.html">checkCguAccepted</a></li>
           <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_guard/Guard/checkIsDev.html">checkIsDev</a></li>
           <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_guard/Guard/checkIsNotDev.html">checkIsNotDev</a></li>
-          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_guard/Guard/checkIsNotUser.html">checkIsNotUser</a></li>
-          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_guard/Guard/checkIsUser.html">checkIsUser</a></li>
           <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_guard/Guard/checkNotHaveApp.html">checkNotHaveApp</a></li>
-          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_guard/Guard/checkUnauthenticated.html">checkUnauthenticated</a></li>
 
         <li class="section-title"><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_guard/Guard-class.html#static-methods">Static methods</a></li>
           <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_guard/Guard/guards.html">guards</a></li>
+          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_guard/Guard/haveApp.html">haveApp</a></li>
+          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_guard/Guard/isDev.html">isDev</a></li>
+          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_guard/Guard/isNotDev.html">isNotDev</a></li>
+          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_guard/Guard/toHome.html">toHome</a></li>
 
 </ol>
 
@@ -155,7 +162,7 @@
 
 
 <script src="../../static-assets/highlight.pack.js?v1"></script>
-<script src="../../static-assets/script.js?v1"></script>
+<script src="../../static-assets/docs.dart.js"></script>
 
 
 

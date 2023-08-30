@@ -11,7 +11,7 @@
   
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" rel="stylesheet">
   
   <link rel="stylesheet" href="../../static-assets/github.css?v1">
   <link rel="stylesheet" href="../../static-assets/styles.css?v1">
@@ -21,32 +21,39 @@
 </head>
 
 
-<body data-base-href="../../"
-      data-using-base-href="false">
+<body data-base-href="../../" data-using-base-href="false" class="light-theme">
 
 <div id="overlay-under-drawer"></div>
 
 <header id="title">
-  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../../index.html">client_common</a></li>
     <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator-library.html">common_navigator</a></li>
     <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator-class.html">CommonNavigator</a></li>
-    <li class="self-crumb">goPath method</li>
+    <li class="self-crumb">goPath static method</li>
   </ol>
   <div class="self-name">goPath</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
+  <div class="toggle" id="theme-button">
+    <label for="theme">
+      <input type="checkbox" id="theme" value="light-theme">
+      <span id="dark-theme-button" class="material-symbols-outlined">
+        brightness_4
+      </span>
+      <span id="light-theme-button" class="material-symbols-outlined">
+        brightness_5
+      </span>
+    </label>
+  </div>
 </header>
-
 <main>
-
 
   <div id="dartdoc-main-content" class="main-content">
       <div>
-<h1><span class="kind-method">goPath</span> method 
-    <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
+<h1><span class="kind-method">goPath</span> static method 
 </h1></div>
 
     <section class="multi-line-signature">
@@ -88,7 +95,7 @@
   <li><a href="../../index.html">client_common</a></li>
   <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator-library.html">common_navigator</a></li>
   <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator-class.html">CommonNavigator</a></li>
-  <li class="self-crumb">goPath method</li>
+  <li class="self-crumb">goPath static method</li>
 </ol>
 
 
@@ -99,30 +106,20 @@
           <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/CommonNavigator.html">CommonNavigator</a></li>
 
 
-    <li class="section-title inherited">
-      <a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator-class.html#instance-properties">Properties</a>
-    </li>
-    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/hashCode.html">hashCode</a></li>
-    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/runtimeType.html">runtimeType</a></li>
+        <li class="section-title inherited">
+          <a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator-class.html#instance-properties">Properties</a>
+        </li>
+          <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/hashCode.html">hashCode</a></li>
+          <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/runtimeType.html">runtimeType</a></li>
 
-    <li class="section-title inherited"><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator-class.html#instance-methods">Methods</a></li>
-    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
-    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/toString.html">toString</a></li>
+        <li class="section-title inherited"><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator-class.html#instance-methods">Methods</a></li>
+          <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
+          <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/toString.html">toString</a></li>
 
-    <li class="section-title inherited"><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator-class.html#operators">Operators</a></li>
-    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/operator_equals.html">operator ==</a></li>
+        <li class="section-title inherited"><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator-class.html#operators">Operators</a></li>
+          <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/operator_equals.html">operator ==</a></li>
 
 
-        <li class="section-title"><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator-class.html#static-properties">Static properties</a></li>
-          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/authRoutes.html">authRoutes</a></li>
-          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/cgu.html">cgu</a></li>
-          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/cguFR.html">cguFR</a></li>
-          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/changeLostPassword.html">changeLostPassword</a></li>
-          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/changePasswordConfirmation.html">changePasswordConfirmation</a></li>
-          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/lostPassword.html">lostPassword</a></li>
-          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/register.html">register</a></li>
-          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/sign.html">sign</a></li>
-          <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/userValidation.html">userValidation</a></li>
 
         <li class="section-title"><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator-class.html#static-methods">Static methods</a></li>
           <li><a href="../../file-___home_runner_work_client-common_client-common_lib_navigator_common_navigator/CommonNavigator/currentLocation.html">currentLocation</a></li>
@@ -155,7 +152,7 @@
 
 
 <script src="../../static-assets/highlight.pack.js?v1"></script>
-<script src="../../static-assets/script.js?v1"></script>
+<script src="../../static-assets/docs.dart.js"></script>
 
 
 
