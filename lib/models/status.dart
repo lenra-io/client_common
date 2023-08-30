@@ -52,7 +52,7 @@ class Status<T> {
       _requestStatus = RequestStatus.error;
       _error = ApiError.unknownError();
       notifyListeners();
-      return Future.error(e.toString());
+      return Future.error(e);
     }
   }
 }

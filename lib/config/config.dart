@@ -18,6 +18,9 @@ class Config {
   final String basicAuth;
   final String appBaseUrl;
   final String sentryDsn;
+  final String oauthClientId;
+  final String oauthBaseUrl;
+  final String oauthRedirectUrl;
 
   Config({
     required this.application,
@@ -26,6 +29,9 @@ class Config {
     required this.basicAuth,
     required this.appBaseUrl,
     required this.sentryDsn,
+    required this.oauthClientId,
+    required this.oauthBaseUrl,
+    required this.oauthRedirectUrl,
   });
 
   static _() {
@@ -35,14 +41,21 @@ class Config {
     Application application = _computeApplication(httpEndpoint);
     String appBaseUrl = _computeAppBaseUrl(application);
     String sentryDsn = _computeSentryDsn();
+    String oauthClientId = _computeOAuthClientId();
+    String oauthBaseUrl = _computeOAuthBaseUrl();
+    String oauthRedirectUrl = _computeOAuthRedirectUrl();
 
     return Config(
-        application: application,
-        httpEndpoint: httpEndpoint,
-        wsEndpoint: wsEndpoint,
-        basicAuth: basicAuth,
-        appBaseUrl: appBaseUrl,
-        sentryDsn: sentryDsn);
+      application: application,
+      httpEndpoint: httpEndpoint,
+      wsEndpoint: wsEndpoint,
+      basicAuth: basicAuth,
+      appBaseUrl: appBaseUrl,
+      sentryDsn: sentryDsn,
+      oauthClientId: oauthClientId,
+      oauthBaseUrl: oauthBaseUrl,
+      oauthRedirectUrl: oauthRedirectUrl,
+    );
   }
 
   static String _computeHttpEndpoint() {
@@ -105,5 +118,41 @@ class Config {
       }
     }
     return const String.fromEnvironment('SENTRY_CLIENT_DSN');
+  }
+
+  static String _computeOAuthClientId() {
+    if (kIsWeb) {
+      html.MetaElement? meta = html.document.querySelector('meta[name="oauth-client-id"]') as html.MetaElement?;
+      if (meta != null) {
+        if (meta.content != '\${OAUTH_CLIENT_ID}') {
+          return meta.content;
+        }
+      }
+    }
+    return const String.fromEnvironment('OAUTH_CLIENT_ID');
+  }
+
+  static String _computeOAuthBaseUrl() {
+    if (kIsWeb) {
+      html.MetaElement? meta = html.document.querySelector('meta[name="oauth-base-url"]') as html.MetaElement?;
+      if (meta != null) {
+        if (meta.content != '\${OAUTH_BASE_URL}') {
+          return meta.content;
+        }
+      }
+    }
+    return const String.fromEnvironment('OAUTH_BASE_URL', defaultValue: "http://localhost:4444");
+  }
+
+  static String _computeOAuthRedirectUrl() {
+    if (kIsWeb) {
+      html.MetaElement? meta = html.document.querySelector('meta[name="oauth-redirect-url"]') as html.MetaElement?;
+      if (meta != null) {
+        if (meta.content != '\${OAUTH_REDIRECT_URL}') {
+          return meta.content;
+        }
+      }
+    }
+    return const String.fromEnvironment('OAUTH_REDIRECT_URL', defaultValue: "http://localhost:10000/redirect.html");
   }
 }
