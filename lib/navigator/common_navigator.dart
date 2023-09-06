@@ -26,8 +26,10 @@ class CommonNavigator {
 
   static bool isCurrent(BuildContext context, RouteBase route) {
     if (route is GoRoute) {
-      return GoRouterState.of(context).fullpath == route.path;
+      return GoRouterState.of(context).location ==
+          GoRouter.of(context).namedLocation(route.name!, params: GoRouterState.of(context).params);
     }
+
     return route.routes.any((subRoute) => CommonNavigator.isCurrent(context, subRoute));
   }
 
