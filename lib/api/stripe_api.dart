@@ -11,7 +11,7 @@ class StripeApi {
       );
 
   static Future<GetStripeSubscriptionsResponse> getSubscriptions(int appId) => LenraApi.instance.get(
-        "/stripe/subscriptions?app_id=$appId",
+        "/stripe/subscriptions?id=$appId",
         responseMapper: (json, header) => GetStripeSubscriptionsResponse.fromJson(json),
       );
 
