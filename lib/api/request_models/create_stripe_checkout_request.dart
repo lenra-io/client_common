@@ -1,7 +1,7 @@
 import 'package:client_common/api/request_models/api_request.dart';
 
 class CreateStripeCheckoutRequest extends ApiRequest {
-  String appId;
+  int appId;
   String plan;
   String mode;
   String customer;

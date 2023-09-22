@@ -16,7 +16,7 @@ class StripeApi {
       );
 
   static Future<String> createCheckout(CreateStripeCheckoutRequest body) => LenraApi.instance.post(
-        "/stripe/customers",
+        "/stripe/checkout",
         body: body,
         responseMapper: (json, header) => json as String,
       );

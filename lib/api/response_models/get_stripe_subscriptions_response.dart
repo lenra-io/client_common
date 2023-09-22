@@ -1,7 +1,7 @@
 import 'package:client_common/api/response_models/api_response.dart';
 
 class GetStripeSubscriptionsResponse extends ApiResponse {
-  String customerId;
+  List<dynamic> subscriptions;
 
-  GetStripeSubscriptionsResponse.fromJson(List<Map<String, dynamic>> json) : customerId = json as String;
+  GetStripeSubscriptionsResponse.fromJson(List<dynamic> json) : subscriptions = json;
 }
