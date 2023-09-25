@@ -20,4 +20,9 @@ class StripeApi {
         body: body,
         responseMapper: (json, header) => json as String,
       );
+
+  static Future<String> getCustomerPortalUrl() => LenraApi.instance.get(
+        "/stripe/customer_portal",
+        responseMapper: (json, header) => json as String,
+      );
 }
