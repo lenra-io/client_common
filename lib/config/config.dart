@@ -18,6 +18,7 @@ class Config {
   final String basicAuth;
   final String appBaseUrl;
   final String sentryDsn;
+  final String environment;
   final String oauthClientId;
   final String oauthBaseUrl;
   final String oauthRedirectUrl;
@@ -29,6 +30,7 @@ class Config {
     required this.basicAuth,
     required this.appBaseUrl,
     required this.sentryDsn,
+    required this.environment,
     required this.oauthClientId,
     required this.oauthBaseUrl,
     required this.oauthRedirectUrl,
@@ -41,6 +43,7 @@ class Config {
     Application application = _computeApplication(httpEndpoint);
     String appBaseUrl = _computeAppBaseUrl(application);
     String sentryDsn = _computeSentryDsn();
+    String environment = _computeEnvironment();
     String oauthClientId = _computeOAuthClientId();
     String oauthBaseUrl = _computeOAuthBaseUrl();
     String oauthRedirectUrl = _computeOAuthRedirectUrl();
@@ -52,6 +55,7 @@ class Config {
       basicAuth: basicAuth,
       appBaseUrl: appBaseUrl,
       sentryDsn: sentryDsn,
+      environment: environment,
       oauthClientId: oauthClientId,
       oauthBaseUrl: oauthBaseUrl,
       oauthRedirectUrl: oauthRedirectUrl,
@@ -113,6 +117,18 @@ class Config {
       html.MetaElement? meta = html.document.querySelector('meta[name="sentry-client-dsn"]') as html.MetaElement?;
       if (meta != null) {
         if (meta.content != '\${SENTRY_CLIENT_DSN}') {
+          return meta.content;
+        }
+      }
+    }
+    return const String.fromEnvironment('SENTRY_CLIENT_DSN');
+  }
+
+  static String _computeEnvironment() {
+    if (kIsWeb) {
+      html.MetaElement? meta = html.document.querySelector('meta[name="environment"]') as html.MetaElement?;
+      if (meta != null) {
+        if (meta.content != '\${ENVIRONMENT}') {
           return meta.content;
         }
       }
