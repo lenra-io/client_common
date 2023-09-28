@@ -133,7 +133,7 @@ class Config {
         }
       }
     }
-    return const String.fromEnvironment('SENTRY_CLIENT_DSN');
+    return const String.fromEnvironment('ENVIRONMENT');
   }
 
   static String _computeOAuthClientId() {
