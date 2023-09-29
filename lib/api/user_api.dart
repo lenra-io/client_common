@@ -6,6 +6,8 @@ import 'package:client_common/api/request_models/validate_dev_request.dart';
 import 'package:client_common/api/response_models/empty_response.dart';
 import 'package:client_common/api/response_models/user_response.dart';
 
+import 'request_models/set_notify_provider_request.dart';
+
 /// All of the user requests that can be done on Lenra.
 class UserApi {
   static Future<UserResponse> me() => LenraApi.instance.get(
@@ -37,6 +39,13 @@ class UserApi {
 
   static Future<EmptyResponse> sendCodeLostPassword(SendCodeLostPasswordRequest body) => LenraAuth.instance.put(
         "/password/lost",
+        body: body,
+        responseMapper: (json, headers) => EmptyResponse.fromJson(json),
+      );
+
+  static Future<EmptyResponse> setNotifyProvider(String deviceId, SetNotifyProviderRequest body) =>
+      LenraApi.instance.put(
+        "/devices/$deviceId/notify_provider",
         body: body,
         responseMapper: (json, headers) => EmptyResponse.fromJson(json),
       );
