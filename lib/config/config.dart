@@ -17,6 +17,11 @@ class Config {
   final String wsEndpoint;
   final String basicAuth;
   final String appBaseUrl;
+  final String sentryDsn;
+  final String environment;
+  final String oauthClientId;
+  final String oauthBaseUrl;
+  final String oauthRedirectUrl;
 
   Config({
     required this.application,
@@ -24,6 +29,11 @@ class Config {
     required this.wsEndpoint,
     required this.basicAuth,
     required this.appBaseUrl,
+    required this.sentryDsn,
+    required this.environment,
+    required this.oauthClientId,
+    required this.oauthBaseUrl,
+    required this.oauthRedirectUrl,
   });
 
   static _() {
@@ -32,13 +42,24 @@ class Config {
     String wsEndpoint = _computeWsEndpoint(httpEndpoint);
     Application application = _computeApplication(httpEndpoint);
     String appBaseUrl = _computeAppBaseUrl(application);
+    String sentryDsn = _computeSentryDsn();
+    String environment = _computeEnvironment();
+    String oauthClientId = _computeOAuthClientId();
+    String oauthBaseUrl = _computeOAuthBaseUrl();
+    String oauthRedirectUrl = _computeOAuthRedirectUrl();
 
     return Config(
-        application: application,
-        httpEndpoint: httpEndpoint,
-        wsEndpoint: wsEndpoint,
-        basicAuth: basicAuth,
-        appBaseUrl: appBaseUrl);
+      application: application,
+      httpEndpoint: httpEndpoint,
+      wsEndpoint: wsEndpoint,
+      basicAuth: basicAuth,
+      appBaseUrl: appBaseUrl,
+      sentryDsn: sentryDsn,
+      environment: environment,
+      oauthClientId: oauthClientId,
+      oauthBaseUrl: oauthBaseUrl,
+      oauthRedirectUrl: oauthRedirectUrl,
+    );
   }
 
   static String _computeHttpEndpoint() {
@@ -89,5 +110,65 @@ class Config {
       }
     }
     return Application.values.firstWhere((a) => a.toString() == "Application.$appName", orElse: () => Application.app);
+  }
+
+  static String _computeSentryDsn() {
+    if (kIsWeb) {
+      html.MetaElement? meta = html.document.querySelector('meta[name="sentry-client-dsn"]') as html.MetaElement?;
+      if (meta != null) {
+        if (meta.content != '\${SENTRY_CLIENT_DSN}') {
+          return meta.content;
+        }
+      }
+    }
+    return const String.fromEnvironment('SENTRY_CLIENT_DSN');
+  }
+
+  static String _computeEnvironment() {
+    if (kIsWeb) {
+      html.MetaElement? meta = html.document.querySelector('meta[name="environment"]') as html.MetaElement?;
+      if (meta != null) {
+        if (meta.content != '\${ENVIRONMENT}') {
+          return meta.content;
+        }
+      }
+    }
+    return const String.fromEnvironment('ENVIRONMENT');
+  }
+
+  static String _computeOAuthClientId() {
+    if (kIsWeb) {
+      html.MetaElement? meta = html.document.querySelector('meta[name="oauth-client-id"]') as html.MetaElement?;
+      if (meta != null) {
+        if (meta.content != '\${OAUTH_CLIENT_ID}') {
+          return meta.content;
+        }
+      }
+    }
+    return const String.fromEnvironment('OAUTH_CLIENT_ID');
+  }
+
+  static String _computeOAuthBaseUrl() {
+    if (kIsWeb) {
+      html.MetaElement? meta = html.document.querySelector('meta[name="oauth-base-url"]') as html.MetaElement?;
+      if (meta != null) {
+        if (meta.content != '\${OAUTH_BASE_URL}') {
+          return meta.content;
+        }
+      }
+    }
+    return const String.fromEnvironment('OAUTH_BASE_URL', defaultValue: "http://localhost:4444");
+  }
+
+  static String _computeOAuthRedirectUrl() {
+    if (kIsWeb) {
+      html.MetaElement? meta = html.document.querySelector('meta[name="oauth-redirect-url"]') as html.MetaElement?;
+      if (meta != null) {
+        if (meta.content != '\${OAUTH_REDIRECT_URL}') {
+          return meta.content;
+        }
+      }
+    }
+    return const String.fromEnvironment('OAUTH_REDIRECT_URL', defaultValue: "http://localhost:10000/redirect.html");
   }
 }
