@@ -1,5 +1,5 @@
 import 'package:client_common/api/response_models/api_error.dart';
-import 'package:client_common/models/auth_model.dart';
+import 'package:client_common/oauth/oauth_model.dart';
 import 'package:client_common/views/error.dart';
 import 'package:client_common/views/loading_button.dart';
 import 'package:flutter/material.dart';
@@ -34,8 +34,8 @@ class _ChangePasswordState extends State<ChangePasswordForm> {
 
   @override
   Widget build(BuildContext context) {
-    bool isChangingPassword = context.select<AuthModel, bool>((m) => m.changePasswordStatus.isFetching());
-    ApiError? changePasswordError = context.select<AuthModel, ApiError?>((m) => m.changePasswordStatus.error);
+    bool isChangingPassword = context.select<OAuthModel, bool>((m) => m.changePasswordStatus.isFetching());
+    ApiError? changePasswordError = context.select<OAuthModel, ApiError?>((m) => m.changePasswordStatus.error);
 
     return Form(
       key: _formKey,
@@ -112,7 +112,7 @@ class _ChangePasswordState extends State<ChangePasswordForm> {
             child: LoadingButton(
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
-                  context.read<AuthModel>().changePassword(
+                  context.read<OAuthModel>().changePassword(
                         oldPassword,
                         newPassword,
                         newPasswordConfirmation,
