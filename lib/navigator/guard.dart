@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:client_common/api/response_models/app_response.dart';
 import 'package:client_common/api/response_models/user.dart';
-import 'package:client_common/models/auth_model.dart';
 import 'package:client_common/models/user_application_model.dart';
 import 'package:client_common/navigator/common_navigator.dart';
 import 'package:client_common/oauth/oauth_model.dart';
@@ -25,13 +24,11 @@ class Guard {
   static final Guard checkNotHaveApp = Guard(isValid: haveApp(false), onInvalid: toHome);
 
   static Future<bool> isDev(BuildContext context) async {
-    AuthModel authModel = context.read<AuthModel>();
-    return authModel.isOneOfRole(_devOrMore);
+    return context.read<OAuthModel>().isOneOfRole(_devOrMore);
   }
 
   static Future<bool> isNotDev(BuildContext context) async {
-    AuthModel authModel = context.read<AuthModel>();
-    return authModel.isOneOfRole(UserRole.values.where((ur) => !_devOrMore.contains(ur)).toList());
+    return context.read<OAuthModel>().isOneOfRole(UserRole.values.where((ur) => !_devOrMore.contains(ur)).toList());
   }
 
   static IsValid haveApp(bool mustHaveApp) {
