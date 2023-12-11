@@ -79,7 +79,7 @@ class OAuthModel extends ChangeNotifier {
     } else if (defaultTargetPlatform == TargetPlatform.windows || defaultTargetPlatform == TargetPlatform.linux) {
       // Apparently the customUriScheme should be the full uri for Windows and Linux for oauth2_client to work properly
       return const String.fromEnvironment("OAUTH_REDIRECT_BASE_URL", defaultValue: "http://localhost:10000");
-    } else if (defaultTargetPlatform == TargetPlatform.android) {
+    } else if (defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS) {
       return "io.lenra.app";
     } else {
       return "http";
