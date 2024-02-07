@@ -11,12 +11,10 @@ import 'package:client_common/api/user_api.dart';
 import 'package:client_common/models/status.dart';
 import 'package:client_common/navigator/common_navigator.dart';
 import 'package:client_common/oauth/oauth.dart';
-import 'package:client_common/utils/connexion_utils_stub.dart'
-    if (dart.library.io) 'package:client_common/utils/connexion_utils_io.dart'
-    if (dart.library.js) 'package:client_common/utils/connexion_utils_web.dart';
 import 'package:flutter/foundation.dart';
 import 'package:oauth2_client/access_token_response.dart';
 import 'package:oauth2_client/oauth2_helper.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class OAuthModel extends ChangeNotifier {
   late OAuth2Helper helper;
@@ -65,11 +63,15 @@ class OAuthModel extends ChangeNotifier {
   }
 
   Future<void> _oauthDisconnect() async {
-    const url =
+    const urlStr =
         '${const String.fromEnvironment("OAUTH_BASE_URL", defaultValue: 'http://localhost:4444')}/oauth2/sessions/logout';
+    var uri = Uri.parse(urlStr);
 
-    var client = createHttpClient();
-    await client.get(Uri.parse(url));
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+    } else {
+      throw "Could not launch $urlStr";
+    }
   }
 
   String getPlatformCustomUriScheme() {
