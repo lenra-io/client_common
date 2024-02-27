@@ -8,6 +8,7 @@ import 'package:client_common/api/response_models/empty_response.dart';
 import 'package:client_common/api/response_models/user.dart';
 import 'package:client_common/api/response_models/user_response.dart';
 import 'package:client_common/api/user_api.dart';
+import 'package:client_common/config/config.dart';
 import 'package:client_common/models/status.dart';
 import 'package:client_common/navigator/common_navigator.dart';
 import 'package:client_common/oauth/oauth.dart';
@@ -63,8 +64,7 @@ class OAuthModel extends ChangeNotifier {
   }
 
   Future<void> _oauthDisconnect() async {
-    const urlStr =
-        '${const String.fromEnvironment("OAUTH_BASE_URL", defaultValue: 'http://localhost:4444')}/oauth2/sessions/logout';
+    String urlStr = '${Config.instance.oauthBaseUrl}/oauth2/sessions/logout';
     var uri = Uri.parse(urlStr);
 
     if (await canLaunchUrl(uri)) {
