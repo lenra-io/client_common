@@ -31,7 +31,7 @@ dependencies:
   lenra_components:
     git:
       url: https://github.com/lenra-io/lenra_components.git
-      ref: v1.0.0-beta.52
+      ref: v1.0.0-beta.53
   url_launcher: ^6.1.11
   oauth2_client: ^3.2.0
 flutter:
